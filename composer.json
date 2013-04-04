@@ -1,0 +1,30 @@
+{
+    "name": "fsi/form-extensions-bundle",
+    "type": "symfony-bundle",
+    "description": "FSi extensions for Symfony2 form component.",
+    "keywords": ["fsi", "symfony", "form", "extensions", "bundle"],
+    "authors": [
+        {
+            "name": "Norbert Orzechowicz",
+            "email": "norbert@fsi.pl"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3",
+        "twig/twig": ">=1.2,<2.0-dev",
+        "symfony/framework-bundle" : "2.2.*",
+        "symfony/form" : "2.2.*",
+        "avalanche123/imagine-bundle": "2.1.*",
+        "vich/uploader-bundle": "0.8.*",
+        "knplabs/knp-gaufrette-bundle" : " 0.1.*"
+    },
+    "autoload": {
+        "psr-0": { "FSi\\Bundle\\FormExtensionsBundle\\": "" }
+    },
+    "target-dir" : "FSi/Bundle/FormExtensionsBundle",
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    }
+}

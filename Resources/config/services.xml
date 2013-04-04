@@ -1,0 +1,33 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <!-- Symfony2 Form Extensions -->
+        <service id="fsi_form_extensions.form.type_extension.form.group_extension"
+                 class="FSi\Bundle\FormExtensionsBundle\Form\Extension\FormTypeGroupExtension">
+            <tag name="form.type_extension" alias="form" />
+        </service>
+        <service id="fsi_form_extensions.form.type_extension.file.vich_uploader_extension"
+                 class="FSi\Bundle\FormExtensionsBundle\Form\Extension\FileTypeVichUploaderExtension">
+            <tag name="form.type_extension" alias="file" />
+        </service>
+
+        <!-- Symfony2 Form Types -->
+        <service id="fsi_form_extensions.form.type.imagefile" class="FSi\Bundle\FormExtensionsBundle\Form\Type\ImageFileType">
+            <tag name="form.type" alias="imagefile" />
+        </service>
+        <service id="fsi_form_extensions.form.type.ckeditor" class="FSi\Bundle\FormExtensionsBundle\Form\Type\CkeditorType">
+            <argument>%fsi_form_extensions.form.type.ckeditor.config%</argument>
+            <tag name="form.type" alias="ckeditor" />
+        </service>
+
+        <!-- Twig Extensions -->
+        <service id="fsi_form_extensions.twig.form_extension" class="FSi\Bundle\FormExtensionsBundle\Twig\Extension\FormExtension">
+            <tag name="twig.extension" />
+        </service>
+    </services>
+
+</container>
