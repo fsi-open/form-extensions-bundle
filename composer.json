@@ -13,10 +13,13 @@
         "php": ">=5.3.3",
         "twig/twig": ">=1.2,<2.0-dev",
         "symfony/framework-bundle" : "2.2.*",
-        "symfony/form" : "2.2.*",
-        "avalanche123/imagine-bundle": "2.1.*",
-        "vich/uploader-bundle": "0.8.*",
-        "knplabs/knp-gaufrette-bundle" : " 0.1.*"
+        "symfony/form" : "2.2.*"
+    },
+    "require-dev": {
+        "phpspec/phpspec": "2.0.*@dev"
+    },
+    "config": {
+        "bin-dir": "bin"
     },
     "autoload": {
         "psr-0": { "FSi\\Bundle\\FormExtensionsBundle\\": "" }

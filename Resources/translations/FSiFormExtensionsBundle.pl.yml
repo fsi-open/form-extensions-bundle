@@ -1,7 +1,0 @@
-form:
-    fileimage:
-        preview: Podgląd
-    file:
-        download: Pobierz: %name%
-        url: Adres Url: %url%
-        size: Rozmiar: %size% bajtów
