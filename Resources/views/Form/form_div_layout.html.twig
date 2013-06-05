@@ -19,43 +19,6 @@
     {% endspaceless %}
 {% endblock form_rows %}
 
-{% block file_widget %}
-    {% spaceless %}
-        {% if file_name is not null%}
-            <div id="{{ id }}_preview"{% for attrname, attrvalue in preview_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
-            {% set file_url =  app.request.basePath ~ vich_uploader_asset(entity, file_property_path) %}
-            <div id="{{ id }}_preview_download">
-                <a href="{{ file_url }}" target="blank">{{ 'form.file.download'|trans({'%name%': file.filename}, 'FSiFormExtensionsBundle') }}</a>
-            </div>
-            <div id="{{ id }}_preview_url">
-                {{ 'form.file.url'|trans({'%url%': file_url}, 'FSiFormExtensionsBundle') }}
-            </div>
-            <div  id="{{ id }}_preview_details_size">
-                {{ 'form.file.size'|trans({'%size%': file.size}, 'FSiFormExtensionsBundle') }}
-            </div>
-            </div>
-        {% endif %}
-        {{ block('form_widget') }}
-    {% endspaceless %}
-{% endblock %}
-
-{% block imagefile_widget %}
-    {% spaceless %}
-        {% if file_name is not null%}
-            <div id="{{ id }}_preview"{% for attrname, attrvalue in preview_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
-            {% set file_url =  app.request.basePath ~ vich_uploader_asset(entity, file_property_path) %}
-            {% if imagine_filter is not null %}
-                {% set thumb_url =  file_url|apply_filter(imagine_filter) %}
-                <a href="{{ file_url }}" target="blank"><img src="{{ thumb_url }}" alt="{{ file.filename }}"></a>
-            {% else %}
-                <a href="{{ file_url }}" target="blank">{{ 'form.fileimage.preview'|trans({}, 'FSiFormExtensionsBundle') }}</a>
-            {% endif %}
-            </div>
-        {% endif %}
-        {{ block('form_widget') }}
-    {% endspaceless %}
-{% endblock %}
-
 {% block ckeditor_widget %}
     {% spaceless %}
     <textarea {{ block('widget_attributes') }}>{{ value }}</textarea>

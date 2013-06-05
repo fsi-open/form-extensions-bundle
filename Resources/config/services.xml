@@ -10,10 +10,6 @@
                  class="FSi\Bundle\FormExtensionsBundle\Form\Extension\FormTypeGroupExtension">
             <tag name="form.type_extension" alias="form" />
         </service>
-        <service id="fsi_form_extensions.form.type_extension.file.vich_uploader_extension"
-                 class="FSi\Bundle\FormExtensionsBundle\Form\Extension\FileTypeVichUploaderExtension">
-            <tag name="form.type_extension" alias="file" />
-        </service>
 
         <!-- Symfony2 Form Types -->
         <service id="fsi_form_extensions.form.type.imagefile" class="FSi\Bundle\FormExtensionsBundle\Form\Type\ImageFileType">

@@ -36,9 +36,8 @@ class FSIFormExtensionsExtension extends Extension
     /**
      * Loads Form configuration.
      *
-     * @param array            $config    A configuration array
-     * @param ContainerBuilder $container A ContainerBuilder instance
-     * @param XmlFileLoader    $loader    An XmlFileLoader instance
+     * @param $config
+     * @param ContainerBuilder $container
      */
     private function registerFormConfiguration($config, ContainerBuilder $container)
     {
