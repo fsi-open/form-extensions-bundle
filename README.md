@@ -37,3 +37,13 @@ Modify Files:
 
 - [ckeditor](Resources/doc/ckeditor.md)
 - [groups](Resources/doc/groups.md)
+
+##Testing##
+
+to run tests you should execute following commands after accessing bundle root.
+
+```
+$ cd src/FSi/Bundle/FormExtensionsBundle
+$ composer update
+$ bin/phpspec
+```
