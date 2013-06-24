@@ -39,7 +39,10 @@ class FormExtensionSpec extends ObjectBehavior
         $env->getExtension('assets')->willReturn($assets);
         $this->initRuntime($env);
 
+        ob_start();
         $this->includeCkeditor();
         $this->includeCkeditor();
+        ob_clean();
     }
+
 }

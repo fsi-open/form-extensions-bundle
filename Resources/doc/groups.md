@@ -4,7 +4,36 @@ This extension provides fieldsets to symfony form component.
 
 ##1. Usage##
 
+All you need to do is define groups in form root element as an array where key is group id and value group name.
 ```php
+$resolver->setDefaults(array(
+    'groups' => array(
+        'basic' => 'news.form.group.basic', // group names are translated in twig 
+        'files' => 'news.form.group.files',
+    )
+));
+```
+
+Now you can add children to form that will be assigned to ``basic`` or ``files`` group. 
+```php
+$builder->add('title', 'text', array(
+    /* field options */
+    'group' => 'basic'
+));
+```
+
+```php
+$builder->add('file', 'file', array(
+    /* field options */
+    'group' => 'files'
+));
+```
+
+Full demo code. 
+
+```php
+
+
 // src/FSi/DemoBundle/Form/Type/NewsType.php
 
 namespace FSi\DemoBundle\Form\Type;
@@ -18,48 +47,28 @@ class NewsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('title', 'text', array(
-            'label' => 'Title',
-            'label_attr' => array('class' => 'control-label'),
-            'group' => 'news.form.group.basic'
+            /* field options */
+            'group' => 'basic'
         ));
 
         $builder->add('categories', 'entity', array(
-            'label' => 'news.form.category.label',
-            'label_attr' => array('class' => 'control-label'),
-            'class' => 'FSiDemoBundle:Category',
-            'property' => 'title',
-            'multiple' => true,
-            'expanded' => false,
-            'empty_value' => 'news.form.category.empty_value',
-            'required' => false,
-            'group' => 'news.form.group.basic'
+            /* field options */
+            'group' => 'basic'
         ));
 
         $builder->add('author', 'entity', array(
-            'class' => 'FSiDemoBundle:User',
-            'empty_value' => ' -- ',
-            'translation_domain' => 'FSiDemoBundle',
-            'label' => 'Author',
-            'label_attr' => array('class' => 'control-label'),
-            'group' => 'news.form.group.basic'
+            /* field options */
+            'group' => 'basic'
         ));
 
         $builder->add('image', 'imagefile', array(
-            'required' => false,
-            'imagine_filter' => 'news_thumb',
-            'file_name_path' => 'imageName',
-            'preview_attr' => array('class' => 'imagefile_preview'),
-            'label' => 'news.form.image.label',
-            'label_attr' => array('class' => 'control-label'),
-            'group' => 'news.form.group.files'
+            /* field options */
+            'group' => 'files'
         ));
 
         $builder->add('file', 'file', array(
-            'required' => false,
-            'file_name_path' => 'fileName',
-            'label' => 'news.form.file.label',
-            'label_attr' => array('class' => 'control-label'),
-            'group' => 'news.form.group.files'
+            /* field options */
+            'group' => 'files'
         ));
     }
 
@@ -72,8 +81,8 @@ class NewsType extends AbstractType
     {
         $resolver->setDefaults(array(
             'groups' => array(
-                'news.form.group.basic',
-                'news.form.group.files',
+                'basic' => 'news.form.group.basic',
+                'files' => 'news.form.group.files',
             )
         ));
     }
