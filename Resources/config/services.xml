@@ -23,6 +23,7 @@
         <!-- Twig Extensions -->
         <service id="fsi_form_extensions.twig.form_extension" class="FSi\Bundle\FormExtensionsBundle\Twig\Extension\FormExtension">
             <tag name="twig.extension" />
+            <argument>%fsi_form_extensions.form.type.ckeditor.base_path%</argument>
         </service>
     </services>
 

@@ -30,6 +30,7 @@ class FormTypeGroupExtension extends AbstractTypeExtension
         ));
 
         $resolver->setAllowedTypes(array(
+            'groups' => 'array',
             'group' => array('string', 'null')
         ));
     }
@@ -40,8 +41,8 @@ class FormTypeGroupExtension extends AbstractTypeExtension
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
         $groups = array();
-        foreach ($options['groups'] as $groupName) {
-            $groups[$groupName] = array();
+        foreach ($options['groups'] as $groupKey => $groupName) {
+            $groups[$groupKey] = array();
         }
 
         foreach ($form->all() as $element) {
@@ -57,7 +58,11 @@ class FormTypeGroupExtension extends AbstractTypeExtension
             }
         }
 
+        $view->vars['groups_names'] = $options['groups'];
         $view->vars['groups'] = $groups;
+        $view->vars['group'] = isset($options['group'])
+            ? $options['group']
+            : null;
     }
 
     /**
