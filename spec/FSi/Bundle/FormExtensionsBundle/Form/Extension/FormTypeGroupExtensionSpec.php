@@ -23,6 +23,7 @@ class FormTypeGroupExtensionSpec extends ObjectBehavior
         ))->shouldBeCalled();
 
         $resolver->setAllowedTypes(array(
+            'groups' => 'array',
             'group' => array('string', 'null')
         ))->shouldBeCalled();
 
@@ -33,11 +34,11 @@ class FormTypeGroupExtensionSpec extends ObjectBehavior
      * @param \Symfony\Component\Form\FormInterface $form
      * @param \Symfony\Component\Form\FormView $view
      * @param \Symfony\Component\Form\FormInterface $childBasic
-     * @param \Symfony\Component\Form\FormInterface $childAdd
+     * @param \Symfony\Component\Form\FormInterface $childAdditional
      * @param \Symfony\Component\Form\FormConfigInterface $configBasic
-     * @param \Symfony\Component\Form\FormConfigInterface $configAdd
+     * @param \Symfony\Component\Form\FormConfigInterface $configAdditional
      */
-    function it_should_build_view_with_groups_array_in_vars($form, $view, $childBasic, $childAdd, $configBasic, $configAdd)
+    function it_should_build_view_with_groups_array_in_vars($form, $view, $childBasic, $childAdditional, $configBasic, $configAdditional)
     {
         $configBasic->hasOption('group')->shouldBeCalled()->willReturn(true);
         $configBasic->getOption('group')->shouldBeCalled()->willReturn('basic');
@@ -45,19 +46,19 @@ class FormTypeGroupExtensionSpec extends ObjectBehavior
         $childBasic->getName()->shouldBeCalled()->willReturn('child_basic');
         $childBasic->getConfig()->shouldBeCalled()->willReturn($configBasic);
 
-        $configAdd->hasOption('group')->shouldBeCalled()->willReturn(false);
-        $configAdd->getOption('group')->shouldNotBeCalled();
-        $childAdd->getName()->shouldNotBeCalled();
-        $childAdd->getConfig()->shouldBeCalled()->willReturn($configAdd);
+        $configAdditional->hasOption('group')->shouldBeCalled()->willReturn(false);
+        $configAdditional->getOption('group')->shouldNotBeCalled();
+        $childAdditional->getName()->shouldNotBeCalled();
+        $childAdditional->getConfig()->shouldBeCalled()->willReturn($configAdditional);
 
         $form->all()->shouldBeCalled()->willReturn(array(
             $childBasic,
-            $childAdd
+            $childAdditional
         ));
 
         $this->buildView($view, $form, array(
             'groups' => array(
-                'basic',
+                'basic' => 'basic_group_name_translation_key',
             )
         ));
     }

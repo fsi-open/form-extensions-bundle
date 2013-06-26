@@ -41,10 +41,11 @@ class FSIFormExtensionsExtension extends Extension
      */
     private function registerFormConfiguration($config, ContainerBuilder $container)
     {
-        $ckeditorOptions = (isset($config['form']['ckeditor']))
-            ? $config['form']['ckeditor']
+        $ckeditorOptions = (isset($config['form']['ckeditor']['options']))
+            ? $config['form']['ckeditor']['options']
             : array();
 
+        $container->setParameter('fsi_form_extensions.form.type.ckeditor.base_path', $config['form']['ckeditor']['base_path']);
         $container->setParameter('fsi_form_extensions.form.type.ckeditor.config', $ckeditorOptions);
     }
 }
