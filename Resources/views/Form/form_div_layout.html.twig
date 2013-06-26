@@ -13,6 +13,13 @@
 
 {% block form_rows %}
     {% spaceless %}
+        {% for child in form %}
+            {% if child.vars.group is null %}
+            {{ form_row(child) }}
+            {% endif %}
+        {% endfor %}
+    {% endspaceless %}
+    {% spaceless %}
         {% for group, group_elements in form.vars.groups %}
             {{ form_group(form, {'group': group, 'group_name': form.vars.groups_names[group] , 'elements' : group_elements}) }}
         {% endfor %}
