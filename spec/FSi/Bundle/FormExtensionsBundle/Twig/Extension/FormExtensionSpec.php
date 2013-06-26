@@ -7,6 +7,11 @@ use Prophecy\Argument;
 
 class FormExtensionSpec extends ObjectBehavior
 {
+    function let()
+    {
+        $this->beConstructedWith('bundles/fsiformextensions/ckeditor/');
+    }
+
     function it_is_initializable()
     {
         $this->shouldHaveType('FSi\Bundle\FormExtensionsBundle\Twig\Extension\FormExtension');
@@ -34,6 +39,7 @@ class FormExtensionSpec extends ObjectBehavior
     function it_should_not_include_script_twice($env, $assets)
     {
         $assets->getAssetUrl('bundles/fsiformextensions/ckeditor/ckeditor.js')->shouldBeCalledTimes(1);
+        $assets->getAssetUrl('bundles/fsiformextensions/ckeditor/')->shouldBeCalledTimes(1);
 
         $env->hasExtension('assets')->willReturn(true);
         $env->getExtension('assets')->willReturn($assets);

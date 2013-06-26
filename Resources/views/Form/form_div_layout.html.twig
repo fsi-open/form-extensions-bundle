@@ -22,13 +22,7 @@
 {% block ckeditor_widget %}
     {% spaceless %}
     <textarea {{ block('widget_attributes') }}>{{ value }}</textarea>
-
-    <script type="text/javascript">
-        var CKEDITOR_BASEPATH = '{{ app.request.basePath ~ '/bundles/fsiformextensions/ckeditor/' | raw }}';
-    </script>
-
     {{ include_ckeditor() }}
-
     <script type="text/javascript">
         {% autoescape true %}
         CKEDITOR.replace("{{ id }}", {

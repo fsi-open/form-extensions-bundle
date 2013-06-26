@@ -24,8 +24,17 @@ class FormExtension extends \Twig_Extension
      */
     private $environment;
 
-    public function __construct()
+    /**
+     * @var string
+     */
+    protected $basePath;
+
+    /**
+     * @param $basePath
+     */
+    public function __construct($basePath)
     {
+        $this->basePath = $basePath;
         $this->ckeditorIncluded = false;
     }
 
@@ -63,11 +72,16 @@ class FormExtension extends \Twig_Extension
         }
 
         if (!$this->ckeditorIncluded) {
-             $jsPath = $this->environment
+            $basePath = $this->environment
                 ->getExtension('assets')
-                ->getAssetUrl('bundles/fsiformextensions/ckeditor/ckeditor.js');
+                ->getAssetUrl($this->basePath);
+
+            $jsPath = $this->environment
+                ->getExtension('assets')
+                ->getAssetUrl($this->basePath . 'ckeditor.js');
 
             echo sprintf('<script type="text/javascript" src="%s"></script>', $jsPath);
+            echo sprintf('<script>var CKEDITOR_BASEPATH = \'%s\'</script>', $basePath);
             $this->ckeditorIncluded = true;
         }
     }

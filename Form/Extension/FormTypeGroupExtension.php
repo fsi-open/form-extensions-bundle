@@ -60,6 +60,9 @@ class FormTypeGroupExtension extends AbstractTypeExtension
 
         $view->vars['groups_names'] = $options['groups'];
         $view->vars['groups'] = $groups;
+        $view->vars['group'] = isset($options['group'])
+            ? $options['group']
+            : null;
     }
 
     /**
