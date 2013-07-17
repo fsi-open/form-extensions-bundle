@@ -22,9 +22,14 @@ class FSIFormExtensionsExtensionSpec extends ObjectBehavior
      */
     function it_should_register_ckeditor_configuration_parameter($builder)
     {
+        $builder->hasExtension(Argument::type('string'))->willReturn(false);
+        $builder->addResource(Argument::type('\Symfony\Component\Config\Resource\FileResource'))->shouldBeCalled();
+        $builder->setDefinition(Argument::type('string'), Argument::type('Symfony\Component\DependencyInjection\Definition'))->shouldBeCalled();
+
         $options = array('form' => array());
 
+        $builder->setParameter('fsi_form_extensions.form.type.ckeditor.base_path', 'bundles/fsiformextensions/ckeditor/')->shouldBeCalled();
         $builder->setParameter('fsi_form_extensions.form.type.ckeditor.config', array())->shouldBeCalled();
-        $this->shouldThrow('\InvalidArgumentException')->duringLoad($options, $builder);
+        $this->load($options, $builder);
     }
 }

@@ -8,6 +8,7 @@
  */
 
 namespace FSi\Bundle\FormExtensionsBundle\Twig\Extension;
+use Symfony\Bridge\Twig\Node\SearchAndRenderBlockNode;
 
 /**
  * @author Norbert Orzechowicz <norbert@fsi.pl>
@@ -18,6 +19,11 @@ class FormExtension extends \Twig_Extension
      * @var bool
      */
     protected $ckeditorIncluded;
+
+    /**
+     * @var bool
+     */
+    protected $ckeditorInitializerIncluded;
 
     /**
      * @var \Twig_Environment
@@ -36,6 +42,7 @@ class FormExtension extends \Twig_Extension
     {
         $this->basePath = $basePath;
         $this->ckeditorIncluded = false;
+        $this->ckeditorInitializerIncluded = false;
     }
 
     /**
@@ -62,8 +69,10 @@ class FormExtension extends \Twig_Extension
         return array(
             'form_group' => new \Twig_Function_Node('Symfony\Bridge\Twig\Node\SearchAndRenderBlockNode', array('is_safe' => array('html'))),
             'include_ckeditor' => new \Twig_Function_Method($this, 'includeCkeditor', array('is_safe' => array('html'))),
+            'ckeditor_initializer' => new \Twig_Function_Method($this, 'ckeditorInitializer', array('is_safe' => array('html'))),
         );
     }
+
 
     public function includeCkeditor()
     {
@@ -72,6 +81,7 @@ class FormExtension extends \Twig_Extension
         }
 
         if (!$this->ckeditorIncluded) {
+            $this->ckeditorIncluded = true;
             $basePath = $this->environment
                 ->getExtension('assets')
                 ->getAssetUrl($this->basePath);
@@ -80,9 +90,22 @@ class FormExtension extends \Twig_Extension
                 ->getExtension('assets')
                 ->getAssetUrl($this->basePath . 'ckeditor.js');
 
-            echo sprintf('<script type="text/javascript" src="%s"></script>', $jsPath);
-            echo sprintf('<script>var CKEDITOR_BASEPATH = \'%s\'</script>', $basePath);
-            $this->ckeditorIncluded = true;
+            $script = sprintf('<script type="text/javascript" src="%s"></script>', $jsPath);
+            $script .= sprintf('<script>var CKEDITOR_BASEPATH = \'%s\'</script>', $basePath);
+
+            return $script;
         }
+    }
+
+    public function ckeditorInitializer($force = false)
+    {
+        if ($this->ckeditorInitializerIncluded && !$force) {
+            return;
+        }
+
+        $this->ckeditorInitializerIncluded = true;
+
+        $template = $this->environment->loadTemplate('@FSiFormExtensions/Form/form_div_layout.html.twig');
+        return $template->displayBlock('ckeditor_initializer', array());
     }
 }
