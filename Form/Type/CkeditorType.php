@@ -12,6 +12,7 @@ namespace FSi\Bundle\FormExtensionsBundle\Form\Type;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
@@ -53,15 +54,13 @@ class CkeditorType extends AbstractType
      */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
-        $view->vars['ckeditor_config'] = array_merge(
+         $config = array_merge(
             array(
                 'toolbar' => $options['toolbar'],
                 'ui_color' => $options['ui_color'] ? '#' . ltrim($options['ui_color'], '#') : null,
                 'width' => $options['width'],
                 'height' => $options['height'],
-                'force_paste_as_plaintext' => ($options['force_paste_as_plaintext'])
-                    ? 'true'
-                    : 'false',
+                'force_paste_as_plaintext' => $options['force_paste_as_plaintext'],
                 'language' => $options['language'],
                 'skin' => $options['skin'],
                 'base_href' => $options['base_href'],
@@ -72,6 +71,8 @@ class CkeditorType extends AbstractType
             ),
             $this->globalOptions
         );
+
+        $view->vars['ckeditor_config'] = array_filter($config);
     }
 
     /**
@@ -119,11 +120,17 @@ class CkeditorType extends AbstractType
         ));
 
         $resolver->setAllowedTypes(array(
-            'force_paste_as_plaintext' => 'bool',
+            'force_paste_as_plaintext' => 'string',
             'toolbar' => 'array',
             'base_href' => array('string', 'null'),
             'body_class' => array('string', 'null'),
             'body_id' => array('string', 'null'),
+        ));
+
+        $resolver->setNormalizers(array(
+            'force_paste_as_plaintext' => function (Options $options, $value) {
+                return ($value) ? 'true' : 'false';
+            },
         ));
     }
 }
