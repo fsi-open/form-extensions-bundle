@@ -27,41 +27,31 @@
 {% endblock form_rows %}
 
 {% block ckeditor_widget %}
-    {% spaceless %}
-    <textarea {{ block('widget_attributes') }}>{{ value }}</textarea>
-    {{ include_ckeditor() }}
-    <script type="text/javascript">
-        {% autoescape true %}
-        CKEDITOR.replace("{{ id }}", {
-            ui_color: '{{  form.vars.ckeditor_config.ui_color }}',
-            forcePasteAsPlainText: {{ form.vars.ckeditor_config.force_paste_as_plaintext }},
-            language: '{{ form.vars.ckeditor_config.language }}',
-            toolbar: {{ form.vars.ckeditor_config.toolbar | json_encode | raw }},
-            {% if form.vars.ckeditor_config.width is not null %}
-            width: '{{ form.vars.ckeditor_config.width }}',
-            {% endif %}
-            {% if form.vars.ckeditor_config.height is not null %}
-            height: '{{ form.vars.ckeditor_config.height }}',
-            {% endif %}
-            {% if form.vars.ckeditor_config.skin is not null %}
-            skin: '{{ form.vars.ckeditor_config.skin }}',
-            {% endif %}
-            {% if form.vars.ckeditor_config.base_href is null %}
-            baseHref: '{{ app.request.scheme ~ '://' ~ app.request.httpHost ~ app.request.basePath }}',
-            {% else %}
-            baseHref: '{{ form.vars.ckeditor_config.base_href }}',
-            {% endif %}
-            {% if form.vars.ckeditor_config.body_class is not null %}
-            bodyClass: '{{ form.vars.ckeditor_config.body_class }}',
-            {% endif %}
-            {% if form.vars.ckeditor_config.body_id is not null %}
-            bodyId: '{{ form.vars.ckeditor_config.body_id }}',
-            {% endif %}
-            {% if form.vars.ckeditor_config.enter_mode is not null %}
-            enterMode: CKEDITOR.{{ form.vars.ckeditor_config.enter_mode }},
-            {% endif %}
-        });
-        {% endautoescape %}
-    </script>
-    {% endspaceless %}
+{% spaceless %}
+<textarea {{ block('widget_attributes') }} data-ckeditor-options="{{ form.vars.ckeditor_config|json_encode }}">{{ value }}</textarea>
+{{ include_ckeditor() }}
+{% endspaceless %}
+<script type="text/javascript">
+{{ ckeditor_initializer() }}
+initializeCkeditor();
+</script>
+{% endblock %}
+
+{% block ckeditor_initializer %}
+var initializeCkeditor = function() {
+    var textareas = document.getElementsByTagName('textarea'),
+            textarea = null,
+            options = null,
+            i = 0;
+
+    for (i; i < textareas.length; i++) {
+        textarea = textareas[i];
+        if (textarea.hasAttribute('data-ckeditor-options')) {
+            options = textarea.getAttribute('data-ckeditor-options');
+            options = JSON && JSON.parse(options) || eval(options);
+            CKEDITOR.replace(textarea.id, options);
+            textarea.removeAttribute('data-ckeditor-options');
+        }
+    }
+}
 {% endblock %}

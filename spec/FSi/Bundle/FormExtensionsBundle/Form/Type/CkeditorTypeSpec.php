@@ -67,12 +67,14 @@ class CkeditorTypeSpec extends ObjectBehavior
         ))->shouldBeCalled();
 
         $resolver->setAllowedTypes(array(
-            'force_paste_as_plaintext' => 'bool',
+            'force_paste_as_plaintext' => 'string',
             'toolbar' => 'array',
             'base_href' => array('string', 'null'),
             'body_class' => array('string', 'null'),
             'body_id' => array('string', 'null'),
         ))->shouldBeCalled();
+
+        $resolver->setNormalizers(Argument::type('array'))->shouldBeCalled();
 
 
         $this->setDefaultOptions($resolver);

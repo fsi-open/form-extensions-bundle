@@ -27,9 +27,19 @@ class FormExtensionSpec extends ObjectBehavior
         $this->getName()->shouldReturn('fsi_form_extension');
     }
 
-    function it_should_have_the_form_grouping_functions()
+    function it_have_form_group_function()
     {
-        $this->getFunctions()->shouldHaveCount(2);
+        $this->getFunctions()->shouldHaveFunction('form_group');
+    }
+
+    function it_have_include_ckeditor_function()
+    {
+        $this->getFunctions()->shouldHaveFunction('include_ckeditor');
+    }
+
+    function it_have_ckeditor_initializer_function()
+    {
+        $this->getFunctions()->shouldHaveFunction('ckeditor_initializer');
     }
 
     /**
@@ -45,10 +55,58 @@ class FormExtensionSpec extends ObjectBehavior
         $env->getExtension('assets')->willReturn($assets);
         $this->initRuntime($env);
 
-        ob_start();
         $this->includeCkeditor();
         $this->includeCkeditor();
-        ob_clean();
     }
 
+    /**
+     * @param \Twig_Environment $env
+     * @param \Twig_Template $template
+     */
+    function it_should_not_add_initializer_twice($env, $template)
+    {
+        $env->loadTemplate('@FSiFormExtensions/Form/form_div_layout.html.twig')
+            ->shouldBeCalledTimes(1)
+            ->willReturn($template);
+
+        $template->displayBlock('ckeditor_initializer', array())->shouldBeCalledTimes(1);
+
+        $this->initRuntime($env);
+        $this->ckeditorInitializer();
+        $this->ckeditorInitializer();
+    }
+
+    /**
+     * @param \Twig_Environment $env
+     * @param \Twig_Template $template
+     */
+    function it_will_add_initializer_twice_when_forced($env, $template)
+    {
+        $env->loadTemplate('@FSiFormExtensions/Form/form_div_layout.html.twig')
+            ->shouldBeCalledTimes(2)
+            ->willReturn($template);
+
+        $template->displayBlock('ckeditor_initializer', array())->shouldBeCalledTimes(2);
+
+        $this->initRuntime($env);
+        $this->ckeditorInitializer();
+        $this->ckeditorInitializer(true);
+    }
+
+    public function getMatchers()
+    {
+        return array(
+            'haveFunction' => function($subject, $key) {
+                foreach ($subject as $functionName => $function) {
+                    if ($function instanceof \Twig_Function) {
+                        if ($functionName == $key) {
+                            return true;
+                        }
+                    }
+                }
+
+                return false;
+            },
+        );
+    }
 }
