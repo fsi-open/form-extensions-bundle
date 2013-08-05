@@ -4,6 +4,7 @@ namespace spec\FSi\Bundle\FormExtensionsBundle\Twig\Extension;
 
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
+use Symfony\Component\Form\FormView;
 
 class FormExtensionSpec extends ObjectBehavior
 {
@@ -35,6 +36,11 @@ class FormExtensionSpec extends ObjectBehavior
     function it_have_include_ckeditor_function()
     {
         $this->getFunctions()->shouldHaveFunction('include_ckeditor');
+    }
+
+    function it_have_form_group_is_valid_function()
+    {
+        $this->getFunctions()->shouldHaveFunction('form_group_is_valid');
     }
 
     function it_have_ckeditor_initializer_function()
@@ -91,6 +97,52 @@ class FormExtensionSpec extends ObjectBehavior
         $this->initRuntime($env);
         $this->ckeditorInitializer();
         $this->ckeditorInitializer(true);
+    }
+
+    function it_return_true_when_all_elements_in_group_are_valid(FormView $form)
+    {
+        $element1 = new FormView();
+        $element1->vars['valid'] = true;
+        $element1->vars['group'] = 'test_group';
+
+        $element2 = new FormView();
+        $element2->vars['valid'] = true;
+        $element2->vars['group'] = 'test_group';
+
+        $element3 = new FormView();
+        $element3->vars['valid'] = false;
+        $element3->vars['group'] = 'not_test_group';
+
+        $form->getIterator()->willReturn(new \ArrayIterator(array(
+            $element1,
+            $element2,
+            $element3
+        )));
+
+        $this->formGroupIsValid($form, 'test_group')->shouldReturn(true);
+    }
+
+    function it_return_false_when_one_element_in_group_is_not_valid(FormView $form)
+    {
+        $element1 = new FormView();
+        $element1->vars['valid'] = true;
+        $element1->vars['group'] = 'test_group';
+
+        $element2 = new FormView();
+        $element2->vars['valid'] = true;
+        $element2->vars['group'] = 'test_group';
+
+        $element3 = new FormView();
+        $element3->vars['valid'] = false;
+        $element3->vars['group'] = 'test_group';
+
+        $form->getIterator()->willReturn(new \ArrayIterator(array(
+            $element1,
+            $element2,
+            $element3
+        )));
+
+        $this->formGroupIsValid($form, 'test_group')->shouldReturn(false);
     }
 
     public function getMatchers()

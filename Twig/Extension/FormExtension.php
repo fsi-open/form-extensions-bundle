@@ -8,7 +8,8 @@
  */
 
 namespace FSi\Bundle\FormExtensionsBundle\Twig\Extension;
-use Symfony\Bridge\Twig\Node\SearchAndRenderBlockNode;
+
+use Symfony\Component\Form\FormView;
 
 /**
  * @author Norbert Orzechowicz <norbert@fsi.pl>
@@ -68,12 +69,15 @@ class FormExtension extends \Twig_Extension
     {
         return array(
             'form_group' => new \Twig_Function_Node('Symfony\Bridge\Twig\Node\SearchAndRenderBlockNode', array('is_safe' => array('html'))),
+            'form_group_is_valid' => new \Twig_Function_Method($this, 'formGroupIsValid'),
             'include_ckeditor' => new \Twig_Function_Method($this, 'includeCkeditor', array('is_safe' => array('html'))),
             'ckeditor_initializer' => new \Twig_Function_Method($this, 'ckeditorInitializer', array('is_safe' => array('html'))),
         );
     }
 
-
+    /**
+     * @return string
+     */
     public function includeCkeditor()
     {
         if (!$this->environment->hasExtension('assets')) {
@@ -97,6 +101,10 @@ class FormExtension extends \Twig_Extension
         }
     }
 
+    /**
+     * @param bool $force
+     * @return mixed
+     */
     public function ckeditorInitializer($force = false)
     {
         if ($this->ckeditorInitializerIncluded && !$force) {
@@ -107,5 +115,24 @@ class FormExtension extends \Twig_Extension
 
         $template = $this->environment->loadTemplate('@FSiFormExtensions/Form/form_div_layout.html.twig');
         return $template->displayBlock('ckeditor_initializer', array());
+    }
+
+    /**
+     * @param FormView $view
+     * @param $group
+     * @return bool
+     */
+    public function formGroupIsValid(FormView $view, $group)
+    {
+        $valid = true;
+        foreach ($view as $child) {
+            if ($child->vars['group'] === $group) {
+                if (!$child->vars['valid']) {
+                    $valid = false;
+                }
+            }
+        }
+
+        return $valid;
     }
 }
