@@ -86,16 +86,13 @@ class FormExtension extends \Twig_Extension
 
         if (!$this->ckeditorIncluded) {
             $this->ckeditorIncluded = true;
-            $basePath = $this->environment
-                ->getExtension('assets')
-                ->getAssetUrl($this->basePath);
+
 
             $jsPath = $this->environment
                 ->getExtension('assets')
                 ->getAssetUrl($this->basePath . 'ckeditor.js');
 
             $script = sprintf('<script type="text/javascript" src="%s"></script>', $jsPath);
-            $script .= sprintf('<script>var CKEDITOR_BASEPATH = \'%s\'</script>', $basePath);
 
             return $script;
         }

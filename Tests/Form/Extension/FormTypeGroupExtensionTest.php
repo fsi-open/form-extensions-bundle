@@ -17,7 +17,9 @@ use Symfony\Bridge\Twig\Form\TwigRenderer;
 use Symfony\Bridge\Twig\Form\TwigRendererEngine;
 use Symfony\Bridge\Twig\Tests\Extension\Fixtures\StubFilesystemLoader;
 use Symfony\Bridge\Twig\Tests\Extension\Fixtures\StubTranslator;
+use Symfony\Bundle\TwigBundle\Extension\AssetsExtension;
 use Symfony\Component\Form\Test\FormIntegrationTestCase;
+use Symfony\Component\Templating\Helper\AssetsHelper;
 
 /**
  * @author Norbert Orzechowicz <norbert@fsi.pl>
@@ -50,9 +52,18 @@ class FormTypeGroupExtensionTest extends FormIntegrationTestCase
         ));
         $renderer = new TwigRenderer($rendererEngine, $this->getMock('Symfony\Component\Form\Extension\Csrf\CsrfProvider\CsrfProviderInterface'));
 
+
+        $container = $this->getMock('Symfony\Component\DependencyInjection\ContainerInterface');
+
+        $container->expects($this->any())
+            ->method('get')
+            ->with($this->equalTo('templating.helper.assets'))
+            ->will($this->returnValue(new AssetsHelper()));
+
         $twig = new \Twig_Environment($loader, array('strict_variables' => true));
         $twig->addGlobal('global', '');
         $twig->addExtension(new TranslationExtension(new StubTranslator()));
+        $twig->addExtension(new AssetsExtension($container));
         $twig->addExtension(new BaseFormExtension($renderer));
         $twig->addExtension(new FormExtension('/'));
         $this->twig = $twig;

@@ -25,7 +25,6 @@
     "autoload": {
         "psr-0": { "FSi\\Bundle\\FormExtensionsBundle\\": "" }
     },
-    "minimum-stability": "dev",
     "target-dir" : "FSi/Bundle/FormExtensionsBundle",
     "extra": {
         "branch-alias": {

@@ -57,17 +57,17 @@ class CkeditorType extends AbstractType
          $config = array_merge(
             array(
                 'toolbar' => $options['toolbar'],
-                'ui_color' => $options['ui_color'] ? '#' . ltrim($options['ui_color'], '#') : null,
+                'uiColor' => $options['uiColor'] ? '#' . ltrim($options['uiColor'], '#') : null,
                 'width' => $options['width'],
                 'height' => $options['height'],
-                'force_paste_as_plaintext' => $options['force_paste_as_plaintext'],
+                'forcePasteAsPlainText' => $options['forcePasteAsPlainText'],
                 'language' => $options['language'],
                 'skin' => $options['skin'],
-                'base_href' => $options['base_href'],
-                'body_class' => $options['body_class'],
-                'body_id' => $options['body_id'],
-                'contents_css' => $options['contents_css'],
-                'enter_mode' => $options['enter_mode']
+                'base_href' => $options['baseHref'],
+                'bodyClass' => $options['bodyClass'],
+                'bodyId' => $options['bodyId'],
+                'contentsCss' => $options['contentsCss'],
+                'enterMode' => $options['enterMode']
             ),
             $this->globalOptions
         );
@@ -82,8 +82,8 @@ class CkeditorType extends AbstractType
     {
         $resolver->setDefaults(array(
             'required' => false,
-            'ui_color' => '#AADC6E',
-            'force_paste_as_plaintext' => true,
+            'uiColor' => null,
+            'forcePasteAsPlainText' => true,
             'language' => 'pl',
             'toolbar' => array(
                 array('name' => 'document', 'items' => array('Source', '-', 'NewPage', '-', 'Templates' )),
@@ -102,16 +102,16 @@ class CkeditorType extends AbstractType
             'width' => null,
             'height' => null,
             'skin' => null,
-            'base_href' => null,
-            'body_class' => null,
-            'body_id' => null,
-            'contents_css' => null,
-            'enter_mode' => null,
+            'baseHref' => null,
+            'bodyClass' => null,
+            'bodyId' => null,
+            'contentsCss' => null,
+            'enterMode' => null,
         ));
 
         $resolver->setAllowedValues(array(
             'required' => array(false),
-            'enter_mode' => array(
+            'enterMode' => array(
                 'ENTER_DIV',
                 'ENTER_BR',
                 'ENTER_P',
@@ -120,15 +120,17 @@ class CkeditorType extends AbstractType
         ));
 
         $resolver->setAllowedTypes(array(
-            'force_paste_as_plaintext' => 'string',
+            'uiColor' => array('string', 'null'),
+            'forcePasteAsPlainText' => 'string',
             'toolbar' => 'array',
-            'base_href' => array('string', 'null'),
-            'body_class' => array('string', 'null'),
-            'body_id' => array('string', 'null'),
+            'baseHref' => array('string', 'null'),
+            'bodyClass' => array('string', 'null'),
+            'contentsCss' => array('string', 'null'),
+            'bodyId' => array('string', 'null'),
         ));
 
         $resolver->setNormalizers(array(
-            'force_paste_as_plaintext' => function (Options $options, $value) {
+            'forcePasteAsPlainText' => function (Options $options, $value) {
                 return ($value) ? 'true' : 'false';
             },
         ));
