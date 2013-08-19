@@ -29,8 +29,8 @@ class CkeditorTypeSpec extends ObjectBehavior
     {
         $resolver->setDefaults(array(
             'required' => false,
-            'ui_color' => '#AADC6E',
-            'force_paste_as_plaintext' => true,
+            'uiColor' => null,
+            'forcePasteAsPlainText' => true,
             'language' => 'pl',
             'toolbar' => array(
                 array('name' => 'document', 'items' => array('Source', '-', 'NewPage', '-', 'Templates' )),
@@ -49,16 +49,16 @@ class CkeditorTypeSpec extends ObjectBehavior
             'width' => null,
             'height' => null,
             'skin' => null,
-            'base_href' => null,
-            'body_class' => null,
-            'body_id' => null,
-            'contents_css' => null,
-            'enter_mode' => null,
+            'baseHref' => null,
+            'bodyClass' => null,
+            'bodyId' => null,
+            'contentsCss' => null,
+            'enterMode' => null,
         ))->shouldBeCalled();
 
         $resolver->setAllowedValues(array(
             'required' => array(false),
-            'enter_mode' => array(
+            'enterMode' => array(
                 'ENTER_DIV',
                 'ENTER_BR',
                 'ENTER_P',
@@ -67,11 +67,13 @@ class CkeditorTypeSpec extends ObjectBehavior
         ))->shouldBeCalled();
 
         $resolver->setAllowedTypes(array(
-            'force_paste_as_plaintext' => 'string',
+            'uiColor' => array('string', 'null'),
+            'forcePasteAsPlainText' => 'string',
             'toolbar' => 'array',
-            'base_href' => array('string', 'null'),
-            'body_class' => array('string', 'null'),
-            'body_id' => array('string', 'null'),
+            'baseHref' => array('string', 'null'),
+            'bodyClass' => array('string', 'null'),
+            'contentsCss' => array('string', 'null'),
+            'bodyId' => array('string', 'null'),
         ))->shouldBeCalled();
 
         $resolver->setNormalizers(Argument::type('array'))->shouldBeCalled();

@@ -28,7 +28,12 @@
 
 {% block ckeditor_widget %}
 {% spaceless %}
-<textarea {{ block('widget_attributes') }} data-ckeditor-options="{{ form.vars.ckeditor_config|json_encode }}">{{ value }}</textarea>
+{% if form.vars.ckeditor_config.contentsCss is defined %}
+{% set ckeditor_config = form.vars.ckeditor_config|merge({'contentsCss' : asset(form.vars.ckeditor_config.contentsCss)}) %}
+{% else %}
+{% set ckeditor_config = form.vars.ckeditor_config %}
+{% endif %}
+<textarea {{ block('widget_attributes') }} data-ckeditor-options="{{ ckeditor_config|json_encode }}">{{ value }}</textarea>
 {{ include_ckeditor() }}
 {% endspaceless %}
 <script type="text/javascript">
