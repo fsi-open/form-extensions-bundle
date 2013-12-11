@@ -7,7 +7,7 @@
  * file that was distributed with this source code.
  */
 
-namespace FSi\Bundle\FormExtensionsBundle\DependencyInjection;
+namespace FSi\FixturesBundle\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -17,18 +17,13 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 /**
  * @author Norbert Orzechowicz <norbert@fsi.pl>
  */
-class FSIFormExtensionsExtension extends Extension
+class FSiFixturesExtension extends Extension
 {
     /**
      * {@inheritdoc}
      */
     public function load(array $configs, ContainerBuilder $container)
     {
-        $configuration = new Configuration();
-        $config = $this->processConfiguration($configuration, $configs);
-
-        $container->setParameter('fsi_form_extensions.ckeditor_script_path', $config['fsi_ckeditor']['ckeditor_script_path']);
-
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
     }

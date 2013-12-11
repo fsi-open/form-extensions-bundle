@@ -1,50 +1,33 @@
 #FSi Symfony2 Form Extensions Bundle
 
-##Installation
+FSiFormExtensionsBundle provide some useful symfony2 form types and extensions.
 
-modify composer.json file
+Build Status:  
+[![Build Status](https://travis-ci.org/fsi-open/form-extensions-bundle.png?branch=master)](https://travis-ci.org/fsi-open/form-extensions-bundle) - Master
 
-```
-{
-    "require": {
-        "fsi/form-extensions-bundle": "1.0.x-dev"
-    },
+[![Latest Stable Version](https://poser.pugx.org/fsi/form-extensions-bundle/v/stable.png)](https://packagist.org/packages/fsi/form-extensions-bundle)
 
-}
-```
-Execute:
+Documentation:
 
-```
-php composer.phar update
-```
+* [Installation](Resources/doc/installation.md)
 
-Modify Files:
+Form types: 
+* [fsi_ckeditor](Resources/doc/fsi_ckeditor.md)
 
-```php
-    // app/AppKernel.php
+# Tests
 
-    public function registerBundles()
-    {
-        return array(
-            // ...
-            new FSi\Bundle\FormExtensionsBundle\FSiFormExtensionsBundle(),
-            // ...
-        );
-    }
-```
-
-##Usage#
-
-- [ckeditor](Resources/doc/ckeditor.md)
-- [groups](Resources/doc/groups.md)
-
-##Testing##
-
-to run tests you should execute following commands after accessing bundle root.
+Because few tests require javascript its recommended to use vagrant virtual machine.
+To configure virtual machine you need only go to vagrant folder in bundle
 
 ```
-$ cd src/FSi/Bundle/FormExtensionsBundle
-$ composer update
+$ cd vagrant
+$ vagrant up
+```
+
+Then login into VM and go to bundle folder and run Behat/PHPSpec.
+
+```
+$ cd /var/www/admin-bundle/
+$ bin/behat
 $ bin/phpspec
-$ phpunit
 ```
