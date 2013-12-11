@@ -28,7 +28,7 @@ $ vagrant up
 Then login into VM and go to bundle folder and run Behat/PHPSpec.
 
 ```
-$ cd /var/www/admin-bundle/
+$ cd /var/www/form-extensions-bundle/
 $ bin/behat
 $ bin/phpspec
 ```
