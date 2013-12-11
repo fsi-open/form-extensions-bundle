@@ -39,7 +39,7 @@ class FSiCKEditorType extends AbstractType
             'contentsCss' => $options['contentsCss'],
             'enterMode' => $options['enterMode']
         );
-        $view->vars['ckeditor_config'] = $ckeditorOptions;
+        $view->vars['ckeditor_config'] = array_filter($ckeditorOptions);
     }
 
     /**
