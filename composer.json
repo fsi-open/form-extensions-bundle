@@ -2,7 +2,7 @@
     "name": "fsi/form-extensions-bundle",
     "type": "symfony-bundle",
     "description": "FSi extensions for Symfony2 form component.",
-    "keywords": ["fsi", "symfony", "form", "extensions", "bundle"],
+    "keywords": ["fsi", "symfony", "form", "extensions", "bundle", "ckeditor"],
     "authors": [
         {
             "name": "Norbert Orzechowicz",
@@ -12,12 +12,21 @@
     "require": {
         "php": ">=5.3.3",
         "twig/twig": "~1.2",
-        "symfony/framework-bundle" : "~2.2",
-        "symfony/form" : "~2.2"
+        "symfony/framework-bundle" : "~2.3",
+        "symfony/twig-bundle": "~2.3",
+        "symfony/form" : "~2.3",
+        "symfony/validator": "~2.3"
     },
     "require-dev": {
-        "symfony/twig-bundle": "~2.2",
-        "phpspec/phpspec": "2.0.*@dev"
+        "symfony/class-loader": "2.3.*",
+        "phpspec/phpspec": "2.0.*@dev",
+        "behat/behat": "*@stable",
+        "behat/symfony2-extension": "*@stable",
+        "behat/mink-extension": "*",
+        "behat/mink-browserkit-driver": "*",
+        "behat/mink-selenium2-driver": "*",
+        "sensiolabs/behat-page-object-extension": "1.0.*@dev",
+        "bossa/phpspec2-expect": "dev-master"
     },
     "config": {
         "bin-dir": "bin"
