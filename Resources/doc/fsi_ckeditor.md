@@ -29,7 +29,9 @@ $formBuilder->add('content', 'fsi_ckeditor', array(
                     'Outdent', 'Indent', '-',
                     'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock')
             ),
-            array('name' => 'links', 'items' => array('Link', 'Unlink', '-', 'Image'))
+            array('name' => 'links', 'items' => array('Link', 'Unlink', '-', 'Image')),
+            '/',
+            array('name' => 'styles', 'items' => array('Format', 'Font', 'FontSize')),
         ),
         'width' => null,
         'height' => null,
@@ -37,7 +39,10 @@ $formBuilder->add('content', 'fsi_ckeditor', array(
         'bodyClass' => null,
         'bodyId' => null,
         'contentsCss' => null,
-        'enterMode' => null
+        'enterMode' => null,
+        'format_tags' => null,
+        'font_names' => null,
+        'fontSize_sizes' => null,
     )
 );
 ```
@@ -53,6 +58,9 @@ $formBuilder->add('content', 'fsi_ckeditor', array(
 - ``bodyId`` - string
 - ``contentsCss`` - string
 - ``enterMode`` - string available values: 'ENTER_DIV', 'ENTER_BR' or 'ENTER_P'
+- ``format_tags`` - string (default ``p;h1;h2;h3;h4;h5;h6;pre;address;div``)
+- ``font_names`` - string (``{display_name}/{font_name},{alternative_font_name};{display_name}/{font_name}``)
+- ``fontSize_sizes`` - string (``{display_name}/{font_size};{display_name}/{font_size}``)
 
 ## CKEditor script
 
