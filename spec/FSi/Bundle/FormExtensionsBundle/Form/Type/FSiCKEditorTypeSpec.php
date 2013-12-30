@@ -42,7 +42,9 @@ class FSiCKEditorTypeSpec extends ObjectBehavior
                         'Outdent', 'Indent', '-',
                         'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock')
                 ),
-                array('name' => 'links', 'items' => array('Link', 'Unlink', '-', 'Image'))
+                array('name' => 'links', 'items' => array('Link', 'Unlink', '-', 'Image')),
+                '/',
+                array('name' => 'styles', 'items' => array('Format', 'Font', 'FontSize')),
             ),
             'width' => null,
             'height' => null,
@@ -51,6 +53,9 @@ class FSiCKEditorTypeSpec extends ObjectBehavior
             'bodyId' => null,
             'contentsCss' => null,
             'enterMode' => null,
+            'format_tags' => null,
+            'font_names' => null,
+            'fontSize_sizes' => null,
         ))->shouldBeCalled();
 
         $resolver->setAllowedValues(array(
@@ -71,6 +76,9 @@ class FSiCKEditorTypeSpec extends ObjectBehavior
             'bodyClass' => array('string', 'null'),
             'contentsCss' => array('string', 'null'),
             'bodyId' => array('string', 'null'),
+            'format_tags' => array('string', 'null'),
+            'font_names' => array('string', 'null'),
+            'fontSize_sizes' => array('string', 'null'),
         ))->shouldBeCalled();
 
         $resolver->setNormalizers(Argument::type('array'))->shouldBeCalled();
