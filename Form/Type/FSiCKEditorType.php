@@ -38,9 +38,9 @@ class FSiCKEditorType extends AbstractType
             'bodyId' => $options['bodyId'],
             'contentsCss' => $options['contentsCss'],
             'enterMode' => $options['enterMode'],
-            'format_tags' => $options['format_tags'],
-            'font_names' => $options['font_names'],
-            'fontSize_sizes' => $options['fontSize_sizes'],
+            'format_tags' => $options['formatTags'],
+            'font_names' => $options['fontNames'],
+            'fontSize_sizes' => $options['fontSizeSizes'],
         );
         $view->vars['ckeditor_config'] = array_filter($ckeditorOptions);
     }
@@ -69,7 +69,7 @@ class FSiCKEditorType extends AbstractType
                 ),
                 array('name' => 'links', 'items' => array('Link', 'Unlink', '-', 'Image')),
                 '/',
-                array('name' => 'styles', 'items' => array('Format', 'Font', 'FontSize')),
+                array('name' => 'styles', 'items' => array('Format')),
             ),
             'width' => null,
             'height' => null,
@@ -78,9 +78,9 @@ class FSiCKEditorType extends AbstractType
             'bodyId' => null,
             'contentsCss' => null,
             'enterMode' => null,
-            'format_tags' => null,
-            'font_names' => null,
-            'fontSize_sizes' => null,
+            'formatTags' => null,
+            'fontNames' => null,
+            'fontSizeSizes' => null,
         ));
 
         $resolver->setAllowedValues(array(
@@ -101,9 +101,9 @@ class FSiCKEditorType extends AbstractType
             'bodyClass' => array('string', 'null'),
             'contentsCss' => array('string', 'null'),
             'bodyId' => array('string', 'null'),
-            'format_tags' => array('string', 'null'),
-            'font_names' => array('string', 'null'),
-            'fontSize_sizes' => array('string', 'null'),
+            'formatTags' => array('string', 'null'),
+            'fontNames' => array('string', 'null'),
+            'fontSizeSizes' => array('string', 'null'),
         ));
 
         $resolver->setNormalizers(array(
