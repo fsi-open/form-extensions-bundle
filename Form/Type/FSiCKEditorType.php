@@ -37,7 +37,10 @@ class FSiCKEditorType extends AbstractType
             'bodyClass' => $options['bodyClass'],
             'bodyId' => $options['bodyId'],
             'contentsCss' => $options['contentsCss'],
-            'enterMode' => $options['enterMode']
+            'enterMode' => $options['enterMode'],
+            'format_tags' => $options['formatTags'],
+            'font_names' => $options['fontNames'],
+            'fontSize_sizes' => $options['fontSizeSizes'],
         );
         $view->vars['ckeditor_config'] = array_filter($ckeditorOptions);
     }
@@ -64,7 +67,9 @@ class FSiCKEditorType extends AbstractType
                         'Outdent', 'Indent', '-',
                         'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock')
                 ),
-                array('name' => 'links', 'items' => array('Link', 'Unlink', '-', 'Image'))
+                array('name' => 'links', 'items' => array('Link', 'Unlink', '-', 'Image')),
+                '/',
+                array('name' => 'styles', 'items' => array('Format')),
             ),
             'width' => null,
             'height' => null,
@@ -73,6 +78,9 @@ class FSiCKEditorType extends AbstractType
             'bodyId' => null,
             'contentsCss' => null,
             'enterMode' => null,
+            'formatTags' => null,
+            'fontNames' => null,
+            'fontSizeSizes' => null,
         ));
 
         $resolver->setAllowedValues(array(
@@ -93,6 +101,9 @@ class FSiCKEditorType extends AbstractType
             'bodyClass' => array('string', 'null'),
             'contentsCss' => array('string', 'null'),
             'bodyId' => array('string', 'null'),
+            'formatTags' => array('string', 'null'),
+            'fontNames' => array('string', 'null'),
+            'fontSizeSizes' => array('string', 'null'),
         ));
 
         $resolver->setNormalizers(array(
