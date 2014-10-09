@@ -1,4 +1,7 @@
-# Installation in 4 simple steps
+# Installation in 2 simple steps
+
+**IMPORTANT!!** This bundle is deprecated. In order to integrate CKEditor with FSi Admin Bundle use [this solution](https://github.com/fsi-open/resource-repository-bundle/blob/master/Resources/docs/ckeditor.md).
+
 
 ## 1. Download FSi Form Extensions Bundle
 
