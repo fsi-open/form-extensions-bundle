@@ -1,4 +1,6 @@
-#FSi Symfony2 Form Extensions Bundle
+#FSi Symfony2 Form Extensions Bundle (DEPRECATED)
+
+**IMPORTANT!!** This bundle is deprecated. In order to integrate CKEditor with FSi Admin Bundle use [this solution](https://github.com/fsi-open/resource-repository-bundle/blob/master/Resources/docs/ckeditor.md).
 
 FSiFormExtensionsBundle provide some useful symfony2 form types and extensions.
 
