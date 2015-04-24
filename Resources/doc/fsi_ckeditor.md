@@ -1,6 +1,7 @@
 # fsi_ckeditor type
 
-**IMPORTANT!!** This bundle is deprecated. In order to integrate CKEditor with FSi Admin Bundle use [this solution](https://github.com/fsi-open/resource-repository-bundle/blob/master/Resources/docs/ckeditor.md).
+**IMPORTANT!!** This form type is deprecated. In order to integrate CKEditor with your application use
+[egeloen/ckeditor-bundle](https://github.com/egeloen/IvoryCKEditorBundle).
 
 ## Usage
 
