@@ -55,7 +55,7 @@ class SortableCollectionListenerSpec extends ObjectBehavior
         $formEvent1->getData()->willReturn(array(0 => '', 2 => '', 1 => ''));
         $this->rememberItemPosition($formEvent1);
         $formEvent2->getForm()->willReturn($form);
-        $formEvent2->getData()->willReturn([$item0, $item1, $item2]);
+        $formEvent2->getData()->willReturn(array($item0, $item1, $item2));
         $item0->setPosition(1)->shouldBeCalled();
         $item1->setPosition(3)->shouldBeCalled();
         $item2->setPosition(2)->shouldBeCalled();
@@ -85,14 +85,14 @@ class SortableCollectionListenerSpec extends ObjectBehavior
         $this->rememberItemPosition($form2Event1);
 
         $form1Event2->getForm()->willReturn($form1);
-        $form1Event2->getData()->willReturn([$collection1Item0, $collection1Item1, $collection1Item2]);
+        $form1Event2->getData()->willReturn(array($collection1Item0, $collection1Item1, $collection1Item2));
         $collection1Item0->setPosition(1)->shouldBeCalled();
         $collection1Item1->setPosition(3)->shouldBeCalled();
         $collection1Item2->setPosition(2)->shouldBeCalled();
         $this->persistItemPosition($form1Event2);
 
         $form2Event2->getForm()->willReturn($form2);
-        $form2Event2->getData()->willReturn([$collection2Item0, $collection2Item1, $collection2Item2]);
+        $form2Event2->getData()->willReturn(array($collection2Item0, $collection2Item1, $collection2Item2));
         $collection2Item0->setPosition(2)->shouldBeCalled();
         $collection2Item1->setPosition(1)->shouldBeCalled();
         $collection2Item2->setPosition(3)->shouldBeCalled();

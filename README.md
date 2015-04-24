@@ -9,7 +9,6 @@ Build Status:
 [![Latest Stable Version](https://poser.pugx.org/fsi/form-extensions-bundle/v/stable.png)](https://packagist.org/packages/fsi/form-extensions-bundle)
 
 Documentation:
-
 * [Installation](Resources/doc/installation.md)
 
 Form types: 

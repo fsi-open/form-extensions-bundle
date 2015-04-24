@@ -37,4 +37,28 @@ class WebUserContext extends PageObjectContext
     {
         expect($this->getPage($pageName)->getScriptIncludes($scriptUrl))->toHaveCount(1);
     }
+
+    /**
+     * @Given /^I move photo from position "([^"]*)" to position "([^"]*)"$/
+     */
+    public function iMovePhotoNumberToPosition($photoNumber, $newPosition)
+    {
+        $this->getElement('Form')->movePhoto($photoNumber, $newPosition);
+    }
+
+    /**
+     * @Given /^submit the form$/
+     */
+    public function submitTheForm()
+    {
+        $this->getElement('Form')->submit();
+    }
+
+    /**
+     * @Then /^I should see photo "([^"]*)" at position "([^"]*)"$/
+     */
+    public function iShouldSeePhotoNumberAtPosition($photo, $position)
+    {
+        expect($this->getPage('Sortable Collection Form')->getPhotoAtPosition($position)->getText())->toBe($photo);
+    }
 }

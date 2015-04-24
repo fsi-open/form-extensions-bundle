@@ -27,4 +27,15 @@ class Form extends Element
         $editorId = sprintf('cke_%s', $field->getAttribute('id'));
         return $this->has('css', sprintf('div#%s', $editorId));
     }
+
+    public function movePhoto($photoNumber, $newPosition)
+    {
+        $this->getSession()->executeScript(sprintf("
+var photo = document.getElementById('gallery_photos_%s');
+var parent = photo.parentNode;
+photo.remove();
+var insertBefore = document.getElementById('gallery_photos_%s');
+parent.insertBefore(photo, insertBefore)",
+            $photoNumber - 1, $newPosition - 1));
+    }
 }
