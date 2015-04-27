@@ -33,6 +33,25 @@ class SortableCollectionListenerSpec extends ObjectBehavior
         PositionableInterface $item2
     ) {
         $formEvent1->getForm()->willReturn($form);
+        $formEvent1->getData()->willReturn(null);
+        $this->rememberItemPosition($formEvent1);
+        $formEvent2->getForm()->willReturn($form);
+        $formEvent2->getData()->willReturn(array($item0, $item1, $item2));
+        $item0->setPosition(Argument::any())->shouldNotBeCalled();
+        $item1->setPosition(Argument::any())->shouldNotBeCalled();
+        $item2->setPosition(Argument::any())->shouldNotBeCalled();
+        $this->persistItemPosition($formEvent2);
+    }
+
+    public function it_does_nothing_when_empty_array(
+        FormEvent $formEvent1,
+        FormEvent $formEvent2,
+        FormInterface $form,
+        PositionableInterface $item0,
+        PositionableInterface $item1,
+        PositionableInterface $item2
+    ) {
+        $formEvent1->getForm()->willReturn($form);
         $formEvent1->getData()->willReturn(array());
         $this->rememberItemPosition($formEvent1);
         $formEvent2->getForm()->willReturn($form);

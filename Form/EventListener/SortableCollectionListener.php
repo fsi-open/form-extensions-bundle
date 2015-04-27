@@ -31,7 +31,8 @@ class SortableCollectionListener implements EventSubscriberInterface
     public function rememberItemPosition(FormEvent $event)
     {
         $formId = $this->getEventFormId($event);
-        $this->itemOrder[$formId] = array_keys($event->getData());
+
+        $this->itemOrder[$formId] = $this->getEventDataKeys($event);
     }
 
     /**
@@ -51,6 +52,19 @@ class SortableCollectionListener implements EventSubscriberInterface
                 $item->setPosition($position++);
             }
         }
+    }
+
+    /**
+     * @param \Symfony\Component\Form\FormEvent $event
+     * @return array|null
+     */
+    private function getEventDataKeys(FormEvent $event)
+    {
+        if (!$event->getData() || !is_array($event->getData())) {
+            return null;
+        }
+
+        return array_keys($event->getData());
     }
 
     /**
