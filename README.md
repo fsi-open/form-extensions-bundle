@@ -1,4 +1,4 @@
-#FSi Symfony2 Form Extensions Bundle (DEPRECATED)
+#FSi Symfony2 Form Extensions Bundle
 
 FSiFormExtensionsBundle provide some useful symfony2 form types and extensions.
 
