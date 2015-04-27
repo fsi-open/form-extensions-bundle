@@ -5,3 +5,7 @@ fixtures_one_ckeditor:
 fixtures_multiple_ckeditor:
     path:   /multiple_ckeditor
     defaults:  { _controller: FSiFixturesBundle:CKEditor:multipleCKEditor }
+
+sortable_collection:
+    path:   /sortable_collection
+    defaults:  { _controller: FSiFixturesBundle:SortableCollection:collection }

@@ -70,7 +70,7 @@ class FSiCKEditorTypeSpec extends ObjectBehavior
 
         $resolver->setAllowedTypes(array(
             'uiColor' => array('string', 'null'),
-            'forcePasteAsPlainText' => 'string',
+            'forcePasteAsPlainText' => 'bool',
             'toolbar' => 'array',
             'baseHref' => 'string',
             'bodyClass' => array('string', 'null'),

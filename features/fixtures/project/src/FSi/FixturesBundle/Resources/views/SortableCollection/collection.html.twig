@@ -1,0 +1,17 @@
+{% extends '::base.html.twig' %}
+{% form_theme form _self %}
+
+{% block _gallery_photos_entry_row %}
+    {{ form_widget(form) }}
+{% endblock %}
+
+{% block body %}
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+    <ul>
+    {% for photo in gallery.photos %}
+        <li data-position="{{ photo.position }}">{{ photo.file }}</li>
+    {% endfor %}
+    </ul>
+{% endblock %}

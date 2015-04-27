@@ -1,7 +1,5 @@
 #FSi Symfony2 Form Extensions Bundle (DEPRECATED)
 
-**IMPORTANT!!** This bundle is deprecated. In order to integrate CKEditor with FSi Admin Bundle use [this solution](https://github.com/fsi-open/resource-repository-bundle/blob/master/Resources/docs/ckeditor.md).
-
 FSiFormExtensionsBundle provide some useful symfony2 form types and extensions.
 
 Build Status:  
@@ -11,11 +9,13 @@ Build Status:
 [![Latest Stable Version](https://poser.pugx.org/fsi/form-extensions-bundle/v/stable.png)](https://packagist.org/packages/fsi/form-extensions-bundle)
 
 Documentation:
-
 * [Installation](Resources/doc/installation.md)
 
 Form types: 
-* [fsi_ckeditor](Resources/doc/fsi_ckeditor.md)
+* [fsi_ckeditor](Resources/doc/fsi_ckeditor.md) **deprecated in favour of [egeloen/ckeditor-bundle](https://github.com/egeloen/IvoryCKEditorBundle)**
+
+Form extensions:
+* [sortable_collection](Resources/docs/sortable_collection.md)
 
 # Tests
 

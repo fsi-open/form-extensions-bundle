@@ -3,15 +3,29 @@
 <container xmlns="http://symfony.com/schema/dic/services"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <parameters>
+        <parameter key="fsi_form_extensions.form.type.fsi_ckeditor.class">FSi\Bundle\FormExtensionsBundle\Form\Type\FSiCKEditorType</parameter>
+        <parameter key="fsi_form_extensions.form.subscriber.sortable_collection.class">FSi\Bundle\FormExtensionsBundle\Form\EventListener\SortableCollectionListener</parameter>
+        <parameter key="fsi_form_extensions.form.type_extension.sortable_collection.class">FSi\Bundle\FormExtensionsBundle\Form\TypeExtension\SortableCollectionExtension</parameter>
+        <parameter key="fsi_form_extensions.twig.form_extension.class">FSi\Bundle\FormExtensionsBundle\Twig\Extension\FSiCKEditorFormExtension</parameter>
+    </parameters>
 
     <services>
         <!-- Symfony2 Form Types -->
-        <service id="fsi_form_extensions.form.type.fsi_ckeditor" class="FSi\Bundle\FormExtensionsBundle\Form\Type\FSiCKEditorType">
+        <service id="fsi_form_extensions.form.type.fsi_ckeditor" class="%fsi_form_extensions.form.type.fsi_ckeditor.class%">
             <tag name="form.type" alias="fsi_ckeditor" />
         </service>
 
+        <service id="fsi_form_extensions.form.subscriber.sortable_collection" class="%fsi_form_extensions.form.subscriber.sortable_collection.class%">
+        </service>
+
+        <service id="fsi_form_extensions.form.type_extension.sortable_collection" class="%fsi_form_extensions.form.type_extension.sortable_collection.class%">
+            <argument type="service" id="fsi_form_extensions.form.subscriber.sortable_collection" />
+            <tag name="form.type_extension" alias="collection" />
+        </service>
+
         <!-- Twig Extensions -->
-        <service id="fsi_form_extensions.twig.form_extension" class="FSi\Bundle\FormExtensionsBundle\Twig\Extension\FSiCKEditorFormExtension">
+        <service id="fsi_form_extensions.twig.form_extension" class="%fsi_form_extensions.twig.form_extension.class%">
             <argument>%fsi_form_extensions.ckeditor_script_path%</argument>
             <tag name="twig.extension" />
         </service>
