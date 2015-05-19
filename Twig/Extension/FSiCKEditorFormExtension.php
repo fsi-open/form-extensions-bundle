@@ -44,8 +44,15 @@ class FSiCKEditorFormExtension extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            'fsi_ckeditor_include' => new \Twig_Function_Method($this, 'includeCkeditor', array('is_safe' => array('html'))),
-            'fsi_ckeditor_initialize' => new \Twig_Function_Node('Symfony\Bridge\Twig\Node\SearchAndRenderBlockNode', array('is_safe' => array('html'))),
+            'fsi_ckeditor_include' => new \Twig_Function_Method(
+                $this,
+                'includeCkeditor',
+                array('is_safe' => array('html'))
+            ),
+            'fsi_ckeditor_initialize' => new \Twig_Function_Node(
+                'Symfony\Bridge\Twig\Node\SearchAndRenderBlockNode',
+                array('is_safe' => array('html'))
+            ),
         );
     }
 
