@@ -15,13 +15,12 @@ matrix:
 sudo: false
 
 install:
-  - echo '' > ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini
   - echo 'date.timezone = "Europe/Warsaw"' >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
   - wget http://selenium-release.storage.googleapis.com/2.44/selenium-server-standalone-2.44.0.jar
 
 before_script:
   - composer self-update -n
-  - composer install -n --prefer-dist -v
+  - composer install -n --prefer-source -vvv
 
   # Run php builtin server
   - nohup php -S 127.0.0.1:8080 -t features/fixtures/project/web > server.log 2>&1 &
