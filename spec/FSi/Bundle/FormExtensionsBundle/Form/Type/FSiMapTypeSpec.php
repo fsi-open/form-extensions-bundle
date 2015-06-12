@@ -56,9 +56,18 @@ class FSiMapTypeSpec extends ObjectBehavior
 
     public function it_build_form_with_default_options(FormBuilderInterface $builder)
     {
-        $builder->add('latitude', 'integer', ['label' => 'map.latitude'])->shouldBeCalled();
-        $builder->add('longitude', 'text', ['label' => 'map.longitude'])->shouldBeCalled();
-        $builder->add('zoom', 'textarea', ['label' => 'map.zoom'])->shouldBeCalled();
+        $builder->add('latitude', 'integer', [
+            'label' => 'map.latitude',
+            'attr' => ['class' => 'latitude-field'],
+        ])->shouldBeCalled();
+        $builder->add('longitude', 'text', [
+            'label' => 'map.longitude',
+            'attr' => ['class' => 'longitude-field'],
+        ])->shouldBeCalled();
+        $builder->add('zoom', 'textarea', [
+            'label' => 'map.zoom',
+            'attr' => ['class' => 'zoom-field'],
+        ])->shouldBeCalled();
 
         $this->buildForm($builder, [
             'latitude_name' => 'latitude',
@@ -78,14 +87,17 @@ class FSiMapTypeSpec extends ObjectBehavior
         $builder->add('lat', 'integer', [
             'label' => 'xyz.lat',
             'label_attr' => ['class' => 'lorem'],
+            'attr' => ['class' => 'latitude-field'],
         ])->shouldBeCalled();
         $builder->add('lng', 'text', [
             'label' => 'xyz.lng',
             'label_attr' => ['class' => 'ipsum'],
+            'attr' => ['class' => 'longitude-field'],
         ])->shouldBeCalled();
         $builder->add('z', 'textarea', [
             'label' => 'xyz.z',
             'label_attr' => ['class' => 'dolor'],
+            'attr' => ['class' => 'zoom-field'],
         ])->shouldBeCalled();
 
         $this->buildForm($builder, [

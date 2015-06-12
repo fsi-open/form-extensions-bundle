@@ -9,6 +9,7 @@
         <parameter key="fsi_form_extensions.form.subscriber.sortable_collection.class">FSi\Bundle\FormExtensionsBundle\Form\EventListener\SortableCollectionListener</parameter>
         <parameter key="fsi_form_extensions.form.type_extension.sortable_collection.class">FSi\Bundle\FormExtensionsBundle\Form\TypeExtension\SortableCollectionExtension</parameter>
         <parameter key="fsi_form_extensions.twig.form_extension.class">FSi\Bundle\FormExtensionsBundle\Twig\Extension\FSiCKEditorFormExtension</parameter>
+        <parameter key="fsi_form_extensions.twig.form_extension.map.class">FSi\Bundle\FormExtensionsBundle\Twig\Extension\FSiMapFormExtension</parameter>
     </parameters>
 
     <services>
@@ -33,6 +34,10 @@
         <service id="fsi_form_extensions.twig.form_extension" class="%fsi_form_extensions.twig.form_extension.class%">
             <argument>%fsi_form_extensions.ckeditor_script_path%</argument>
             <tag name="twig.extension" />
+        </service>
+        <service id="fsi_form_extensions.twig.form_extension.map" class="%fsi_form_extensions.twig.form_extension.map.class%">
+            <argument>%fsi_form_extensions.map_api_key%</argument>
+            <tag name="twig.extension"/>
         </service>
     </services>
 

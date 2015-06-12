@@ -77,6 +77,9 @@ class FSiMapType extends AbstractType
     {
         return array(
             'label' => 'map.latitude',
+            'attr' => [
+                'class' => 'latitude-field',
+            ],
         );
     }
 
@@ -87,6 +90,9 @@ class FSiMapType extends AbstractType
     {
         return array(
             'label' => 'map.longitude',
+            'attr' => [
+                'class' => 'longitude-field',
+            ],
         );
     }
 
@@ -97,6 +103,9 @@ class FSiMapType extends AbstractType
     {
         return array(
             'label' => 'map.zoom',
+            'attr' => [
+                'class' => 'zoom-field',
+            ],
         );
     }
 }

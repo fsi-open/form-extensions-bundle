@@ -35,6 +35,11 @@ class Configuration implements ConfigurationInterface
                         ->end()
                     ->end()
                 ->end()
+                ->arrayNode('fsi_map')
+                    ->children()
+                        ->scalarNode('api_key')->end()
+                    ->end()
+                ->end()
             ->end();
 
         return $treeBuilder;
