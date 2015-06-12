@@ -5,6 +5,7 @@ define(['jquery', 'google-maps'], function($, googleMaps) {
         options = $.extend({
             latitudeSelector: '.latitude-field',
             longitudeSelector: '.longitude-field',
+            zoomSelector: '.zoom-field',
             mapWrapperSelector: '.map-location__map',
             initializedClass: 'map-location--initialized',
             defaultLatitude: 52,
@@ -16,6 +17,7 @@ define(['jquery', 'google-maps'], function($, googleMaps) {
             var $el = $(this),
                 latitudeField = $el.find(options.latitudeSelector),
                 longitudeField = $el.find(options.longitudeSelector),
+                zoomField = $el.find(options.zoomSelector),
                 mapWrapper = $el.find(options.mapWrapperSelector),
                 location,
                 defaultLocation,
@@ -24,8 +26,7 @@ define(['jquery', 'google-maps'], function($, googleMaps) {
                 map,
                 marker;
 
-            if (!latitudeField.length || !longitudeField.length || !mapWrapper.length) {
-                console.log($el, options.mapWrapperSelector, mapWrapper);
+            if (!latitudeField.length || !longitudeField.length || !zoomField.length || !mapWrapper.length) {
                 return;
             }
 
@@ -46,9 +47,13 @@ define(['jquery', 'google-maps'], function($, googleMaps) {
 
             map = new googleMaps.Map(mapWrapper[0], {
                 center: location || defaultLocation,
-                zoom: options.zoom,
+                zoom: zoomField.val() ? parseFloat(zoomField.val().replace(',','.')) : options.zoom,
                 scrollwheel: false
             });
+
+            if (!zoomField.val()) {
+                zoomField.val(map.getZoom());
+            }
 
             marker = new googleMaps.Marker({
                 map: map,
@@ -70,6 +75,11 @@ define(['jquery', 'google-maps'], function($, googleMaps) {
                 marker.setPosition(event.latLng);
             });
 
+            //when zoom is changed on map
+            google.maps.event.addListener(map, 'zoom_changed', function(event) {
+                zoomField.val(this.getZoom());
+            });
+
             //when marker location changed update form fields
             google.maps.event.addListener(marker, 'position_changed', function(event) {
                 latitudeField.val(this.position.lat());
@@ -88,9 +98,11 @@ define(['jquery', 'google-maps'], function($, googleMaps) {
                 } else {
                     marker.setVisible(false);
                 }
+                map.setZoom(parseFloat(zoomField.val().replace(',','.')));
             };
             latitudeField.on('change', updateMap);
             longitudeField.on('change', updateMap);
+            zoomField.on('change', updateMap);
         });
 
         return true;
