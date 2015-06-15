@@ -10,6 +10,7 @@
 namespace FSi\Bundle\FormExtensionsBundle;
 
 use FSi\Bundle\FormExtensionsBundle\DependencyInjection\Compiler\TwigFormPass;
+use FSi\Bundle\FormExtensionsBundle\DependencyInjection\Compiler\TwigMapFormPass;
 use FSi\Bundle\FormExtensionsBundle\DependencyInjection\FSIFormExtensionsExtension;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
@@ -22,6 +23,7 @@ class FSiFormExtensionsBundle extends Bundle
     public function build(ContainerBuilder $container)
     {
         $container->addCompilerPass(new TwigFormPass());
+        $container->addCompilerPass(new TwigMapFormPass());
     }
 
     /**

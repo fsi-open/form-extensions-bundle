@@ -1,0 +1,23 @@
+{% block fsi_map_widget %}
+{% spaceless %}
+    <div {{ block('widget_container_attributes') }}>
+        <div class="map-location__map" style="height: 300px; margin-bottom: 15px"></div>
+        {{ form_rest(form) }}
+        <script>
+            requirejs.config({
+                paths: {
+                    "async": "{{ asset('bundles/fsiformextensions/js/requirejs-async') }}",
+                    "jquery": "http://code.jquery.com/jquery-1.11.3.min",
+                    "fsi-map": "{{ asset('bundles/fsiformextensions/js/map') }}"
+                }
+            });
+            define('google-maps', ['async!http://maps.google.com/maps/api/js?sensor=false{% if fsi_map_api_key %}&key={{ fsi_map_api_key }}{% endif %}'], function() {
+                return window.google.maps;
+            });
+            require(['jquery', 'fsi-map'], function($) {
+                $('#{{ form.vars.id }}').fsiMap();
+            });
+        </script>
+    </div>
+{% endspaceless %}
+{% endblock %}
