@@ -13,6 +13,7 @@ Documentation:
 
 Form types: 
 * [fsi_ckeditor](Resources/doc/fsi_ckeditor.md) **deprecated in favour of [egeloen/ckeditor-bundle](https://github.com/egeloen/IvoryCKEditorBundle)**
+* [map](Resources/doc/map.md)
 
 Form extensions:
 * [sortable_collection](Resources/docs/sortable_collection.md)
