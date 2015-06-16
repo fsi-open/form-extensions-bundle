@@ -3,7 +3,8 @@ framework:
     translator:      { fallback: en }
     router:          { resource: "%kernel.root_dir%/config/routing.yml" }
     form:            true
-    csrf_protection: true
+    csrf_protection:
+        enabled:     false
     validation:      { enable_annotations: true }
     templating:      { engines: ['twig'] }
     profiler:        { only_exceptions: false }

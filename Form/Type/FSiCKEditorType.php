@@ -6,6 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\Options;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class FSiCKEditorType extends AbstractType
@@ -49,6 +50,11 @@ class FSiCKEditorType extends AbstractType
      * {@inheritdoc}
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
+    {
+        $this->configureOptions($resolver);
+    }
+
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'required' => false,
@@ -106,10 +112,8 @@ class FSiCKEditorType extends AbstractType
             'fontSizeSizes' => array('string', 'null'),
         ));
 
-        $resolver->setNormalizers(array(
-            'forcePasteAsPlainText' => function (Options $options, $value) {
-                    return ($value) ? 'true' : 'false';
-                },
-        ));
+        $resolver->setNormalizer('forcePasteAsPlainText', function (Options $options, $value) {
+            return ($value) ? 'true' : 'false';
+        });
     }
 }
