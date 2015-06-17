@@ -81,7 +81,7 @@ class FSiCKEditorTypeSpec extends ObjectBehavior
             'fontSizeSizes' => array('string', 'null'),
         ))->shouldBeCalled();
 
-        $resolver->setNormalizers(Argument::type('array'))->shouldBeCalled();
+        $resolver->setNormalizer('forcePasteAsPlainText', Argument::type('\Closure'))->shouldBeCalled();
 
 
         $this->setDefaultOptions($resolver);
