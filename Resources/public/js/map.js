@@ -13,6 +13,10 @@ define(['jquery', 'google-maps'], function($, googleMaps) {
             zoom: 6
         }, options);
 
+        var normalizeNumber = function(number) {
+            return parseFloat(number.replace(',','.'));
+        }
+
         this.each(function() {
             var $el = $(this),
                 latitudeField = $el.find(options.latitudeSelector),
@@ -32,8 +36,8 @@ define(['jquery', 'google-maps'], function($, googleMaps) {
 
             if (latitudeField.val() && longitudeField.val()) {
                 location = {
-                    lat: parseFloat(latitudeField.val().replace(',','.')),
-                    lng: parseFloat(longitudeField.val().replace(',','.'))
+                    lat: normalizeNumber(latitudeField.val()),
+                    lng: normalizeNumber(longitudeField.val())
                 };
             } else {
                 defaultLocation = {
@@ -47,7 +51,7 @@ define(['jquery', 'google-maps'], function($, googleMaps) {
 
             map = new googleMaps.Map(mapWrapper[0], {
                 center: location || defaultLocation,
-                zoom: zoomField.val() ? parseFloat(zoomField.val().replace(',','.')) : options.zoom,
+                zoom: zoomField.val() ? normalizeNumber(zoomField.val()) : options.zoom,
                 scrollwheel: false
             });
 
@@ -89,8 +93,8 @@ define(['jquery', 'google-maps'], function($, googleMaps) {
             });
 
             var updateMap = function() {
-                var lat = parseFloat(latitudeField.val().replace(',','.')),
-                    lng = parseFloat(longitudeField.val().replace(',','.')),
+                var lat = normalizeNumber(latitudeField.val()),
+                    lng = normalizeNumber(longitudeField.val()),
                     position;
                 if (lat >= -90 && lat <= 90 && lng >= -180 && lng <= 180) {
                     position = {lat: lat, lng: lng};
@@ -100,7 +104,7 @@ define(['jquery', 'google-maps'], function($, googleMaps) {
                 } else {
                     marker.setVisible(false);
                 }
-                map.setZoom(parseFloat(zoomField.val().replace(',','.')));
+                map.setZoom(normalizeNumber(zoomField.val()));
             };
             latitudeField.on('change', updateMap);
             longitudeField.on('change', updateMap);
