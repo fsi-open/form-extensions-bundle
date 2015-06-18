@@ -41,7 +41,7 @@ parent.insertBefore(photo, insertBefore)",
 
     public function getGoogleMapWrapper($label)
     {
-        return $this->find('xpath', sprintf('//label[text()="%s"]/following-sibling::div[1]', $label));
+        return $this->find('xpath', sprintf('//label[text()="%s"]/parent::*/descendant::*[contains(concat(" ", normalize-space(@class), " "), " map-location ")]', $label));
     }
 
     public function isGoogleMap($fieldSelector)
