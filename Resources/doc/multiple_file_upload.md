@@ -1,0 +1,60 @@
+# Multiple file upload
+
+In order to use multiple file upload feature you must add a listener to collection holding file forms. When instantiating listener pass name of field that holds file instance.
+
+```php
+$formBuilder->get('files')->addEventSubscriber(new MultiUploadCollectionListener('file'));
+```
+
+Below is example of article form that have files form collection:
+
+```php
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormBuilderInterface;
+use FSi\Bundle\FormExtensionsBundle\Form\EventListener\MultiUploadCollectionListener;
+
+class ArticleFormType extends AbstractType
+{
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
+        $builder->add('files', 'collection', [
+            'type' => 'file_form_type',
+            'allow_add' => true,
+            'allow_delete' => true,
+            'error_bubbling' => false,
+        ]);
+
+        $builder->get('files')->addEventSubscriber(new MultiUploadCollectionListener('file'));
+    }
+
+    public function getName()
+    {
+        return 'article_form_type';
+    }
+}
+```
+
+```php
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormBuilderInterface;
+
+class FileElementFormType extends AbstractType
+{
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
+        $builder->add('file', 'fsi_file', [
+            'multiple' => true,
+        ]);
+
+        $builder->add('name', 'text', [
+            'required' => false,
+        ]);
+    }
+
+    public function getName()
+    {
+        return 'file_form_type';
+    }
+}
+
+```

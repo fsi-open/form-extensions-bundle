@@ -18,6 +18,9 @@ Form types:
 Form extensions:
 * [sortable_collection](Resources/docs/sortable_collection.md)
 
+Form listeners:
+* [multiple file upload](Resources/docs/multiple_file_upload.md)
+
 # Tests
 
 Because few tests require javascript its recommended to use vagrant virtual machine.
