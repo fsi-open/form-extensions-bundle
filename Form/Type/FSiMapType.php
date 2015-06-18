@@ -26,8 +26,10 @@ class FSiMapType extends AbstractType
         $fieldOptions = array_merge($this->getDefaultLongitudeOptions(), $options['longitude_options']);
         $builder->add($options['longitude_name'], $options['longitude_type'], $fieldOptions);
 
-        $fieldOptions = array_merge($this->getDefaultZoomOptions(), $options['zoom_options']);
-        $builder->add($options['zoom_name'], $options['zoom_type'], $fieldOptions);
+        if (!empty($options['zoom_name'])) {
+            $fieldOptions = array_merge($this->getDefaultZoomOptions(), $options['zoom_options']);
+            $builder->add($options['zoom_name'], $options['zoom_type'], $fieldOptions);
+        }
     }
 
     /**
@@ -44,7 +46,7 @@ class FSiMapType extends AbstractType
             'longitude_name' => 'longitude',
             'longitude_type' => 'number',
             'longitude_options' => array(),
-            'zoom_name' => 'zoom',
+            'zoom_name' => null,
             'zoom_type' => 'number',
             'zoom_options' => array(),
         ]);
@@ -56,7 +58,7 @@ class FSiMapType extends AbstractType
             'longitude_name' => 'string',
             'longitude_type' => 'string',
             'longitude_options' => 'array',
-            'zoom_name' => 'string',
+            'zoom_name' => array('string', 'null'),
             'zoom_type' => 'string',
             'zoom_options' => 'array',
         ));

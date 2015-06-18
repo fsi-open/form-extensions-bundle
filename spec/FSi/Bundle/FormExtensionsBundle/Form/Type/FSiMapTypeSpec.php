@@ -34,7 +34,7 @@ class FSiMapTypeSpec extends ObjectBehavior
             'longitude_name' => 'longitude',
             'longitude_type' => 'number',
             'longitude_options' => array(),
-            'zoom_name' => 'zoom',
+            'zoom_name' => null,
             'zoom_type' => 'number',
             'zoom_options' => array(),
         ])->shouldBeCalled();
@@ -46,7 +46,7 @@ class FSiMapTypeSpec extends ObjectBehavior
             'longitude_name' => 'string',
             'longitude_type' => 'string',
             'longitude_options' => 'array',
-            'zoom_name' => 'string',
+            'zoom_name' => array('string', 'null'),
             'zoom_type' => 'string',
             'zoom_options' => 'array',
         ])->shouldBeCalled();

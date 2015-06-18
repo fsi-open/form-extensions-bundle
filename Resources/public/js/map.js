@@ -26,7 +26,7 @@ define(['jquery', 'google-maps'], function($, googleMaps) {
                 map,
                 marker;
 
-            if (!latitudeField.length || !longitudeField.length || !zoomField.length || !mapWrapper.length) {
+            if (!latitudeField.length || !longitudeField.length || !mapWrapper.length) {
                 return;
             }
 
@@ -50,6 +50,8 @@ define(['jquery', 'google-maps'], function($, googleMaps) {
                 zoom: zoomField.val() ? parseFloat(zoomField.val().replace(',','.')) : options.zoom,
                 scrollwheel: false
             });
+
+            mapWrapper.data('google-map', map);
 
             if (!zoomField.val()) {
                 zoomField.val(map.getZoom());
