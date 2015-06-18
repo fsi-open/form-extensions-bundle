@@ -23,6 +23,8 @@ class FSiFormExtensionsBundleSpec extends ObjectBehavior
     {
         $container->addCompilerPass(Argument::type('FSi\Bundle\FormExtensionsBundle\DependencyInjection\Compiler\TwigFormPass'))
             ->shouldBeCalled();
+        $container->addCompilerPass(Argument::type('FSi\Bundle\FormExtensionsBundle\DependencyInjection\Compiler\TwigMapFormPass'))
+            ->shouldBeCalled();
         $this->build($container);
     }
 }

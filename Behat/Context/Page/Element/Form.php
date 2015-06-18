@@ -38,4 +38,21 @@ var insertBefore = document.getElementById('gallery_photos_%s');
 parent.insertBefore(photo, insertBefore)",
             $photoNumber - 1, $newPosition - 1));
     }
+
+    public function getGoogleMapWrapper($label)
+    {
+        return $this->find('xpath', sprintf('//label[text()="%s"]/parent::*/descendant::*[contains(concat(" ", normalize-space(@class), " "), " map-location ")]', $label));
+    }
+
+    public function isGoogleMap($fieldSelector)
+    {
+        if (!$this->getSession()->getDriver() instanceof Selenium2Driver) {
+            throw new UnexpectedPageException("isGoogleMap method require Selenium2 Driver");
+        }
+
+        $wrapper = $this->getGoogleMapWrapper($fieldSelector);
+        expect($wrapper)->notToBe(null);
+
+        return $wrapper->has('css', '.gm-style');
+    }
 }

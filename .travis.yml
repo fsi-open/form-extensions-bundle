@@ -32,6 +32,8 @@ before_script:
   - composer self-update -n
   - composer require symfony/symfony:${SYMFONY_VERSION} -n
 
+  - features/fixtures/project/app/console assets:install features/fixtures/project/web --relative --symlink
+
   # Run php builtin server
   - nohup php -S 127.0.0.1:8080 -t features/fixtures/project/web > server.log 2>&1 &
 

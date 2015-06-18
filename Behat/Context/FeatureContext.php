@@ -16,5 +16,6 @@ class FeatureContext extends BehatContext
     public function __construct(array $parameters)
     {
         $this->useContext('web-user', new WebUserContext());
+        $this->useContext('map', new MapContext());
     }
 }
