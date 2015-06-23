@@ -22,9 +22,8 @@ class ArticleFormType extends AbstractType
             'allow_add' => true,
             'allow_delete' => true,
             'error_bubbling' => false,
+            'multi_upload_field' => 'file',
         ]);
-
-        $builder->get('files')->addEventSubscriber(new MultiUploadCollectionListener('file'));
     }
 
     public function getName()

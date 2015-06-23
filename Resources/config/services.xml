@@ -8,6 +8,7 @@
         <parameter key="fsi_form_extensions.form.type.fsi_map.class">FSi\Bundle\FormExtensionsBundle\Form\Type\FSiMapType</parameter>
         <parameter key="fsi_form_extensions.form.subscriber.sortable_collection.class">FSi\Bundle\FormExtensionsBundle\Form\EventListener\SortableCollectionListener</parameter>
         <parameter key="fsi_form_extensions.form.type_extension.sortable_collection.class">FSi\Bundle\FormExtensionsBundle\Form\TypeExtension\SortableCollectionExtension</parameter>
+        <parameter key="fsi_form_extensions.form.type_extension.multi_upload_collection.class">FSi\Bundle\FormExtensionsBundle\Form\TypeExtension\MultiUploadCollectionExtension</parameter>
         <parameter key="fsi_form_extensions.twig.form_extension.class">FSi\Bundle\FormExtensionsBundle\Twig\Extension\FSiCKEditorFormExtension</parameter>
         <parameter key="fsi_form_extensions.twig.form_extension.map.class">FSi\Bundle\FormExtensionsBundle\Twig\Extension\FSiMapFormExtension</parameter>
     </parameters>
@@ -27,6 +28,10 @@
 
         <service id="fsi_form_extensions.form.type_extension.sortable_collection" class="%fsi_form_extensions.form.type_extension.sortable_collection.class%">
             <argument type="service" id="fsi_form_extensions.form.subscriber.sortable_collection" />
+            <tag name="form.type_extension" alias="collection" />
+        </service>
+
+        <service id="fsi_form_extensions.form.type_extension.multi_upload_collection" class="%fsi_form_extensions.form.type_extension.multi_upload_collection.class%">
             <tag name="form.type_extension" alias="collection" />
         </service>
 
