@@ -4,7 +4,6 @@ namespace spec\FSi\Bundle\FormExtensionsBundle;
 
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 class FSiFormExtensionsBundleSpec extends ObjectBehavior
 {
@@ -19,7 +18,10 @@ class FSiFormExtensionsBundleSpec extends ObjectBehavior
             ->shouldReturnAnInstanceOf('FSi\Bundle\FormExtensionsBundle\DependencyInjection\FSIFormExtensionsExtension');
     }
 
-    function it_register_twig_compiler_pass(ContainerBuilder $container)
+    /**
+     * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
+     */
+    function it_register_twig_compiler_pass($container)
     {
         $container->addCompilerPass(Argument::type('FSi\Bundle\FormExtensionsBundle\DependencyInjection\Compiler\TwigFormPass'))
             ->shouldBeCalled();
