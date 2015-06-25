@@ -1,27 +1,31 @@
 default: &default
-    filters:
-        tags: "~@wip"
-    paths:
-        features: features
-    context:
-        class: FSi\Bundle\FormExtensionsBundle\Behat\Context\FeatureContext
+    suites:
+        default:
+            contexts:
+                - FSi\Bundle\FormExtensionsBundle\Behat\Context\MapContext
+                - FSi\Bundle\FormExtensionsBundle\Behat\Context\WebUserContext
     extensions:
-        Behat\MinkExtension\Extension:
+        Behat\MinkExtension:
+            sessions:
+                default:
+                    symfony2: ~
+                javascript:
+                    selenium2:
+                        browser: firefox
             base_url: 'http://fsi-form-extensions-bundle.dev/app_test.php/'
-            default_session: symfony2
-            selenium2:
-                browser: "firefox"
-                wd_host: http://127.0.0.1:4444/wd/hub
-        Behat\Symfony2Extension\Extension:
-            mink_driver: true
+            javascript_session: javascript
+        Behat\Symfony2Extension:
             kernel:
                 env: test
                 debug: true
                 path: features/fixtures/project/app/AppKernel.php
                 bootstrap: features/fixtures/project/app/bootstrap.php
-        SensioLabs\Behat\PageObjectExtension\Extension: ~
+        SensioLabs\Behat\PageObjectExtension:
+            namespaces:
+                page: FSi\Bundle\FormExtensionsBundle\Behat\Context\Page
+                element: FSi\Bundle\FormExtensionsBundle\Behat\Context\Page\Element
 travis:
     <<: *default
     extensions:
-        Behat\MinkExtension\Extension:
+        Behat\MinkExtension:
             base_url: http://127.0.0.1:8080/app_test.php/

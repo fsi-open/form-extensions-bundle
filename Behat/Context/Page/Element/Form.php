@@ -19,7 +19,7 @@ class Form extends Element
 
     public function isCKEditor($fieldSelector)
     {
-        if (!$this->getSession()->getDriver() instanceof Selenium2Driver) {
+        if (!$this->getDriver() instanceof Selenium2Driver) {
             throw new UnexpectedPageException("isCKEditor method require Selenium2 Driver");
         }
 
@@ -30,7 +30,7 @@ class Form extends Element
 
     public function movePhoto($photoNumber, $newPosition)
     {
-        $this->getSession()->executeScript(sprintf("
+        $this->getDriver()->executeScript(sprintf("
 var photo = document.getElementById('gallery_photos_%s');
 var parent = photo.parentNode;
 photo.remove();
@@ -46,7 +46,7 @@ parent.insertBefore(photo, insertBefore)",
 
     public function isGoogleMap($fieldSelector)
     {
-        if (!$this->getSession()->getDriver() instanceof Selenium2Driver) {
+        if (!$this->getDriver() instanceof Selenium2Driver) {
             throw new UnexpectedPageException("isGoogleMap method require Selenium2 Driver");
         }
 

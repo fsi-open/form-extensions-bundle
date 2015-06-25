@@ -11,7 +11,7 @@
         }
     ],
     "require": {
-        "php": ">=5.3.3",
+        "php": ">=5.4",
         "twig/twig": "~1.2",
         "symfony/options-resolver": "~2.6",
         "symfony/framework-bundle" : "~2.3",
@@ -20,23 +20,21 @@
         "symfony/validator": "~2.3"
     },
     "require-dev": {
-        "behat/behat": "2.5.*",
-        "behat/symfony2-extension": "1.1.*",
-        "behat/mink-extension": "1.3.*",
-        "behat/mink-browserkit-driver": "1.2.*",
-        "behat/mink-selenium2-driver": "1.2.*",
-        "bossa/phpspec2-expect": "dev-master",
-        "phpspec/phpspec": "2.0.*",
-        "sensiolabs/behat-page-object-extension": "1.0.*@dev",
-        "symfony/class-loader": "2.3.*"
+        "behat/behat": "~3.0",
+        "behat/symfony2-extension": "~2.0",
+        "behat/mink-extension": "~2.0",
+        "behat/mink-browserkit-driver": "~1.2",
+        "behat/mink-selenium2-driver": "~1.2",
+        "bossa/phpspec2-expect": "~1.0",
+        "phpspec/phpspec": "~2.2",
+        "sensiolabs/behat-page-object-extension": "~2.0@dev"
     },
     "config": {
         "bin-dir": "bin"
     },
     "autoload": {
-        "psr-0": { "FSi\\Bundle\\FormExtensionsBundle\\": "" }
+        "psr-4": { "FSi\\Bundle\\FormExtensionsBundle\\": "" }
     },
-    "target-dir" : "FSi/Bundle/FormExtensionsBundle",
     "extra": {
         "branch-alias": {
             "dev-master": "1.1-dev"
