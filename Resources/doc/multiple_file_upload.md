@@ -1,9 +1,12 @@
 # Multiple file upload
 
-In order to use multiple file upload feature you must add a listener to collection holding file forms. When instantiating listener pass name of field that holds file instance.
+In order to use multiple file upload feature you must set `multi_upload_field` collection field option to file field name in collection form type.
 
 ```php
-$formBuilder->get('files')->addEventSubscriber(new MultiUploadCollectionListener('file'));
+$builder->add('files', 'collection', [
+    'type' => '...',
+    'multi_upload_field' => 'file',
+]);
 ```
 
 Below is example of article form that have files form collection:
