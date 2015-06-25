@@ -4,7 +4,6 @@ namespace spec\FSi\Bundle\FormExtensionsBundle\DependencyInjection\Compiler;
 
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 class TwigFormPassSpec extends ObjectBehavior
 {
@@ -13,13 +12,19 @@ class TwigFormPassSpec extends ObjectBehavior
         $this->shouldImplement('Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface');
     }
 
-    function it_do_nothing_when_form_resources_are_missing(ContainerBuilder $container)
+    /**
+     * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
+     */
+    function it_do_nothing_when_form_resources_are_missing($container)
     {
         $container->hasParameter('twig.form.resources')->shouldBeCalled()->willReturn(false);
         $this->process($container)->shouldReturn(null);
     }
 
-    function it_add_ckeditor_form_layout_to_form_resources_param(ContainerBuilder $container)
+    /**
+     * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
+     */
+    function it_add_ckeditor_form_layout_to_form_resources_param($container)
     {
         $container->hasParameter('twig.form.resources')->shouldBeCalled()->willReturn(true);
         $container->getParameter('twig.form.resources')->shouldBeCalled()->willReturn(array());

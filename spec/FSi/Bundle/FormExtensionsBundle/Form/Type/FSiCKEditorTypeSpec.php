@@ -4,7 +4,6 @@ namespace spec\FSi\Bundle\FormExtensionsBundle\Form\Type;
 
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class FSiCKEditorTypeSpec extends ObjectBehavior
 {
@@ -23,7 +22,10 @@ class FSiCKEditorTypeSpec extends ObjectBehavior
         $this->getParent()->shouldReturn('textarea');
     }
 
-    function it_set_default_options(OptionsResolver $resolver)
+    /**
+     * @param \Symfony\Component\OptionsResolver\OptionsResolver $resolver
+     */
+    function it_set_default_options($resolver)
     {
         $resolver->setDefaults(array(
             'required' => false,
