@@ -20,11 +20,13 @@ matrix:
   allow_failures:
     - env: SYMFONY_VERSION=dev-master
     - php: hhvm
+  exclude:
+    - env: SYMFONY_VERSION=dev-master
+      php: 5.4
 
 sudo: false
 
 install:
-  - echo 'date.timezone = "Europe/Warsaw"' >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
   - wget http://selenium-release.storage.googleapis.com/2.44/selenium-server-standalone-2.44.0.jar
 
 before_script:
