@@ -36,6 +36,9 @@ class ArticleFormType extends AbstractType
 }
 ```
 
+### Note
+Collection form type could only have field specified by the `multi_upload_field` option as required. Other field must be optional.
+
 ```php
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
