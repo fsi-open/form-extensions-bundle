@@ -5,7 +5,7 @@ namespace spec\FSi\Bundle\FormExtensionsBundle\Form\TypeExtension;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class MultiUploadCollectionExtensionSpec extends ObjectBehavior
 {
@@ -15,14 +15,14 @@ class MultiUploadCollectionExtensionSpec extends ObjectBehavior
     }
 
     /**
-     * @param \Symfony\Component\OptionsResolver\OptionsResolverInterface $resolver
+     * @param \Symfony\Component\OptionsResolver\OptionsResolver $resolver
      */
     public function it_set_options($resolver)
     {
         $resolver->setDefaults(array('multi_upload_field' => null))->shouldBeCalled();
         $resolver->setAllowedTypes('multi_upload_field', array('null', 'string'))->shouldBeCalled();
 
-        $this->setDefaultOptions($resolver);
+        $this->configureOptions($resolver);
     }
 
     /**
