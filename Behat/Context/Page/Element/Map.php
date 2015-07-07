@@ -6,7 +6,7 @@ use SensioLabs\Behat\PageObjectExtension\PageObject\Element;
 
 class Map extends Element
 {
-    protected $selector = array('css' => '.map-location__map');
+    protected $selector = array('css' => '.map-location');
 
     public function clickLocation($latitude, $longitude)
     {
@@ -17,7 +17,7 @@ var evt = {
     stop: null,
     latLng: new google.maps.LatLng($latitude, $longitude)
 };
-google.maps.event.trigger($(mapElement).data('google-map'), 'click', evt);
+google.maps.event.trigger($(mapElement).data('google-map').map, 'click', evt);
 JS;
 
         $this->getDriver()->executeScript($script);
@@ -25,13 +25,13 @@ JS;
 
     public function getLatitude()
     {
-        $script = "return $('.map-location__map').data('google-map').getCenter().lat();";
+        $script = "return $('.map-location').data('google-map').map.getCenter().lat();";
         return $this->getDriver()->evaluateScript($script);
     }
 
     public function getLongitude()
     {
-        $script = "return $('.map-location__map').data('google-map').getCenter().lng();";
+        $script = "return $('.map-location').data('google-map').map.getCenter().lng();";
         return $this->getDriver()->evaluateScript($script);
     }
 }
