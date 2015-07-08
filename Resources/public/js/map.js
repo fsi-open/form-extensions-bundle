@@ -15,7 +15,7 @@ define(['jquery', 'google-maps'], function($, googleMaps) {
 
         var normalizeNumber = function(number) {
             return parseFloat(number.replace(',','.'));
-        }
+        };
 
         this.each(function() {
             var $el = $(this),
@@ -25,8 +25,6 @@ define(['jquery', 'google-maps'], function($, googleMaps) {
                 mapWrapper = $el.find(options.mapWrapperSelector),
                 location,
                 defaultLocation,
-                latitude,
-                longitude,
                 map,
                 marker;
 
@@ -55,8 +53,6 @@ define(['jquery', 'google-maps'], function($, googleMaps) {
                 scrollwheel: false
             });
 
-            mapWrapper.data('google-map', map);
-
             if (!zoomField.val()) {
                 zoomField.val(map.getZoom());
             }
@@ -68,8 +64,7 @@ define(['jquery', 'google-maps'], function($, googleMaps) {
 
             $el.data('google-map', {
                 map: map,
-                location: location || defaultLocation,
-                marker: marker
+                markers: [marker]
             });
 
             if (location) {
