@@ -85,6 +85,33 @@ class SortableCollectionListenerSpec extends ObjectBehavior
     }
 
     /**
+     * @param \Symfony\Component\Form\FormEvent $formEvent1
+     * @param \Symfony\Component\Form\FormEvent $formEvent2
+     * @param \Symfony\Component\Form\FormInterface $form
+     * @param \FSi\Bundle\FormExtensionsBundle\Model\PositionableInterface $item0
+     * @param \FSi\Bundle\FormExtensionsBundle\Model\PositionableInterface $item1
+     * @param \FSi\Bundle\FormExtensionsBundle\Model\PositionableInterface $item2
+     */
+    public function is_set_positions_even_when_elements_are_removed(
+        $formEvent1,
+        $formEvent2,
+        $form,
+        $item0,
+        $item1,
+        $item2
+    ) {
+        $formEvent1->getForm()->willReturn($form);
+        $formEvent1->getData()->willReturn(array(0 => '', 1 => '', 2 => ''));
+        $this->rememberItemPosition($formEvent1);
+        $formEvent2->getForm()->willReturn($form);
+        $formEvent2->getData()->willReturn(array($item0, $item2));
+        $item0->setPosition(1)->shouldBeCalled();
+        $item1->setPosition(Argument::any())->shouldNotBeCalled();
+        $item2->setPosition(2)->shouldBeCalled();
+        $this->persistItemPosition($formEvent2);
+    }
+
+    /**
      * @param \Symfony\Component\Form\FormEvent $form1Event1
      * @param \Symfony\Component\Form\FormEvent $form1Event2
      * @param \Symfony\Component\Form\FormInterface $form1

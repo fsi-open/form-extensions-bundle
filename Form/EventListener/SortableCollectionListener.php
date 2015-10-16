@@ -47,6 +47,9 @@ class SortableCollectionListener implements EventSubscriberInterface
         $position = 1;
         $data = $event->getData();
         foreach ($itemOrder as $index) {
+            if (!isset($data[$index])) {
+                continue;
+            }
             $item = $data[$index];
             if ($item instanceof PositionableInterface) {
                 $item->setPosition($position++);
