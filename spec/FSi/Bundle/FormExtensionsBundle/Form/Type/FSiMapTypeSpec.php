@@ -16,11 +16,6 @@ class FSiMapTypeSpec extends ObjectBehavior
         $this->getName()->shouldReturn('fsi_map');
     }
 
-    function it_pas_parent_form()
-    {
-        $this->getParent()->shouldReturn('form');
-    }
-
     /**
      * @param \Symfony\Component\OptionsResolver\OptionsResolverInterface $resolver
      */
