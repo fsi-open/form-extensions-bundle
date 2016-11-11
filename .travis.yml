@@ -30,6 +30,7 @@ install:
   - wget http://selenium-release.storage.googleapis.com/2.44/selenium-server-standalone-2.44.0.jar
 
 before_script:
+  - phpenv config-rm xdebug.ini
   - composer self-update -n
   - composer require symfony/symfony:${SYMFONY_VERSION} -n
 
