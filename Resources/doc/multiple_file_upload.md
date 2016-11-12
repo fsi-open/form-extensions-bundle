@@ -3,7 +3,7 @@
 In order to use multiple file upload feature you must set `multi_upload_field` collection field option to file field name in collection form type.
 
 ```php
-$builder->add('files', 'collection', [
+$builder->add('files', \Symfony\Component\Form\Extension\Core\Type\CollectionType::class, [
     'type' => '...',
     'multi_upload_field' => 'file',
 ]);
@@ -20,7 +20,7 @@ class ArticleFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('files', 'collection', [
+        $builder->add('files', \Symfony\Component\Form\Extension\Core\Type\CollectionType::class, [
             'type' => 'file_form_type',
             'allow_add' => true,
             'allow_delete' => true,
@@ -47,11 +47,11 @@ class FileElementFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('file', 'fsi_file', [
+        $builder->add('file', \FSi\Bundle\DoctrineExtensionsBundle\Form\Type\FSi\FileType::class, [
             'multiple' => true,
         ]);
 
-        $builder->add('name', 'text', [
+        $builder->add('name', \Symfony\Component\Form\Extension\Core\Type\TextType::class, [
             'required' => false,
         ]);
     }

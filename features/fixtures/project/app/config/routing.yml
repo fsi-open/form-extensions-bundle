@@ -1,7 +1,3 @@
-fixtures_one_ckeditor:
-    path:   /one_ckeditor
-    defaults:  { _controller: FSiFixturesBundle:CKEditor:oneCKEditor }
-
 fixtures_multiple_ckeditor:
     path:   /multiple_ckeditor
     defaults:  { _controller: FSiFixturesBundle:CKEditor:multipleCKEditor }

@@ -2,6 +2,7 @@
 
 namespace FSi\FixturesBundle\Controller;
 
+use FSi\Bundle\FormExtensionsBundle\Form\Type\FSiMapType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class MapController extends Controller
@@ -9,7 +10,7 @@ class MapController extends Controller
     public function oneMapAction()
     {
         $formBuilder = $this->createFormBuilder();
-        $formBuilder->add('map', 'fsi_map', array(
+        $formBuilder->add('map', FSiMapType::class, array(
             'label' => 'Map field'
         ));
 
@@ -23,10 +24,10 @@ class MapController extends Controller
     public function multipleMapAction()
     {
         $formBuilder = $this->createFormBuilder();
-        $formBuilder->add('map_one', 'fsi_map', array(
+        $formBuilder->add('map_one', FSiMapType::class, array(
             'label' => 'Map field one'
         ));
-        $formBuilder->add('map_two', 'fsi_map', array(
+        $formBuilder->add('map_two', FSiMapType::class, array(
             'label' => 'Map field two'
         ));
 

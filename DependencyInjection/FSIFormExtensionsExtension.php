@@ -27,7 +27,6 @@ class FSIFormExtensionsExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
-        $container->setParameter('fsi_form_extensions.ckeditor_script_path', $config['fsi_ckeditor']['ckeditor_script_path']);
         $container->setParameter(
             'fsi_form_extensions.map_api_key',
             empty($config['fsi_map']['api_key']) ? null : $config['fsi_map']['api_key']

@@ -2,7 +2,7 @@
     "name": "fsi/form-extensions-bundle",
     "type": "symfony-bundle",
     "description": "FSi extensions for Symfony2 form component.",
-    "keywords": ["fsi", "symfony", "form", "extensions", "bundle", "ckeditor"],
+    "keywords": ["fsi", "symfony", "form", "extensions", "bundle"],
     "license": "MIT",
     "authors": [
         {
@@ -12,27 +12,24 @@
     ],
     "require": {
         "php": ">=5.4",
-        "twig/twig": "~1.2",
-        "symfony/options-resolver": "~2.6",
-        "symfony/framework-bundle": "~2.3",
-        "symfony/dependency-injection": "~2.3",
-        "symfony/proxy-manager-bridge": "~2.3",
-        "symfony/twig-bundle": "~2.3",
-        "symfony/twig-bridge": "~2.3",
-        "symfony/form": "~2.4",
-        "symfony/validator": "~2.3"
+        "twig/twig": "^1.2",
+        "symfony/options-resolver": "^3.0",
+        "symfony/framework-bundle" : "^3.0",
+        "symfony/twig-bundle": "^3.0",
+        "symfony/form" : "^3.0",
+        "symfony/validator": "^3.0"
     },
     "require-dev": {
-        "behat/behat": "~3.1",
-        "behat/symfony2-extension": "~2.0",
-        "behat/mink-extension": "~2.0",
-        "behat/mink-browserkit-driver": "~1.2",
-        "behat/mink-selenium2-driver": "~1.2",
-        "bossa/phpspec2-expect": "~1.0",
-        "phpspec/phpspec": "~2.2",
-        "sensiolabs/behat-page-object-extension": "~2.0",
-        "symfony/http-foundation": "~2.3",
-        "symfony/css-selector": "~2.3"
+        "behat/behat": "^3.0",
+        "behat/symfony2-extension": "^2.0",
+        "behat/mink-extension": "^2.0",
+        "behat/mink-browserkit-driver": "^1.2",
+        "behat/mink-selenium2-driver": "^1.2",
+        "bossa/phpspec2-expect": "^1.0",
+        "phpspec/phpspec": "^2.2",
+        "sensiolabs/behat-page-object-extension": "^2.0",
+        "symfony/console": "^3.0",
+        "symfony/css-selector": "^3.0"
     },
     "config": {
         "bin-dir": "bin"
@@ -42,7 +39,8 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "1.1-dev"
+            "1.1": "1.1-dev",
+            "dev-master": "2.0-dev"
         }
     }
 }

@@ -22,7 +22,6 @@ class FSiFormExtensionsBundle extends Bundle
 {
     public function build(ContainerBuilder $container)
     {
-        $container->addCompilerPass(new TwigFormPass());
         $container->addCompilerPass(new TwigMapFormPass());
     }
 

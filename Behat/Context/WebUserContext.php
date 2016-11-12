@@ -22,23 +22,6 @@ class WebUserContext extends PageObjectContext
     }
 
     /**
-     * @Then /^I should see form field with label "([^"]*)" that is CKEditor$/
-     */
-    public function iShouldSeeFormFieldWithLabelThatIsCKEditor($label)
-    {
-        expect($this->getElement('Form')->hasField($label))->toBe(true);
-        expect($this->getElement('Form')->isCKEditor($label))->toBe(true);
-    }
-
-    /**
-     * @Given /^"([^"]*)" page should have CKEditor included once from "([^"]*)" url$/
-     */
-    public function pageShouldHaveCkeditorIncludedOnceFromUrl($pageName, $scriptUrl)
-    {
-        expect($this->getPage($pageName)->getScriptIncludes($scriptUrl))->toHaveCount(1);
-    }
-
-    /**
      * @Given /^I move photo from position "([^"]*)" to position "([^"]*)"$/
      */
     public function iMovePhotoNumberToPosition($photoNumber, $newPosition)

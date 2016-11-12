@@ -1,10 +1,10 @@
 language: php
 
 php:
-  - 5.4
   - 5.5
   - 5.6
   - 7.0
+  - 7.1
 
 env:
   - COMPOSER_FLAGS=""
@@ -16,7 +16,7 @@ install:
   - wget http://selenium-release.storage.googleapis.com/2.44/selenium-server-standalone-2.44.0.jar
 
 before_script:
-  - phpenv config-rm xdebug.ini
+  - phpenv config-rm xdebug.ini || true
   - composer self-update -n
   - composer update $COMPOSER_FLAGS
 
