@@ -17,17 +17,6 @@ class Form extends Element
 {
     protected $selector = array('css' => 'form');
 
-    public function isCKEditor($fieldSelector)
-    {
-        if (!$this->getDriver() instanceof Selenium2Driver) {
-            throw new UnexpectedPageException("isCKEditor method require Selenium2 Driver");
-        }
-
-        $field = $this->findField($fieldSelector);
-        $editorId = sprintf('cke_%s', $field->getAttribute('id'));
-        return $this->has('css', sprintf('div#%s', $editorId));
-    }
-
     public function movePhoto($photoNumber, $newPosition)
     {
         $this->getDriver()->executeScript(sprintf("

@@ -118,15 +118,10 @@ use Symfony\Component\Form\FormBuilderInterface;
 
 class GalleryType extends AbstractType
 {
-    public function getName()
-    {
-        return 'gallery';
-    }
-
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('photos', 'collection', array(
-            'type' => new GalleryPhotoType(),
+        $builder->add('photos', \Symfony\Component\Form\Extension\Core\Type\CollectionType::class, array(
+            'type' => GalleryPhotoType::class,
             'allow_add' => true,
             'allow_delete' => true,
             'by_reference' => false,

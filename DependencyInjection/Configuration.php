@@ -27,14 +27,6 @@ class Configuration implements ConfigurationInterface
 
         $rootNode
             ->children()
-                ->arrayNode('fsi_ckeditor')
-                ->addDefaultsIfNotSet()
-                    ->children()
-                        ->scalarNode('ckeditor_script_path')
-                            ->defaultValue('//cdnjs.cloudflare.com/ajax/libs/ckeditor/4.2/ckeditor.js')
-                        ->end()
-                    ->end()
-                ->end()
                 ->arrayNode('fsi_map')
                     ->children()
                         ->scalarNode('api_key')->end()

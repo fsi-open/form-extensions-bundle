@@ -4,6 +4,7 @@ namespace FSi\Bundle\FormExtensionsBundle\Form\TypeExtension;
 
 use FSi\Bundle\FormExtensionsBundle\Form\EventListener\SortableCollectionListener;
 use Symfony\Component\Form\AbstractTypeExtension;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 class SortableCollectionExtension extends AbstractTypeExtension
@@ -26,7 +27,7 @@ class SortableCollectionExtension extends AbstractTypeExtension
      */
     public function getExtendedType()
     {
-        return 'collection';
+        return CollectionType::class;
     }
 
     /**

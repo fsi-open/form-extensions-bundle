@@ -9,7 +9,7 @@ Add to composer.json
 
 ```
 "require": {
-    "fsi/form-extensions-bundle": "1.0.*"
+    "fsi/form-extensions-bundle": "^2.0"
 }
 ```
 

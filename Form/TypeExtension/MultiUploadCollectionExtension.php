@@ -4,9 +4,9 @@ namespace FSi\Bundle\FormExtensionsBundle\Form\TypeExtension;
 
 use FSi\Bundle\FormExtensionsBundle\Form\EventListener\MultiUploadCollectionListener;
 use Symfony\Component\Form\AbstractTypeExtension;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class MultiUploadCollectionExtension extends AbstractTypeExtension
 {
@@ -15,15 +15,7 @@ class MultiUploadCollectionExtension extends AbstractTypeExtension
      */
     public function getExtendedType()
     {
-        return 'collection';
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
-    {
-        $this->configureOptions($resolver);
+        return CollectionType::class;
     }
 
     /**

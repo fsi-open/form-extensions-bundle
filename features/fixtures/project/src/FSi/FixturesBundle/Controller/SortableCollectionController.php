@@ -14,7 +14,7 @@ class SortableCollectionController extends Controller
     {
         $gallery = $this->getModelGallery();
 
-        $form = $this->createForm(new GalleryType(), $gallery);
+        $form = $this->createForm(GalleryType::class, $gallery);
         $form->handleRequest($request);
         if ($form->isValid()) {
         }

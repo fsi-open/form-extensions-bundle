@@ -3,6 +3,7 @@
 namespace spec\FSi\Bundle\FormExtensionsBundle\Form\Type;
 
 use PhpSpec\ObjectBehavior;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 
 class FSiMapTypeSpec extends ObjectBehavior
 {
@@ -11,13 +12,8 @@ class FSiMapTypeSpec extends ObjectBehavior
         $this->shouldHaveType('Symfony\Component\Form\AbstractType');
     }
 
-    public function it_has_name()
-    {
-        $this->getName()->shouldReturn('fsi_map');
-    }
-
     /**
-     * @param \Symfony\Component\OptionsResolver\OptionsResolverInterface $resolver
+     * @param \Symfony\Component\OptionsResolver\OptionsResolver $resolver
      */
     public function it_set_options($resolver)
     {
@@ -25,29 +21,27 @@ class FSiMapTypeSpec extends ObjectBehavior
             'inherit_data' => true,
             'translation_domain' => 'FSiFormExtensionsBundle',
             'latitude_name' => 'latitude',
-            'latitude_type' => 'number',
+            'latitude_type' => NumberType::class,
             'latitude_options' => array(),
             'longitude_name' => 'longitude',
-            'longitude_type' => 'number',
+            'longitude_type' => NumberType::class,
             'longitude_options' => array(),
             'zoom_name' => null,
-            'zoom_type' => 'number',
+            'zoom_type' => NumberType::class,
             'zoom_options' => array(),
         ])->shouldBeCalled();
 
-        $resolver->setAllowedTypes([
-            'latitude_name' => 'string',
-            'latitude_type' => 'string',
-            'latitude_options' => 'array',
-            'longitude_name' => 'string',
-            'longitude_type' => 'string',
-            'longitude_options' => 'array',
-            'zoom_name' => array('string', 'null'),
-            'zoom_type' => 'string',
-            'zoom_options' => 'array',
-        ])->shouldBeCalled();
+        $resolver->setAllowedTypes('latitude_name', 'string')->shouldBeCalled();
+        $resolver->setAllowedTypes('latitude_type', 'string')->shouldBeCalled();
+        $resolver->setAllowedTypes('latitude_options', 'array')->shouldBeCalled();
+        $resolver->setAllowedTypes('longitude_name', 'string')->shouldBeCalled();
+        $resolver->setAllowedTypes('longitude_type', 'string')->shouldBeCalled();
+        $resolver->setAllowedTypes('longitude_options', 'array')->shouldBeCalled();
+        $resolver->setAllowedTypes('zoom_name', ['string', 'null'])->shouldBeCalled();
+        $resolver->setAllowedTypes('zoom_type', 'string')->shouldBeCalled();
+        $resolver->setAllowedTypes('zoom_options', 'array')->shouldBeCalled();
 
-        $this->setDefaultOptions($resolver);
+        $this->configureOptions($resolver);
     }
 
     /**

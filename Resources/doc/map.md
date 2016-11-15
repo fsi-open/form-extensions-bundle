@@ -13,7 +13,7 @@ Above code is enough to use fsi_map in symfony2 form.
 Following options are available in fsi_map form type:
 
 ```php
-$formBuilder->add('content', 'fsi_map', array(
+$formBuilder->add('content', \FSi\Bundle\FormExtensionsBundle\Form\Type\FSiMapType::class, array(
         'latitude_name' => 'latitude',
         'latitude_type' => 'number',
         'latitude_options' => array(),

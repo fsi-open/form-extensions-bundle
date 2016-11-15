@@ -12,7 +12,6 @@ Documentation:
 * [Installation](Resources/doc/installation.md)
 
 Form types: 
-* [fsi_ckeditor](Resources/doc/fsi_ckeditor.md) **deprecated in favour of [egeloen/ckeditor-bundle](https://github.com/egeloen/IvoryCKEditorBundle)**
 * [map](Resources/doc/map.md)
 
 Form extensions:

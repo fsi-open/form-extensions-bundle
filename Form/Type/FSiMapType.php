@@ -10,8 +10,9 @@
 namespace FSi\Bundle\FormExtensionsBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class FSiMapType extends AbstractType
 {
@@ -35,39 +36,37 @@ class FSiMapType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
             'inherit_data' => true,
             'translation_domain' => 'FSiFormExtensionsBundle',
             'latitude_name' => 'latitude',
-            'latitude_type' => 'number',
+            'latitude_type' => NumberType::class,
             'latitude_options' => array(),
             'longitude_name' => 'longitude',
-            'longitude_type' => 'number',
+            'longitude_type' => NumberType::class,
             'longitude_options' => array(),
             'zoom_name' => null,
-            'zoom_type' => 'number',
+            'zoom_type' => NumberType::class,
             'zoom_options' => array(),
         ]);
 
-        $resolver->setAllowedTypes(array(
-            'latitude_name' => 'string',
-            'latitude_type' => 'string',
-            'latitude_options' => 'array',
-            'longitude_name' => 'string',
-            'longitude_type' => 'string',
-            'longitude_options' => 'array',
-            'zoom_name' => array('string', 'null'),
-            'zoom_type' => 'string',
-            'zoom_options' => 'array',
-        ));
+        $resolver->setAllowedTypes('latitude_name', 'string');
+        $resolver->setAllowedTypes('latitude_type', 'string');
+        $resolver->setAllowedTypes('latitude_options', 'array');
+        $resolver->setAllowedTypes('longitude_name', 'string');
+        $resolver->setAllowedTypes('longitude_type', 'string');
+        $resolver->setAllowedTypes('longitude_options', 'array');
+        $resolver->setAllowedTypes('zoom_name', ['string', 'null']);
+        $resolver->setAllowedTypes('zoom_type', 'string');
+        $resolver->setAllowedTypes('zoom_options', 'array');
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'fsi_map';
     }

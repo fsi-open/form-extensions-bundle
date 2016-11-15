@@ -4,6 +4,7 @@ namespace spec\FSi\Bundle\FormExtensionsBundle\Form\TypeExtension;
 
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -11,7 +12,7 @@ class MultiUploadCollectionExtensionSpec extends ObjectBehavior
 {
     public function it_extends_collection()
     {
-        $this->getExtendedType()->shouldReturn('collection');
+        $this->getExtendedType()->shouldReturn(CollectionType::class);
     }
 
     /**
