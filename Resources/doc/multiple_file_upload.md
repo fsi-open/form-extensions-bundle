@@ -37,7 +37,10 @@ class ArticleFormType extends AbstractType
 ```
 
 ### Note
-Collection form type could only have field specified by the `multi_upload_field` option as required. Other field must be optional.
+Collection form type could only have field specified by the `multi_upload_field`
+option as required. Other field can be optional. `empty_data` option must be
+changed to a `null`, otherwise if you put a `File` constraint on the field, it will
+receive an empty array and break due to improper value type.
 
 ```php
 use Symfony\Component\Form\AbstractType;
@@ -49,6 +52,7 @@ class FileElementFormType extends AbstractType
     {
         $builder->add('file', \FSi\Bundle\DoctrineExtensionsBundle\Form\Type\FSi\FileType::class, [
             'multiple' => true,
+            'empty_data' => null
         ]);
 
         $builder->add('name', \Symfony\Component\Form\Extension\Core\Type\TextType::class, [
