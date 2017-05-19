@@ -20,10 +20,10 @@ class SortableCollectionController extends Controller
         }
 
         $view = $form->createView();
-        return $this->render('FSiFixturesBundle:SortableCollection:collection.html.twig', array(
+        return $this->render('FSiFixturesBundle:SortableCollection:collection.html.twig', [
             'form' => $view,
             'gallery' => $gallery
-        ));
+        ]);
     }
 
     /**

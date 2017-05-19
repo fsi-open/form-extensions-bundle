@@ -13,14 +13,14 @@ class GalleryPhotoType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('file', TextType::class);
-        $builder->add('position', TextType::class, array('attr' => array('readonly' => true)));
+        $builder->add('position', TextType::class, ['attr' => ['readonly' => true]]);
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'data_class' => GalleryPhoto::class,
             'label' => false,
-        ));
+        ]);
     }
 }
