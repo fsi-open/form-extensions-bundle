@@ -26,16 +26,22 @@
         "behat/mink-browserkit-driver": "^1.2",
         "behat/mink-selenium2-driver": "^1.2",
         "bossa/phpspec2-expect": "^1.0",
+        "doctrine/annotations": "^1.2",
         "phpspec/phpspec": "^2.2",
         "sensiolabs/behat-page-object-extension": "^2.0",
+        "symfony/asset": "^3.0",
         "symfony/console": "^3.0",
-        "symfony/css-selector": "^3.0"
+        "symfony/css-selector": "^3.0",
+        "symfony/templating": "^3.0"
     },
     "config": {
         "bin-dir": "bin"
     },
     "autoload": {
         "psr-4": { "FSi\\Bundle\\FormExtensionsBundle\\": "" }
+    },
+    "autoload-dev": {
+        "psr-4": { "FSi\\FixturesBundle\\": "features/fixtures/project/src/FSi/FixturesBundle" }
     },
     "extra": {
         "branch-alias": {

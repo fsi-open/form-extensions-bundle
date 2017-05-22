@@ -11,7 +11,7 @@ class Gallery
 
     public function __construct()
     {
-        $this->photos = array();
+        $this->photos = [];
     }
 
     /**

@@ -7,12 +7,12 @@ class AppKernel extends Kernel
 {
     public function registerBundles()
     {
-        return array(
+        return [
             new Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
             new Symfony\Bundle\TwigBundle\TwigBundle(),
             new FSi\FixturesBundle\FSiFixturesBundle(),
             new FSi\Bundle\FormExtensionsBundle\FSiFormExtensionsBundle()
-        );
+        ];
     }
 
     public function registerContainerConfiguration(LoaderInterface $loader)

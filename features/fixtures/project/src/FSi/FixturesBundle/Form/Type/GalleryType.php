@@ -13,19 +13,19 @@ class GalleryType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('photos', CollectionType::class, array(
+        $builder->add('photos', CollectionType::class, [
             'entry_type' => GalleryPhotoType::class,
             'allow_add' => true,
             'allow_delete' => true,
             'by_reference' => false,
-        ));
+        ]);
         $builder->add('submit', SubmitType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'data_class' => Gallery::class,
-        ));
+        ]);
     }
 }
