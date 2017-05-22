@@ -1,4 +1,4 @@
-# map type
+# Map type
 
 ## Usage
 
@@ -30,7 +30,8 @@ $formBuilder->add('content', \FSi\Bundle\FormExtensionsBundle\Form\Type\FSiMapTy
 ## Google map api-key
 
 By default google map script is loaded without api-key. You can set it via app config like this:
-```
+
+```yaml
 # app/config/config.yml
 
 fsi_form_extensions:
