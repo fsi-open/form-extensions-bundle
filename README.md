@@ -1,6 +1,6 @@
-#FSi Symfony2 Form Extensions Bundle
+# FSi Symfony2 Form Extensions Bundle
 
-FSiFormExtensionsBundle provide some useful symfony2 form types and extensions.
+FSiFormExtensionsBundle provides useful Symfony form types and extensions.
 
 Build Status:  
 [![Build Status](https://travis-ci.org/fsi-open/form-extensions-bundle.png?branch=master)](https://travis-ci.org/fsi-open/form-extensions-bundle) - Master  
@@ -15,10 +15,10 @@ Form types:
 * [map](Resources/doc/map.md)
 
 Form extensions:
-* [sortable_collection](Resources/docs/sortable_collection.md)
+* [sortable_collection](Resources/doc/sortable_collection.md)
 
 Form listeners:
-* [multiple file upload](Resources/docs/multiple_file_upload.md)
+* [multiple file upload](Resources/doc/multiple_file_upload.md)
 
 # Tests
 
