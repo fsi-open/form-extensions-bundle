@@ -21,13 +21,13 @@ class FSiMapTypeSpec extends ObjectBehavior
             'translation_domain' => 'FSiFormExtensionsBundle',
             'latitude_name' => 'latitude',
             'latitude_type' => NumberType::class,
-            'latitude_options' => array(),
+            'latitude_options' => [],
             'longitude_name' => 'longitude',
             'longitude_type' => NumberType::class,
-            'longitude_options' => array(),
+            'longitude_options' => [],
             'zoom_name' => null,
             'zoom_type' => NumberType::class,
-            'zoom_options' => array(),
+            'zoom_options' => [],
         ])->shouldBeCalled();
 
         $resolver->setAllowedTypes('latitude_name', 'string')->shouldBeCalled();
@@ -61,13 +61,13 @@ class FSiMapTypeSpec extends ObjectBehavior
         $this->buildForm($builder, [
             'latitude_name' => 'latitude',
             'latitude_type' => 'integer',
-            'latitude_options' => array(),
+            'latitude_options' => [],
             'longitude_name' => 'longitude',
             'longitude_type' => 'text',
-            'longitude_options' => array(),
+            'longitude_options' => [],
             'zoom_name' => 'zoom',
             'zoom_type' => 'textarea',
-            'zoom_options' => array(),
+            'zoom_options' => [],
         ]);
     }
 
@@ -92,22 +92,22 @@ class FSiMapTypeSpec extends ObjectBehavior
         $this->buildForm($builder, [
             'latitude_name' => 'lat',
             'latitude_type' => 'integer',
-            'latitude_options' => array(
+            'latitude_options' => [
                 'label' => 'xyz.lat',
                 'label_attr' => ['class' => 'lorem'],
-            ),
+            ],
             'longitude_name' => 'lng',
             'longitude_type' => 'text',
-            'longitude_options' => array(
+            'longitude_options' => [
                 'label' => 'xyz.lng',
                 'label_attr' => ['class' => 'ipsum'],
-            ),
+            ],
             'zoom_name' => 'z',
             'zoom_type' => 'textarea',
-            'zoom_options' => array(
+            'zoom_options' => [
                 'label' => 'xyz.z',
                 'label_attr' => ['class' => 'dolor'],
-            ),
+            ],
         ]);
     }
 }

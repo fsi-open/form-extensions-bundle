@@ -43,13 +43,13 @@ class FSiMapType extends AbstractType
             'translation_domain' => 'FSiFormExtensionsBundle',
             'latitude_name' => 'latitude',
             'latitude_type' => NumberType::class,
-            'latitude_options' => array(),
+            'latitude_options' => [],
             'longitude_name' => 'longitude',
             'longitude_type' => NumberType::class,
-            'longitude_options' => array(),
+            'longitude_options' => [],
             'zoom_name' => null,
             'zoom_type' => NumberType::class,
-            'zoom_options' => array(),
+            'zoom_options' => [],
         ]);
 
         $resolver->setAllowedTypes('latitude_name', 'string');
@@ -76,12 +76,12 @@ class FSiMapType extends AbstractType
      */
     private function getDefaultLatitudeOptions()
     {
-        return array(
+        return [
             'label' => 'map.latitude',
             'attr' => [
                 'class' => 'latitude-field',
             ],
-        );
+        ];
     }
 
     /**
@@ -89,12 +89,12 @@ class FSiMapType extends AbstractType
      */
     private function getDefaultLongitudeOptions()
     {
-        return array(
+        return [
             'label' => 'map.longitude',
             'attr' => [
                 'class' => 'longitude-field',
             ],
-        );
+        ];
     }
 
     /**
@@ -102,11 +102,11 @@ class FSiMapType extends AbstractType
      */
     private function getDefaultZoomOptions()
     {
-        return array(
+        return [
             'label' => 'map.zoom',
             'attr' => [
                 'class' => 'zoom-field',
             ],
-        );
+        ];
     }
 }

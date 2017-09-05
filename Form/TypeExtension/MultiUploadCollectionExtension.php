@@ -23,11 +23,11 @@ class MultiUploadCollectionExtension extends AbstractTypeExtension
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'multi_upload_field' => null,
-        ));
+        ]);
 
-        $resolver->setAllowedTypes('multi_upload_field', array('null', 'string'));
+        $resolver->setAllowedTypes('multi_upload_field', ['null', 'string']);
     }
 
     /**

@@ -12,17 +12,17 @@ class SortableCollectionListener implements EventSubscriberInterface
     /**
      * @var array
      */
-    private $itemOrder = array();
+    private $itemOrder = [];
 
     /**
      * @inheritdoc
      */
     public static function getSubscribedEvents()
     {
-        return array(
+        return [
             FormEvents::PRE_SUBMIT => 'rememberItemPosition',
             FormEvents::SUBMIT => 'persistItemPosition',
-        );
+        ];
     }
 
     /**

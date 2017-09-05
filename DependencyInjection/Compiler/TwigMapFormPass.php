@@ -22,7 +22,7 @@ class TwigMapFormPass implements CompilerPassInterface
 
         $container->setParameter('twig.form.resources', array_merge(
             $container->getParameter('twig.form.resources'),
-            array('@FSiFormExtensions/Form/form_map_layout.html.twig')
+            ['@FSiFormExtensions/Form/form_map_layout.html.twig']
         ));
     }
 }

@@ -18,10 +18,10 @@ class SortableCollectionListenerSpec extends ObjectBehavior
 
     public function it_listen_to_events()
     {
-        $this->getSubscribedEvents()->shouldReturn(array(
+        $this->getSubscribedEvents()->shouldReturn([
             FormEvents::PRE_SUBMIT => 'rememberItemPosition',
             FormEvents::SUBMIT => 'persistItemPosition',
-        ));
+        ]);
     }
 
     public function it_does_nothing_when_no_data(
@@ -36,7 +36,7 @@ class SortableCollectionListenerSpec extends ObjectBehavior
         $formEvent1->getData()->willReturn(null);
         $this->rememberItemPosition($formEvent1);
         $formEvent2->getForm()->willReturn($form);
-        $formEvent2->getData()->willReturn(array($item0, $item1, $item2));
+        $formEvent2->getData()->willReturn([$item0, $item1, $item2]);
         $item0->setPosition(Argument::any())->shouldNotBeCalled();
         $item1->setPosition(Argument::any())->shouldNotBeCalled();
         $item2->setPosition(Argument::any())->shouldNotBeCalled();
@@ -52,10 +52,10 @@ class SortableCollectionListenerSpec extends ObjectBehavior
         PositionableInterface $item2
     ) {
         $formEvent1->getForm()->willReturn($form);
-        $formEvent1->getData()->willReturn(array());
+        $formEvent1->getData()->willReturn([]);
         $this->rememberItemPosition($formEvent1);
         $formEvent2->getForm()->willReturn($form);
-        $formEvent2->getData()->willReturn(array($item0, $item1, $item2));
+        $formEvent2->getData()->willReturn([$item0, $item1, $item2]);
         $item0->setPosition(Argument::any())->shouldNotBeCalled();
         $item1->setPosition(Argument::any())->shouldNotBeCalled();
         $item2->setPosition(Argument::any())->shouldNotBeCalled();
@@ -71,10 +71,10 @@ class SortableCollectionListenerSpec extends ObjectBehavior
         PositionableInterface $item2
     ) {
         $formEvent1->getForm()->willReturn($form);
-        $formEvent1->getData()->willReturn(array(0 => '', 2 => '', 1 => ''));
+        $formEvent1->getData()->willReturn([0 => '', 2 => '', 1 => '']);
         $this->rememberItemPosition($formEvent1);
         $formEvent2->getForm()->willReturn($form);
-        $formEvent2->getData()->willReturn(array($item0, $item1, $item2));
+        $formEvent2->getData()->willReturn([$item0, $item1, $item2]);
         $item0->setPosition(1)->shouldBeCalled();
         $item1->setPosition(3)->shouldBeCalled();
         $item2->setPosition(2)->shouldBeCalled();
@@ -90,10 +90,10 @@ class SortableCollectionListenerSpec extends ObjectBehavior
         PositionableInterface $item2
     ) {
         $formEvent1->getForm()->willReturn($form);
-        $formEvent1->getData()->willReturn(array(0 => '', 1 => '', 2 => ''));
+        $formEvent1->getData()->willReturn([0 => '', 1 => '', 2 => '']);
         $this->rememberItemPosition($formEvent1);
         $formEvent2->getForm()->willReturn($form);
-        $formEvent2->getData()->willReturn(array($item0, $item2));
+        $formEvent2->getData()->willReturn([$item0, $item2]);
         $item0->setPosition(1)->shouldBeCalled();
         $item1->setPosition(Argument::any())->shouldNotBeCalled();
         $item2->setPosition(2)->shouldBeCalled();
@@ -115,22 +115,22 @@ class SortableCollectionListenerSpec extends ObjectBehavior
         PositionableInterface $collection2Item2
     ) {
         $form1Event1->getForm()->willReturn($form1);
-        $form1Event1->getData()->willReturn(array(0 => '', 2 => '', 1 => ''));
+        $form1Event1->getData()->willReturn([0 => '', 2 => '', 1 => '']);
         $this->rememberItemPosition($form1Event1);
 
         $form2Event1->getForm()->willReturn($form2);
-        $form2Event1->getData()->willReturn(array(1 => '', 0 => '', 2 => ''));
+        $form2Event1->getData()->willReturn([1 => '', 0 => '', 2 => '']);
         $this->rememberItemPosition($form2Event1);
 
         $form1Event2->getForm()->willReturn($form1);
-        $form1Event2->getData()->willReturn(array($collection1Item0, $collection1Item1, $collection1Item2));
+        $form1Event2->getData()->willReturn([$collection1Item0, $collection1Item1, $collection1Item2]);
         $collection1Item0->setPosition(1)->shouldBeCalled();
         $collection1Item1->setPosition(3)->shouldBeCalled();
         $collection1Item2->setPosition(2)->shouldBeCalled();
         $this->persistItemPosition($form1Event2);
 
         $form2Event2->getForm()->willReturn($form2);
-        $form2Event2->getData()->willReturn(array($collection2Item0, $collection2Item1, $collection2Item2));
+        $form2Event2->getData()->willReturn([$collection2Item0, $collection2Item1, $collection2Item2]);
         $collection2Item0->setPosition(2)->shouldBeCalled();
         $collection2Item1->setPosition(1)->shouldBeCalled();
         $collection2Item2->setPosition(3)->shouldBeCalled();

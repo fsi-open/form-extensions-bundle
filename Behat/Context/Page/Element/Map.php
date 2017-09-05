@@ -6,7 +6,7 @@ use SensioLabs\Behat\PageObjectExtension\PageObject\Element;
 
 class Map extends Element
 {
-    protected $selector = array('css' => '.map-location');
+    protected $selector = ['css' => '.map-location'];
 
     public function clickLocation($latitude, $longitude)
     {
