@@ -1,5 +1,7 @@
 language: php
 
+sudo: false
+
 matrix:
     include:
       - php: 5.5
@@ -9,29 +11,22 @@ matrix:
       - php: 7.0
       - php: 7.1
 
-sudo: false
+addons:
+    firefox: "47.0.1"
 
 install:
-  - wget http://selenium-release.storage.googleapis.com/2.44/selenium-server-standalone-2.44.0.jar
+    - phpenv config-rm xdebug.ini
+    - composer update $COMPOSER_FLAGS
+    - wget --no-clobber -O bin/selenium.jar http://selenium-release.storage.googleapis.com/2.53/selenium-server-standalone-2.53.1.jar || true
 
 before_script:
-  - phpenv config-rm xdebug.ini || true
-  - composer update $COMPOSER_FLAGS
-
-  - features/fixtures/project/app/console assets:install features/fixtures/project/web --relative --symlink
-
-  # Run php builtin server
-  - nohup php -S 127.0.0.1:8080 -t features/fixtures/project/web > server.log 2>&1 &
-
-  # Run selenium
-  - sh -e /etc/init.d/xvfb start
-  - export DISPLAY=:99.0
-  - java -jar selenium-server-standalone-2.44.0.jar > selenium.log 2>&1 &
-  - sleep 5
+    - nohup php -S localhost:8080 -t features/fixtures/project/web > /dev/null 2>&1 &
+    - sh -e /etc/init.d/xvfb start
+    - export DISPLAY=:99.0
+    - java -jar bin/selenium.jar > /dev/null 2>&1 &
+    - sleep 5
+    - features/fixtures/project/app/console assets:install features/fixtures/project/web --relative --symlink
 
 script:
-  - bin/phpspec run -v -f dot
-  - bin/behat --no-snippets --verbose --format=progress --profile=travis -vvv
-
-notifications:
-  irc: "irc.freenode.org#fsi-open"
+    - bin/phpspec run -v -f dot
+    - bin/behat --no-snippets --verbose --format=progress --profile=travis -vvv
