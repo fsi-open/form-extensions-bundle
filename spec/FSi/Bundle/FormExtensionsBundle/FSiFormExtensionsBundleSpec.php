@@ -4,6 +4,7 @@ namespace spec\FSi\Bundle\FormExtensionsBundle;
 
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 class FSiFormExtensionsBundleSpec extends ObjectBehavior
 {
@@ -14,17 +15,17 @@ class FSiFormExtensionsBundleSpec extends ObjectBehavior
 
     function it_have_extension()
     {
-        $this->getContainerExtension()
-            ->shouldReturnAnInstanceOf('FSi\Bundle\FormExtensionsBundle\DependencyInjection\FSIFormExtensionsExtension');
+        $this->getContainerExtension()->shouldReturnAnInstanceOf(
+            'FSi\Bundle\FormExtensionsBundle\DependencyInjection\FSIFormExtensionsExtension'
+        );
     }
 
-    /**
-     * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
-     */
-    function it_register_twig_compiler_pass($container)
+    function it_register_twig_compiler_pass(ContainerBuilder $container)
     {
-        $container->addCompilerPass(Argument::type('FSi\Bundle\FormExtensionsBundle\DependencyInjection\Compiler\TwigMapFormPass'))
-            ->shouldBeCalled();
+        $container->addCompilerPass(
+            Argument::type('FSi\Bundle\FormExtensionsBundle\DependencyInjection\Compiler\TwigMapFormPass')
+        )->shouldBeCalled();
+
         $this->build($container);
     }
 }

@@ -15,10 +15,7 @@ class MultiUploadCollectionExtensionSpec extends ObjectBehavior
         $this->getExtendedType()->shouldReturn(CollectionType::class);
     }
 
-    /**
-     * @param \Symfony\Component\OptionsResolver\OptionsResolver $resolver
-     */
-    public function it_set_options($resolver)
+    public function it_set_options(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array('multi_upload_field' => null))->shouldBeCalled();
         $resolver->setAllowedTypes('multi_upload_field', array('null', 'string'))->shouldBeCalled();
@@ -26,24 +23,20 @@ class MultiUploadCollectionExtensionSpec extends ObjectBehavior
         $this->configureOptions($resolver);
     }
 
-    /**
-     * @param \Symfony\Component\Form\FormBuilderInterface $builder
-     */
-    public function it_add_listener_if_options_set($builder)
+    public function it_add_listener_if_options_set(FormBuilderInterface $builder)
     {
-        $builder->addEventSubscriber(Argument::type('FSi\Bundle\FormExtensionsBundle\Form\EventListener\MultiUploadCollectionListener'))
-            ->shouldBeCalled();
+        $builder->addEventSubscriber(
+            Argument::type('FSi\Bundle\FormExtensionsBundle\Form\EventListener\MultiUploadCollectionListener')
+        )->shouldBeCalled();
 
         $this->buildForm($builder, array('multi_upload_field' => 'file'));
     }
 
-    /**
-     * @param \Symfony\Component\Form\FormBuilderInterface $builder
-     */
-    public function it_does_nothing_field_option_is_null($builder)
+    public function it_does_nothing_field_option_is_null(FormBuilderInterface $builder)
     {
-        $builder->addEventSubscriber(Argument::type('FSi\Bundle\FormExtensionsBundle\Form\EventListener\MultiUploadCollectionListener'))
-            ->shouldNotBeCalled();
+        $builder->addEventSubscriber(
+            Argument::type('FSi\Bundle\FormExtensionsBundle\Form\EventListener\MultiUploadCollectionListener')
+        )->shouldNotBeCalled();
 
         $this->buildForm($builder, array());
     }

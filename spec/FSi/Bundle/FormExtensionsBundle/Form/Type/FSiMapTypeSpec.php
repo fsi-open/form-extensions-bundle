@@ -4,6 +4,8 @@ namespace spec\FSi\Bundle\FormExtensionsBundle\Form\Type;
 
 use PhpSpec\ObjectBehavior;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class FSiMapTypeSpec extends ObjectBehavior
 {
@@ -12,10 +14,7 @@ class FSiMapTypeSpec extends ObjectBehavior
         $this->shouldHaveType('Symfony\Component\Form\AbstractType');
     }
 
-    /**
-     * @param \Symfony\Component\OptionsResolver\OptionsResolver $resolver
-     */
-    public function it_set_options($resolver)
+    public function it_set_options(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
             'inherit_data' => true,
@@ -44,10 +43,7 @@ class FSiMapTypeSpec extends ObjectBehavior
         $this->configureOptions($resolver);
     }
 
-    /**
-     * @param \Symfony\Component\Form\FormBuilderInterface $builder
-     */
-    public function it_build_form_with_default_options($builder)
+    public function it_build_form_with_default_options(FormBuilderInterface $builder)
     {
         $builder->add('latitude', 'integer', [
             'label' => 'map.latitude',
@@ -75,10 +71,7 @@ class FSiMapTypeSpec extends ObjectBehavior
         ]);
     }
 
-    /**
-     * @param \Symfony\Component\Form\FormBuilderInterface $builder
-     */
-    public function it_build_form_with_merged_options($builder)
+    public function it_build_form_with_merged_options(FormBuilderInterface $builder)
     {
         $builder->add('lat', 'integer', [
             'label' => 'xyz.lat',

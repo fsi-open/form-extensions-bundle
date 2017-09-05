@@ -2,9 +2,12 @@
 
 namespace spec\FSi\Bundle\FormExtensionsBundle\Form\EventListener;
 
+use FSi\Bundle\FormExtensionsBundle\Model\PositionableInterface;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
+use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
+use Symfony\Component\Form\FormInterface;
 
 class SortableCollectionListenerSpec extends ObjectBehavior
 {
@@ -21,16 +24,14 @@ class SortableCollectionListenerSpec extends ObjectBehavior
         ));
     }
 
-    /**
-     * @param \Symfony\Component\Form\FormEvent $formEvent1
-     * @param \Symfony\Component\Form\FormEvent $formEvent2
-     * @param \Symfony\Component\Form\FormInterface $form
-     * @param \FSi\Bundle\FormExtensionsBundle\Model\PositionableInterface $item0
-     * @param \FSi\Bundle\FormExtensionsBundle\Model\PositionableInterface $item1
-     * @param \FSi\Bundle\FormExtensionsBundle\Model\PositionableInterface $item2
-     */
-    public function it_does_nothing_when_no_data($formEvent1, $formEvent2, $form, $item0, $item1, $item2)
-    {
+    public function it_does_nothing_when_no_data(
+        FormEvent $formEvent1,
+        FormEvent $formEvent2,
+        FormInterface $form,
+        PositionableInterface $item0,
+        PositionableInterface $item1,
+        PositionableInterface $item2
+    ) {
         $formEvent1->getForm()->willReturn($form);
         $formEvent1->getData()->willReturn(null);
         $this->rememberItemPosition($formEvent1);
@@ -42,16 +43,14 @@ class SortableCollectionListenerSpec extends ObjectBehavior
         $this->persistItemPosition($formEvent2);
     }
 
-    /**
-     * @param \Symfony\Component\Form\FormEvent $formEvent1
-     * @param \Symfony\Component\Form\FormEvent $formEvent2
-     * @param \Symfony\Component\Form\FormInterface $form
-     * @param \FSi\Bundle\FormExtensionsBundle\Model\PositionableInterface $item0
-     * @param \FSi\Bundle\FormExtensionsBundle\Model\PositionableInterface $item1
-     * @param \FSi\Bundle\FormExtensionsBundle\Model\PositionableInterface $item2
-     */
-    public function it_does_nothing_when_empty_array($formEvent1, $formEvent2, $form, $item0, $item1, $item2)
-    {
+    public function it_does_nothing_when_empty_array(
+        FormEvent $formEvent1,
+        FormEvent $formEvent2,
+        FormInterface $form,
+        PositionableInterface $item0,
+        PositionableInterface $item1,
+        PositionableInterface $item2
+    ) {
         $formEvent1->getForm()->willReturn($form);
         $formEvent1->getData()->willReturn(array());
         $this->rememberItemPosition($formEvent1);
@@ -63,16 +62,14 @@ class SortableCollectionListenerSpec extends ObjectBehavior
         $this->persistItemPosition($formEvent2);
     }
 
-    /**
-     * @param \Symfony\Component\Form\FormEvent $formEvent1
-     * @param \Symfony\Component\Form\FormEvent $formEvent2
-     * @param \Symfony\Component\Form\FormInterface $form
-     * @param \FSi\Bundle\FormExtensionsBundle\Model\PositionableInterface $item0
-     * @param \FSi\Bundle\FormExtensionsBundle\Model\PositionableInterface $item1
-     * @param \FSi\Bundle\FormExtensionsBundle\Model\PositionableInterface $item2
-     */
-    public function it_set_positions($formEvent1, $formEvent2, $form, $item0, $item1, $item2)
-    {
+    public function it_set_positions(
+        FormEvent $formEvent1,
+        FormEvent $formEvent2,
+        FormInterface $form,
+        PositionableInterface $item0,
+        PositionableInterface $item1,
+        PositionableInterface $item2
+    ) {
         $formEvent1->getForm()->willReturn($form);
         $formEvent1->getData()->willReturn(array(0 => '', 2 => '', 1 => ''));
         $this->rememberItemPosition($formEvent1);
@@ -84,21 +81,13 @@ class SortableCollectionListenerSpec extends ObjectBehavior
         $this->persistItemPosition($formEvent2);
     }
 
-    /**
-     * @param \Symfony\Component\Form\FormEvent $formEvent1
-     * @param \Symfony\Component\Form\FormEvent $formEvent2
-     * @param \Symfony\Component\Form\FormInterface $form
-     * @param \FSi\Bundle\FormExtensionsBundle\Model\PositionableInterface $item0
-     * @param \FSi\Bundle\FormExtensionsBundle\Model\PositionableInterface $item1
-     * @param \FSi\Bundle\FormExtensionsBundle\Model\PositionableInterface $item2
-     */
     public function is_set_positions_even_when_elements_are_removed(
-        $formEvent1,
-        $formEvent2,
-        $form,
-        $item0,
-        $item1,
-        $item2
+        FormEvent $formEvent1,
+        FormEvent $formEvent2,
+        FormInterface $form,
+        PositionableInterface $item0,
+        PositionableInterface $item1,
+        PositionableInterface $item2
     ) {
         $formEvent1->getForm()->willReturn($form);
         $formEvent1->getData()->willReturn(array(0 => '', 1 => '', 2 => ''));
@@ -111,33 +100,19 @@ class SortableCollectionListenerSpec extends ObjectBehavior
         $this->persistItemPosition($formEvent2);
     }
 
-    /**
-     * @param \Symfony\Component\Form\FormEvent $form1Event1
-     * @param \Symfony\Component\Form\FormEvent $form1Event2
-     * @param \Symfony\Component\Form\FormInterface $form1
-     * @param \FSi\Bundle\FormExtensionsBundle\Model\PositionableInterface $collection1Item0
-     * @param \FSi\Bundle\FormExtensionsBundle\Model\PositionableInterface $collection1Item1
-     * @param \FSi\Bundle\FormExtensionsBundle\Model\PositionableInterface $collection1Item2
-     * @param \Symfony\Component\Form\FormEvent $form2Event1
-     * @param \Symfony\Component\Form\FormEvent $form2Event2
-     * @param \Symfony\Component\Form\FormInterface $form2
-     * @param \FSi\Bundle\FormExtensionsBundle\Model\PositionableInterface $collection2Item0
-     * @param \FSi\Bundle\FormExtensionsBundle\Model\PositionableInterface $collection2Item1
-     * @param \FSi\Bundle\FormExtensionsBundle\Model\PositionableInterface $collection2Item2
-     */
     public function it_set_positions_for_two_collections_in_the_same_request(
-        $form1Event1,
-        $form1Event2,
-        $form1,
-        $collection1Item0,
-        $collection1Item1,
-        $collection1Item2,
-        $form2Event1,
-        $form2Event2,
-        $form2,
-        $collection2Item0,
-        $collection2Item1,
-        $collection2Item2
+        FormEvent $form1Event1,
+        FormEvent $form1Event2,
+        FormInterface $form1,
+        PositionableInterface $collection1Item0,
+        PositionableInterface $collection1Item1,
+        PositionableInterface $collection1Item2,
+        FormEvent $form2Event1,
+        FormEvent $form2Event2,
+        FormInterface $form2,
+        PositionableInterface $collection2Item0,
+        PositionableInterface $collection2Item1,
+        PositionableInterface $collection2Item2
     ) {
         $form1Event1->getForm()->willReturn($form1);
         $form1Event1->getData()->willReturn(array(0 => '', 2 => '', 1 => ''));

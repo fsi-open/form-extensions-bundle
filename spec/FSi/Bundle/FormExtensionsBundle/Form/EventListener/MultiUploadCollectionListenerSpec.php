@@ -21,10 +21,7 @@ class MultiUploadCollectionListenerSpec extends ObjectBehavior
         ));
     }
 
-    /**
-     * @param \Symfony\Component\Form\FormEvent $formEvent
-     */
-    function it_does_nothing_if_data_is_not_an_array($formEvent)
+    function it_does_nothing_if_data_is_not_an_array(FormEvent $formEvent)
     {
         $formEvent->getData()->willReturn('string');
 
@@ -33,10 +30,7 @@ class MultiUploadCollectionListenerSpec extends ObjectBehavior
         $this->preSubmit($formEvent);
     }
 
-    /**
-     * @param \Symfony\Component\Form\FormEvent $formEvent
-     */
-    function it_unwraps_multiple_files_into_new_collection_items($formEvent)
+    function it_unwraps_multiple_files_into_new_collection_items(FormEvent $formEvent)
     {
         $formEvent->getData()->willReturn(array(
             0 => array(
