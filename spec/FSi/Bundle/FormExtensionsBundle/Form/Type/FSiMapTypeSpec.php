@@ -4,6 +4,8 @@ namespace spec\FSi\Bundle\FormExtensionsBundle\Form\Type;
 
 use PhpSpec\ObjectBehavior;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class FSiMapTypeSpec extends ObjectBehavior
 {
@@ -12,23 +14,20 @@ class FSiMapTypeSpec extends ObjectBehavior
         $this->shouldHaveType('Symfony\Component\Form\AbstractType');
     }
 
-    /**
-     * @param \Symfony\Component\OptionsResolver\OptionsResolver $resolver
-     */
-    public function it_set_options($resolver)
+    public function it_set_options(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
             'inherit_data' => true,
             'translation_domain' => 'FSiFormExtensionsBundle',
             'latitude_name' => 'latitude',
             'latitude_type' => NumberType::class,
-            'latitude_options' => array(),
+            'latitude_options' => [],
             'longitude_name' => 'longitude',
             'longitude_type' => NumberType::class,
-            'longitude_options' => array(),
+            'longitude_options' => [],
             'zoom_name' => null,
             'zoom_type' => NumberType::class,
-            'zoom_options' => array(),
+            'zoom_options' => [],
         ])->shouldBeCalled();
 
         $resolver->setAllowedTypes('latitude_name', 'string')->shouldBeCalled();
@@ -44,10 +43,7 @@ class FSiMapTypeSpec extends ObjectBehavior
         $this->configureOptions($resolver);
     }
 
-    /**
-     * @param \Symfony\Component\Form\FormBuilderInterface $builder
-     */
-    public function it_build_form_with_default_options($builder)
+    public function it_build_form_with_default_options(FormBuilderInterface $builder)
     {
         $builder->add('latitude', 'integer', [
             'label' => 'map.latitude',
@@ -65,20 +61,17 @@ class FSiMapTypeSpec extends ObjectBehavior
         $this->buildForm($builder, [
             'latitude_name' => 'latitude',
             'latitude_type' => 'integer',
-            'latitude_options' => array(),
+            'latitude_options' => [],
             'longitude_name' => 'longitude',
             'longitude_type' => 'text',
-            'longitude_options' => array(),
+            'longitude_options' => [],
             'zoom_name' => 'zoom',
             'zoom_type' => 'textarea',
-            'zoom_options' => array(),
+            'zoom_options' => [],
         ]);
     }
 
-    /**
-     * @param \Symfony\Component\Form\FormBuilderInterface $builder
-     */
-    public function it_build_form_with_merged_options($builder)
+    public function it_build_form_with_merged_options(FormBuilderInterface $builder)
     {
         $builder->add('lat', 'integer', [
             'label' => 'xyz.lat',
@@ -99,22 +92,22 @@ class FSiMapTypeSpec extends ObjectBehavior
         $this->buildForm($builder, [
             'latitude_name' => 'lat',
             'latitude_type' => 'integer',
-            'latitude_options' => array(
+            'latitude_options' => [
                 'label' => 'xyz.lat',
                 'label_attr' => ['class' => 'lorem'],
-            ),
+            ],
             'longitude_name' => 'lng',
             'longitude_type' => 'text',
-            'longitude_options' => array(
+            'longitude_options' => [
                 'label' => 'xyz.lng',
                 'label_attr' => ['class' => 'ipsum'],
-            ),
+            ],
             'zoom_name' => 'z',
             'zoom_type' => 'textarea',
-            'zoom_options' => array(
+            'zoom_options' => [
                 'label' => 'xyz.z',
                 'label_attr' => ['class' => 'dolor'],
-            ),
+            ],
         ]);
     }
 }

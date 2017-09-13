@@ -12,3 +12,7 @@ framework:
     session:
         storage_id:     session.storage.filesystem
     assets: ~
+
+fsi_form_extensions:
+    fsi_map:
+        api_key: AIzaSyDiNvctA_QoSdiTWjoCoY1E_9FIhIthoiU

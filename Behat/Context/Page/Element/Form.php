@@ -15,7 +15,7 @@ use SensioLabs\Behat\PageObjectExtension\PageObject\Exception\UnexpectedPageExce
 
 class Form extends Element
 {
-    protected $selector = array('css' => 'form');
+    protected $selector = ['css' => 'form'];
 
     public function movePhoto($photoNumber, $newPosition)
     {
@@ -30,13 +30,19 @@ parent.insertBefore(photo, insertBefore)",
 
     public function getGoogleMapWrapper($label)
     {
-        return $this->find('xpath', sprintf('//label[text()="%s"]/parent::*/descendant::*[contains(concat(" ", normalize-space(@class), " "), " map-location ")]', $label));
+        return $this->find(
+            'xpath',
+            sprintf(
+                '//label[text()="%s"]/parent::*/descendant::*[contains(concat(" ", normalize-space(@class), " "), " map-location ")]',
+                $label
+            )
+        );
     }
 
     public function isGoogleMap($fieldSelector)
     {
         if (!$this->getDriver() instanceof Selenium2Driver) {
-            throw new UnexpectedPageException("isGoogleMap method require Selenium2 Driver");
+            throw new UnexpectedPageException("isGoogleMap method requires Selenium2 Driver");
         }
 
         $wrapper = $this->getGoogleMapWrapper($fieldSelector);

@@ -3,7 +3,6 @@
 namespace spec\FSi\Bundle\FormExtensionsBundle\DependencyInjection;
 
 use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
 
 class FSIFormExtensionsExtensionSpec extends ObjectBehavior
 {

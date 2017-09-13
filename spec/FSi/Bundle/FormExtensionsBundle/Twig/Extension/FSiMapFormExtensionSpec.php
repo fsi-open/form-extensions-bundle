@@ -3,8 +3,6 @@
 namespace spec\FSi\Bundle\FormExtensionsBundle\Twig\Extension;
 
 use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 class FSimapFormExtensionSpec extends ObjectBehavior
 {

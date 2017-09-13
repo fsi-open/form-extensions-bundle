@@ -45,7 +45,7 @@ class MultiUploadCollectionListener implements EventSubscriberInterface
         foreach ($data as $key => $element) {
             $files = $element[$this->fileField];
             if (!is_array($files)) {
-                $files = array($files);
+                $files = [$files];
             }
             $newData[$key][$this->fileField] = $files[0];
             for ($i = 1; $i < count($files); $i++) {

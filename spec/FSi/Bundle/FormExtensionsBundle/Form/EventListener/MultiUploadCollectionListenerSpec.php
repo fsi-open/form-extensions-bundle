@@ -16,15 +16,12 @@ class MultiUploadCollectionListenerSpec extends ObjectBehavior
 
     function it_handles_pre_submit_with_priority_higher_than_default()
     {
-        $this->getSubscribedEvents()->shouldReturn(array(
-            FormEvents::PRE_SUBMIT => array('preSubmit', 1)
-        ));
+        $this->getSubscribedEvents()->shouldReturn([
+            FormEvents::PRE_SUBMIT => ['preSubmit', 1]
+        ]);
     }
 
-    /**
-     * @param \Symfony\Component\Form\FormEvent $formEvent
-     */
-    function it_does_nothing_if_data_is_not_an_array($formEvent)
+    function it_does_nothing_if_data_is_not_an_array(FormEvent $formEvent)
     {
         $formEvent->getData()->willReturn('string');
 
@@ -33,46 +30,43 @@ class MultiUploadCollectionListenerSpec extends ObjectBehavior
         $this->preSubmit($formEvent);
     }
 
-    /**
-     * @param \Symfony\Component\Form\FormEvent $formEvent
-     */
-    function it_unwraps_multiple_files_into_new_collection_items($formEvent)
+    function it_unwraps_multiple_files_into_new_collection_items(FormEvent $formEvent)
     {
-        $formEvent->getData()->willReturn(array(
-            0 => array(
+        $formEvent->getData()->willReturn([
+            0 => [
                 'another_field' => null,
                 'file' => null
-            ),
-            1 => array(
+            ],
+            1 => [
                 'another_field' => null,
-                'file' => array(
+                'file' => [
                     'first_file',
                     'second_file'
-                )
-            ),
-            2 => array(
+                ]
+            ],
+            2 => [
                 'another_field' => null,
                 'file' => 'single_file'
-            )
-        ));
+            ]
+        ]);
 
-        $formEvent->setData(array(
-            0 => array(
+        $formEvent->setData([
+            0 => [
                 'another_field' => null,
                 'file' => null
-            ),
-            1 => array(
+            ],
+            1 => [
                 'another_field' => null,
                 'file' => 'first_file'
-            ),
-            2 => array(
+            ],
+            2 => [
                 'another_field' => null,
                 'file' => 'single_file'
-            ),
-            3 => array(
+            ],
+            3 => [
                 'file' => 'second_file'
-            )
-        ))->shouldBeCalled();
+            ]
+        ])->shouldBeCalled();
 
         $this->preSubmit($formEvent);
     }
