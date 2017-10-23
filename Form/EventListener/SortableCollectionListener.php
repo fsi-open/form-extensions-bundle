@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * (c) FSi sp. z o.o. <info@fsi.pl>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+declare(strict_types=1);
+
 namespace FSi\Bundle\FormExtensionsBundle\Form\EventListener;
 
 use FSi\Bundle\FormExtensionsBundle\Model\PositionableInterface;
@@ -17,7 +26,7 @@ class SortableCollectionListener implements EventSubscriberInterface
     /**
      * @inheritdoc
      */
-    public static function getSubscribedEvents()
+    public static function getSubscribedEvents(): array
     {
         return [
             FormEvents::PRE_SUBMIT => 'rememberItemPosition',
@@ -25,9 +34,6 @@ class SortableCollectionListener implements EventSubscriberInterface
         ];
     }
 
-    /**
-     * @param FormEvent $event
-     */
     public function rememberItemPosition(FormEvent $event)
     {
         $formId = $this->getEventFormId($event);
@@ -35,12 +41,10 @@ class SortableCollectionListener implements EventSubscriberInterface
         $this->itemOrder[$formId] = $this->getEventDataKeys($event);
     }
 
-    /**
-     * @param FormEvent $event
-     */
     public function persistItemPosition(FormEvent $event)
     {
-        if (!($itemOrder = $this->getRememberedItemOrder($event))) {
+        $itemOrder = $this->getRememberedItemOrder($event);
+        if (!$itemOrder) {
             return;
         }
 
@@ -57,11 +61,7 @@ class SortableCollectionListener implements EventSubscriberInterface
         }
     }
 
-    /**
-     * @param \Symfony\Component\Form\FormEvent $event
-     * @return array|null
-     */
-    private function getEventDataKeys(FormEvent $event)
+    private function getEventDataKeys(FormEvent $event): ?array
     {
         if (!$event->getData() || !is_array($event->getData())) {
             return null;
@@ -70,26 +70,17 @@ class SortableCollectionListener implements EventSubscriberInterface
         return array_keys($event->getData());
     }
 
-    /**
-     * @param \Symfony\Component\Form\FormEvent $event
-     * @return array|null
-     */
-    private function getRememberedItemOrder(FormEvent $event)
+    private function getRememberedItemOrder(FormEvent $event): ?array
     {
         $formId = $this->getEventFormId($event);
 
-        if (isset($this->itemOrder[$formId])) {
-            return $this->itemOrder[$formId];
-        } else {
-            return null;
-        }
+        return isset($this->itemOrder[$formId])
+            ? $this->itemOrder[$formId]
+            : null
+        ;
     }
 
-    /**
-     * @param \Symfony\Component\Form\FormEvent $event
-     * @return string
-     */
-    private function getEventFormId(FormEvent $event)
+    private function getEventFormId(FormEvent $event): string
     {
         return spl_object_hash($event->getForm());
     }

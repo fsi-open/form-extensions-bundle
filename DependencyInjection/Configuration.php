@@ -7,14 +7,13 @@
  * file that was distributed with this source code.
  */
 
+declare(strict_types=1);
+
 namespace FSi\Bundle\FormExtensionsBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
-/**
- * @author Norbert Orzechowicz <norbert@fsi.pl>
- */
 class Configuration implements ConfigurationInterface
 {
     /**

@@ -15,7 +15,7 @@ class SortableCollectionForm extends Page
 {
     protected $path = '/sortable_collection';
 
-    public function getPhotoAtPosition($position)
+    public function getPhotoAtPosition(int $position)
     {
         return $this->find('css', sprintf('ul li[data-position="%d"]', $position));
     }

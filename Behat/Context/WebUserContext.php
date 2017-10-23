@@ -16,7 +16,7 @@ class WebUserContext extends PageObjectContext
     /**
      * @When /^I open "([^"]*)" page$/
      */
-    public function iOpenPage($pageName)
+    public function iOpenPage(string $pageName)
     {
         $this->getPage($pageName)->open();
     }
@@ -24,7 +24,7 @@ class WebUserContext extends PageObjectContext
     /**
      * @Given /^I move photo from position "([^"]*)" to position "([^"]*)"$/
      */
-    public function iMovePhotoNumberToPosition($photoNumber, $newPosition)
+    public function iMovePhotoNumberToPosition(int $photoNumber, int $newPosition)
     {
         $this->getElement('Form')->movePhoto($photoNumber, $newPosition);
     }

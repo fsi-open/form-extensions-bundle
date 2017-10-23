@@ -15,7 +15,7 @@ class OneCKEditorForm extends Page
 {
     protected $path = '/one_ckeditor';
 
-    public function getScriptIncludes($scriptUrl)
+    public function getScriptIncludes(string $scriptUrl)
     {
         return $this->findAll('css', sprintf('script[src="%s"]', $scriptUrl));
     }
