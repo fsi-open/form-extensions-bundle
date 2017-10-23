@@ -22,8 +22,8 @@ default: &default
                 bootstrap: features/fixtures/project/app/bootstrap.php
         SensioLabs\Behat\PageObjectExtension:
             namespaces:
-                page: FSi\Bundle\FormExtensionsBundle\Behat\Context\Page
-                element: FSi\Bundle\FormExtensionsBundle\Behat\Context\Page\Element
+                page: FSi\Bundle\FormExtensionsBundle\Behat\Page
+                element: FSi\Bundle\FormExtensionsBundle\Behat\Element
 travis:
     <<: *default
     extensions:

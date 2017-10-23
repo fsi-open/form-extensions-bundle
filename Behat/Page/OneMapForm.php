@@ -9,7 +9,7 @@
 
 declare(strict_types=1);
 
-namespace FSi\Bundle\FormExtensionsBundle\Behat\Context\Page;
+namespace FSi\Bundle\FormExtensionsBundle\Behat\Page;
 
 use SensioLabs\Behat\PageObjectExtension\PageObject\Page;
 

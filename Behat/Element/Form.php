@@ -9,7 +9,7 @@
 
 declare(strict_types=1);
 
-namespace FSi\Bundle\FormExtensionsBundle\Behat\Context\Page\Element;
+namespace FSi\Bundle\FormExtensionsBundle\Behat\Element;
 
 use Behat\Mink\Driver\Selenium2Driver;
 use Behat\Mink\Element\NodeElement;

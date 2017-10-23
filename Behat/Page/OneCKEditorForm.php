@@ -7,7 +7,7 @@
  * file that was distributed with this source code.
  */
 
-namespace FSi\Bundle\FormExtensionsBundle\Behat\Context\Page;
+namespace FSi\Bundle\FormExtensionsBundle\Behat\Page;
 
 use SensioLabs\Behat\PageObjectExtension\PageObject\Page;
 
