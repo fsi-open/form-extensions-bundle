@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * (c) FSi sp. z o.o. <info@fsi.pl>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+declare(strict_types=1);
+
 namespace FSi\FixturesBundle\Controller;
 
 use FSi\FixturesBundle\Form\Type\GalleryType;
@@ -15,21 +24,16 @@ class SortableCollectionController extends Controller
         $gallery = $this->getModelGallery();
 
         $form = $this->createForm(GalleryType::class, $gallery);
-        $form->handleRequest($request);
-        if ($form->isValid()) {
+        if ($form->handleRequest($request)->isSubmitted() && $form->isValid()) {
         }
 
-        $view = $form->createView();
-        return $this->render('FSiFixturesBundle:SortableCollection:collection.html.twig', [
-            'form' => $view,
+        return $this->render('@FSiFixtures/SortableCollection/collection.html.twig', [
+            'form' => $form->createView(),
             'gallery' => $gallery
         ]);
     }
 
-    /**
-     * @return \FSi\FixturesBundle\Model\Gallery
-     */
-    private function getModelGallery()
+    private function getModelGallery(): Gallery
     {
         $gallery = new Gallery();
         $photo1 = new GalleryPhoto();

@@ -1,4 +1,4 @@
-# FSi Symfony2 Form Extensions Bundle
+# FSi Symfony Form Extensions Bundle
 
 FSiFormExtensionsBundle provides useful Symfony form types and extensions.
 
@@ -22,18 +22,10 @@ Form listeners:
 
 # Tests
 
-Because few tests require javascript its recommended to use vagrant virtual machine.
-To configure virtual machine you need only go to vagrant folder in bundle
+Go to the folder containing the bundle and run Behat/PHPSpec suites.
 
 ```
-$ cd vagrant
-$ vagrant up
-```
-
-Then login into VM and go to bundle folder and run Behat/PHPSpec.
-
-```
-$ cd /var/www/form-extensions-bundle/
+$ cd <path to project>
 $ bin/behat
 $ bin/phpspec
 ```

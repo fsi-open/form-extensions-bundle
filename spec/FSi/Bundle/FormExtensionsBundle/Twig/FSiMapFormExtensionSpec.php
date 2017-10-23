@@ -9,11 +9,12 @@
 
 declare(strict_types=1);
 
-namespace spec\FSi\Bundle\FormExtensionsBundle\Twig\Extension;
+namespace spec\FSi\Bundle\FormExtensionsBundle\Twig;
 
 use PhpSpec\ObjectBehavior;
+use Twig_Extension;
 
-class FSimapFormExtensionSpec extends ObjectBehavior
+class FSiMapFormExtensionSpec extends ObjectBehavior
 {
     function let()
     {
@@ -22,15 +23,15 @@ class FSimapFormExtensionSpec extends ObjectBehavior
 
     function it_is_twig_extension()
     {
-        $this->shouldHaveType('Twig_Extension');
+        $this->shouldHaveType(Twig_Extension::class);
     }
 
-    function it_have_name()
+    function it_has_name()
     {
         return $this->getName()->shouldReturn('fsi_map_form');
     }
 
-    function it_have_globals()
+    function it_has_globals()
     {
         $this->getGLobals()->shouldReturn(['fsi_map_api_key' => 'abc123']);
     }

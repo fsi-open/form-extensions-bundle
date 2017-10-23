@@ -12,11 +12,12 @@ declare(strict_types=1);
 namespace spec\FSi\Bundle\FormExtensionsBundle\DependencyInjection;
 
 use PhpSpec\ObjectBehavior;
+use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
 class FSIFormExtensionsExtensionSpec extends ObjectBehavior
 {
     function it_is_bundle_extension()
     {
-        $this->shouldHaveType('Symfony\Component\HttpKernel\DependencyInjection\Extension');
+        $this->shouldHaveType(Extension::class);
     }
 }

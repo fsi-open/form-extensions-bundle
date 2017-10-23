@@ -9,7 +9,7 @@
 
 declare(strict_types=1);
 
-namespace FSi\Bundle\FormExtensionsBundle\Twig\Extension;
+namespace FSi\Bundle\FormExtensionsBundle\Twig;
 
 use Twig_Extension;
 use Twig_Extension_GlobalsInterface;
