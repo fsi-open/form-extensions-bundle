@@ -1,6 +1,7 @@
-# FSi Symfony Form Extensions Bundle
+# FSi Form Extensions Bundle
 
-FSiFormExtensionsBundle provides useful Symfony form types and extensions.
+This bundle offers a couple of types and extensions for the Symfony's form component.
+For more information, see below.
 
 Build Status:  
 [![Build Status](https://travis-ci.org/fsi-open/form-extensions-bundle.png?branch=master)](https://travis-ci.org/fsi-open/form-extensions-bundle) - Master  
@@ -29,3 +30,5 @@ $ cd <path to project>
 $ bin/behat
 $ bin/phpspec
 ```
+
+Behat tests require Selenium in order to work.

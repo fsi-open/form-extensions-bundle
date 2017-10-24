@@ -11,3 +11,5 @@ to only support PHP versions equal or higher to it.
 
 `FSi\Bundle\FormExtensionsBundle\Twig\Extension\FSiMapFormExtension` is now 
 `FSi\Bundle\FormExtensionsBundle\Twig\FSiMapFormExtension`.
+
+## Removed fsi_ckeditor form type
