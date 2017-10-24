@@ -23,7 +23,7 @@ class SortableCollectionExtension extends AbstractTypeExtension
      */
     private $sortableListener;
 
-    function __construct(SortableCollectionListener $sortableListener)
+    public function __construct(SortableCollectionListener $sortableListener)
     {
         $this->sortableListener = $sortableListener;
     }
