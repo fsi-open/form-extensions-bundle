@@ -47,7 +47,12 @@ class MultiUploadCollectionListener implements EventSubscriberInterface
             if (!is_array($files)) {
                 $files = [$files];
             }
-            $newData[$key][$this->fileField] = $files[0];
+
+            if (!count($files)) {
+                continue;
+            }
+
+            $newData[$key][$this->fileField] = reset($files);
             for ($i = 1; $i < count($files); $i++) {
                 $newData[] = [
                     $this->fileField => $files[$i]
