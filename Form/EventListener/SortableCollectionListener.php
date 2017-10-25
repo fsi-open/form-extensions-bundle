@@ -34,14 +34,14 @@ class SortableCollectionListener implements EventSubscriberInterface
         ];
     }
 
-    public function rememberItemPosition(FormEvent $event)
+    public function rememberItemPosition(FormEvent $event): void
     {
         $formId = $this->getEventFormId($event);
 
         $this->itemOrder[$formId] = $this->getEventDataKeys($event);
     }
 
-    public function persistItemPosition(FormEvent $event)
+    public function persistItemPosition(FormEvent $event): void
     {
         $itemOrder = $this->getRememberedItemOrder($event);
         if (!$itemOrder) {
@@ -54,6 +54,7 @@ class SortableCollectionListener implements EventSubscriberInterface
             if (!isset($data[$index])) {
                 continue;
             }
+
             $item = $data[$index];
             if ($item instanceof PositionableInterface) {
                 $item->setPosition($position++);
@@ -72,12 +73,7 @@ class SortableCollectionListener implements EventSubscriberInterface
 
     private function getRememberedItemOrder(FormEvent $event): ?array
     {
-        $formId = $this->getEventFormId($event);
-
-        return isset($this->itemOrder[$formId])
-            ? $this->itemOrder[$formId]
-            : null
-        ;
+        return $this->itemOrder[$this->getEventFormId($event)] ?? null;
     }
 
     private function getEventFormId(FormEvent $event): string

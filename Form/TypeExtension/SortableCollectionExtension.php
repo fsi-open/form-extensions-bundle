@@ -28,17 +28,11 @@ class SortableCollectionExtension extends AbstractTypeExtension
         $this->sortableListener = $sortableListener;
     }
 
-    /**
-     * @inheritdoc
-     */
     public function getExtendedType()
     {
         return CollectionType::class;
     }
 
-    /**
-     * @inheritdoc
-     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->addEventSubscriber($this->sortableListener);

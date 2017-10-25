@@ -27,9 +27,6 @@ class MultiUploadCollectionListener implements EventSubscriberInterface
         $this->fileField = $fileField;
     }
 
-    /**
-     * @inheritdoc
-     */
     public static function getSubscribedEvents(): array
     {
         return [
@@ -37,7 +34,7 @@ class MultiUploadCollectionListener implements EventSubscriberInterface
         ];
     }
 
-    public function preSubmit(FormEvent $formEvent)
+    public function preSubmit(FormEvent $formEvent): void
     {
         $data = $formEvent->getData();
         if (!is_array($data)) {

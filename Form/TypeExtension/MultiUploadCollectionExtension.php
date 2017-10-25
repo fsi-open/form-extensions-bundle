@@ -19,17 +19,11 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class MultiUploadCollectionExtension extends AbstractTypeExtension
 {
-    /**
-     * @inheritdoc
-     */
     public function getExtendedType()
     {
         return CollectionType::class;
     }
 
-    /**
-     * @inheritdoc
-     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
@@ -39,9 +33,6 @@ class MultiUploadCollectionExtension extends AbstractTypeExtension
         $resolver->setAllowedTypes('multi_upload_field', ['null', 'string']);
     }
 
-    /**
-     * @inheritdoc
-     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         if (!empty($options['multi_upload_field'])) {
