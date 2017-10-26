@@ -17,11 +17,11 @@ use Twig_Extension_GlobalsInterface;
 class FSiMapFormExtension extends Twig_Extension implements Twig_Extension_GlobalsInterface
 {
     /**
-     * @var string
+     * @var string|null
      */
     private $apiKey;
 
-    public function __construct(string $apiKey)
+    public function __construct(?string $apiKey)
     {
         $this->apiKey = $apiKey;
     }
