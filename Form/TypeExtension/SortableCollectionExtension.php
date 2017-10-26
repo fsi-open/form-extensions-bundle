@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * (c) FSi sp. z o.o. <info@fsi.pl>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+declare(strict_types=1);
+
 namespace FSi\Bundle\FormExtensionsBundle\Form\TypeExtension;
 
 use FSi\Bundle\FormExtensionsBundle\Form\EventListener\SortableCollectionListener;
@@ -14,25 +23,16 @@ class SortableCollectionExtension extends AbstractTypeExtension
      */
     private $sortableListener;
 
-    /**
-     * @param SortableCollectionListener $sortableListener
-     */
-    function __construct(SortableCollectionListener $sortableListener)
+    public function __construct(SortableCollectionListener $sortableListener)
     {
         $this->sortableListener = $sortableListener;
     }
 
-    /**
-     * @inheritdoc
-     */
     public function getExtendedType()
     {
         return CollectionType::class;
     }
 
-    /**
-     * @inheritdoc
-     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->addEventSubscriber($this->sortableListener);

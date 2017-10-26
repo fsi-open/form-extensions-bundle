@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * (c) FSi sp. z o.o. <info@fsi.pl>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+declare(strict_types=1);
+
 namespace FSi\Bundle\FormExtensionsBundle\Form\EventListener;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -13,28 +22,19 @@ class MultiUploadCollectionListener implements EventSubscriberInterface
      */
     private $fileField;
 
-    /**
-     * @param string $fileField
-     */
-    public function __construct($fileField)
+    public function __construct(string $fileField)
     {
         $this->fileField = $fileField;
     }
 
-    /**
-     * @inheritdoc
-     */
-    public static function getSubscribedEvents()
+    public static function getSubscribedEvents(): array
     {
         return [
             FormEvents::PRE_SUBMIT => ['preSubmit', 1]
         ];
     }
 
-    /**
-     * @param FormEvent $formEvent
-     */
-    public function preSubmit(FormEvent $formEvent)
+    public function preSubmit(FormEvent $formEvent): void
     {
         $data = $formEvent->getData();
         if (!is_array($data)) {
@@ -48,12 +48,13 @@ class MultiUploadCollectionListener implements EventSubscriberInterface
                 $files = [$files];
             }
 
-            if (!count($files)) {
+            $filesCount = count($files);
+            if ($filesCount === 0) {
                 continue;
             }
 
             $newData[$key][$this->fileField] = reset($files);
-            for ($i = 1; $i < count($files); $i++) {
+            for ($i = 1; $i < $filesCount; $i++) {
                 $newData[] = [
                     $this->fileField => $files[$i]
                 ];

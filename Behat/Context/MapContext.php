@@ -7,6 +7,8 @@
  * file that was distributed with this source code.
  */
 
+declare(strict_types=1);
+
 namespace FSi\Bundle\FormExtensionsBundle\Behat\Context;
 
 use SensioLabs\Behat\PageObjectExtension\Context\PageObjectContext;
@@ -17,7 +19,7 @@ class MapContext extends PageObjectContext
     /**
      * @Then /^I should see form field with label "([^"]*)" that has Google map$/
      */
-    public function iShouldSeeFormFieldWithLabelThatHasGoogleMap($label)
+    public function iShouldSeeFormFieldWithLabelThatHasGoogleMap(string $label)
     {
         sleep(3);
         expect($this->getElement('Form')->isGoogleMap($label))->toBe(true);

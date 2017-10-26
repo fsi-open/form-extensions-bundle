@@ -1,6 +1,15 @@
 <?php
 
-namespace FSi\Bundle\FormExtensionsBundle\Behat\Context\Page\Element;
+/**
+ * (c) FSi sp. z o.o. <info@fsi.pl>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+declare(strict_types=1);
+
+namespace FSi\Bundle\FormExtensionsBundle\Behat\Element;
 
 use SensioLabs\Behat\PageObjectExtension\PageObject\Element;
 
@@ -8,7 +17,7 @@ class Map extends Element
 {
     protected $selector = ['css' => '.map-location'];
 
-    public function clickLocation($latitude, $longitude)
+    public function clickLocation($latitude, $longitude): void
     {
         $xpath = $this->getXpath();
         $script = <<<JS

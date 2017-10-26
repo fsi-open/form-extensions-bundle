@@ -1,10 +1,20 @@
 <?php
 
+/**
+ * (c) FSi sp. z o.o. <info@fsi.pl>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+declare(strict_types=1);
+
 namespace spec\FSi\Bundle\FormExtensionsBundle\Form\EventListener;
 
 use FSi\Bundle\FormExtensionsBundle\Model\PositionableInterface;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormInterface;
@@ -13,7 +23,7 @@ class SortableCollectionListenerSpec extends ObjectBehavior
 {
     public function it_is_event_subscriber()
     {
-        $this->beAnInstanceOf('Symfony\Component\EventDispatcher\EventSubscriberInterface');
+        $this->beAnInstanceOf(EventSubscriberInterface::class);
     }
 
     public function it_listen_to_events()
@@ -62,7 +72,7 @@ class SortableCollectionListenerSpec extends ObjectBehavior
         $this->persistItemPosition($formEvent2);
     }
 
-    public function it_set_positions(
+    public function it_sets_positions(
         FormEvent $formEvent1,
         FormEvent $formEvent2,
         FormInterface $form,
@@ -100,7 +110,7 @@ class SortableCollectionListenerSpec extends ObjectBehavior
         $this->persistItemPosition($formEvent2);
     }
 
-    public function it_set_positions_for_two_collections_in_the_same_request(
+    public function it_sets_positions_for_two_collections_in_the_same_request(
         FormEvent $form1Event1,
         FormEvent $form1Event2,
         FormInterface $form1,

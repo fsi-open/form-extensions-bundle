@@ -7,9 +7,12 @@
  * file that was distributed with this source code.
  */
 
-namespace FSi\Bundle\FormExtensionsBundle\Behat\Context\Page\Element;
+declare(strict_types=1);
+
+namespace FSi\Bundle\FormExtensionsBundle\Behat\Element;
 
 use Behat\Mink\Driver\Selenium2Driver;
+use Behat\Mink\Element\NodeElement;
 use SensioLabs\Behat\PageObjectExtension\PageObject\Element;
 use SensioLabs\Behat\PageObjectExtension\PageObject\Exception\UnexpectedPageException;
 
@@ -17,7 +20,7 @@ class Form extends Element
 {
     protected $selector = ['css' => 'form'];
 
-    public function movePhoto($photoNumber, $newPosition)
+    public function movePhoto(int $photoNumber, int $newPosition): void
     {
         $this->getDriver()->executeScript(sprintf("
 var photo = document.getElementById('gallery_photos_%s');
@@ -28,7 +31,7 @@ parent.insertBefore(photo, insertBefore)",
             $photoNumber - 1, $newPosition - 1));
     }
 
-    public function getGoogleMapWrapper($label)
+    public function getGoogleMapWrapper(string $label): ?NodeElement
     {
         return $this->find(
             'xpath',
@@ -39,7 +42,7 @@ parent.insertBefore(photo, insertBefore)",
         );
     }
 
-    public function isGoogleMap($fieldSelector)
+    public function isGoogleMap(string $fieldSelector): bool
     {
         if (!$this->getDriver() instanceof Selenium2Driver) {
             throw new UnexpectedPageException("isGoogleMap method requires Selenium2 Driver");

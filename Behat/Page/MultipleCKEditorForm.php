@@ -7,11 +7,11 @@
  * file that was distributed with this source code.
  */
 
-namespace FSi\Bundle\FormExtensionsBundle\Behat\Context\Page;
+declare(strict_types=1);
 
-use SensioLabs\Behat\PageObjectExtension\PageObject\Page;
+namespace FSi\Bundle\FormExtensionsBundle\Behat\Page;
 
-class OneMapForm extends Page
+class MultipleCKEditorForm extends OneCKEditorForm
 {
-    protected $path = '/one_map';
+    protected $path = '/multiple_ckeditor';
 }

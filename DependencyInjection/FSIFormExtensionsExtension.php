@@ -7,6 +7,8 @@
  * file that was distributed with this source code.
  */
 
+declare(strict_types=1);
+
 namespace FSi\Bundle\FormExtensionsBundle\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;
@@ -14,9 +16,6 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
-/**
- * @author Norbert Orzechowicz <norbert@fsi.pl>
- */
 class FSIFormExtensionsExtension extends Extension
 {
     /**

@@ -8,11 +8,11 @@
         <parameter key="fsi_form_extensions.form.subscriber.sortable_collection.class">FSi\Bundle\FormExtensionsBundle\Form\EventListener\SortableCollectionListener</parameter>
         <parameter key="fsi_form_extensions.form.type_extension.sortable_collection.class">FSi\Bundle\FormExtensionsBundle\Form\TypeExtension\SortableCollectionExtension</parameter>
         <parameter key="fsi_form_extensions.form.type_extension.multi_upload_collection.class">FSi\Bundle\FormExtensionsBundle\Form\TypeExtension\MultiUploadCollectionExtension</parameter>
-        <parameter key="fsi_form_extensions.twig.form_extension.map.class">FSi\Bundle\FormExtensionsBundle\Twig\Extension\FSiMapFormExtension</parameter>
+        <parameter key="fsi_form_extensions.twig.form_extension.map.class">FSi\Bundle\FormExtensionsBundle\Twig\FSiMapFormExtension</parameter>
     </parameters>
 
     <services>
-        <!-- Symfony2 Form Types -->
+        <!-- Symfony Form Types -->
         <service id="fsi_form_extensions.form.type.fsi_map" class="%fsi_form_extensions.form.type.fsi_map.class%">
             <tag name="form.type" />
         </service>

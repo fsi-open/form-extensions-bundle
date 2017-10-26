@@ -7,7 +7,9 @@
  * file that was distributed with this source code.
  */
 
-namespace FSi\Bundle\FormExtensionsBundle\Twig\Extension;
+declare(strict_types=1);
+
+namespace FSi\Bundle\FormExtensionsBundle\Twig;
 
 use Twig_Extension;
 use Twig_Extension_GlobalsInterface;
@@ -19,14 +21,11 @@ class FSiMapFormExtension extends Twig_Extension implements Twig_Extension_Globa
      */
     private $apiKey;
 
-    public function __construct($apiKey)
+    public function __construct(string $apiKey)
     {
         $this->apiKey = $apiKey;
     }
 
-    /**
-     * @return string
-     */
     public function getName()
     {
         return 'fsi_map_form';

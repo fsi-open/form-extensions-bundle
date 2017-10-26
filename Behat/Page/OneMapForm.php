@@ -7,11 +7,13 @@
  * file that was distributed with this source code.
  */
 
-namespace FSi\Bundle\FormExtensionsBundle\Behat\Context\Page;
+declare(strict_types=1);
+
+namespace FSi\Bundle\FormExtensionsBundle\Behat\Page;
 
 use SensioLabs\Behat\PageObjectExtension\PageObject\Page;
 
-class MultipleMapForm extends Page
+class OneMapForm extends Page
 {
-    protected $path = '/multiple_map';
+    protected $path = '/one_map';
 }

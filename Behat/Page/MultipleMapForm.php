@@ -9,10 +9,11 @@
 
 declare(strict_types=1);
 
-namespace FSi\FixturesBundle;
+namespace FSi\Bundle\FormExtensionsBundle\Behat\Page;
 
-use Symfony\Component\HttpKernel\Bundle\Bundle;
+use SensioLabs\Behat\PageObjectExtension\PageObject\Page;
 
-class FSiFixturesBundle extends Bundle
+class MultipleMapForm extends Page
 {
+    protected $path = '/multiple_map';
 }
