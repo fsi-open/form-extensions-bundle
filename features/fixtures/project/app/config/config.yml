@@ -10,9 +10,9 @@ framework:
     profiler:        { only_exceptions: false }
     test:            ~
     session:
-        storage_id:     session.storage.filesystem
+        storage_id:  session.storage.filesystem
     assets: ~
 
 fsi_form_extensions:
     fsi_map:
-        api_key: AIzaSyDiNvctA_QoSdiTWjoCoY1E_9FIhIthoiU
+        api_key: AIzaSyBs_1aGWN4RifNOewVfYPpWUo21jMEDaig
