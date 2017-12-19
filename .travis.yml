@@ -1,6 +1,6 @@
 language: php
 
-sudo: false
+sudo: true
 
 matrix:
     include:
@@ -8,6 +8,10 @@ matrix:
         env:
           - COMPOSER_FLAGS="--prefer-lowest"
       - php: 7.1
+
+env:
+  global:
+    - SYMFONY_ENV=test
 
 addons:
     firefox: "47.0.1"
@@ -18,7 +22,7 @@ install:
     - wget --no-clobber -O bin/selenium.jar http://selenium-release.storage.googleapis.com/2.53/selenium-server-standalone-2.53.1.jar || true
 
 before_script:
-    - nohup php -S localhost:8080 -t features/fixtures/project/web > /dev/null 2>&1 &
+    - nohup php -S localhost:8080 -t features/fixtures/project/web > server.log 2>&1 &
     - sh -e /etc/init.d/xvfb start
     - export DISPLAY=:99.0
     - java -jar bin/selenium.jar > /dev/null 2>&1 &
@@ -28,3 +32,7 @@ before_script:
 script:
     - bin/phpspec run -v -f dot
     - bin/behat --no-snippets --verbose --format=progress --profile=travis
+
+after_failure:
+    - cat /tmp/FSiFormExtensionsBundle/logs/test.log
+    - cat server.log
