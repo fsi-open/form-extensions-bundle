@@ -7,7 +7,7 @@ matrix:
       - php: 7.1
         env:
           - COMPOSER_FLAGS="--prefer-lowest"
-      - php: 7.1
+      - php: 7.2
 
 env:
   global:
@@ -18,6 +18,7 @@ addons:
 
 install:
     - phpenv config-rm xdebug.ini
+    - composer validate
     - composer update $COMPOSER_FLAGS
     - wget --no-clobber -O bin/selenium.jar http://selenium-release.storage.googleapis.com/2.53/selenium-server-standalone-2.53.1.jar || true
 
