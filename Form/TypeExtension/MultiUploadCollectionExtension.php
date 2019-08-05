@@ -19,6 +19,11 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class MultiUploadCollectionExtension extends AbstractTypeExtension
 {
+    public static function getExtendedTypes()
+    {
+        return [CollectionType::class];
+    }
+
     public function getExtendedType()
     {
         return CollectionType::class;
