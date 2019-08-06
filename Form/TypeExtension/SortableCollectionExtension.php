@@ -28,6 +28,11 @@ class SortableCollectionExtension extends AbstractTypeExtension
         $this->sortableListener = $sortableListener;
     }
 
+    public static function getExtendedTypes()
+    {
+        return [CollectionType::class];
+    }
+
     public function getExtendedType()
     {
         return CollectionType::class;
