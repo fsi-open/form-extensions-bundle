@@ -11,10 +11,10 @@ declare(strict_types=1);
 
 namespace FSi\Bundle\FormExtensionsBundle\Twig;
 
-use Twig_Extension;
-use Twig_Extension_GlobalsInterface;
+use Twig\Extension\AbstractExtension;
+use Twig\Extension\GlobalsInterface;
 
-class FSiMapFormExtension extends Twig_Extension implements Twig_Extension_GlobalsInterface
+class FSiMapFormExtension extends AbstractExtension implements GlobalsInterface
 {
     /**
      * @var string|null
