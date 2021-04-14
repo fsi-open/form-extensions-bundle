@@ -19,13 +19,18 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class GalleryPhotoType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    /**
+     * @param FormBuilderInterface<FormBuilderInterface> $builder
+     * @param array<string, mixed> $options
+     * @return void
+     */
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder->add('file', TextType::class);
         $builder->add('position', TextType::class, ['attr' => ['readonly' => true]]);
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class' => GalleryPhoto::class,

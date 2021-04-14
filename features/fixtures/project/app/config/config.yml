@@ -16,3 +16,13 @@ framework:
 fsi_form_extensions:
     fsi_map:
         api_key: AIzaSyAzBYU7prr5XOvVpzvRg52pEBL2D7xKcK8
+
+services:
+
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: true
+
+    FSi\FixturesBundle\Controller\MapController: ~
+    FSi\FixturesBundle\Controller\SortableCollectionController: ~

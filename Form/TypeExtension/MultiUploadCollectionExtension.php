@@ -19,28 +19,33 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class MultiUploadCollectionExtension extends AbstractTypeExtension
 {
+    /**
+     * @return iterable<string>
+     */
     public static function getExtendedTypes()
     {
         return [CollectionType::class];
     }
 
-    public function getExtendedType()
+    public function getExtendedType(): string
     {
         return CollectionType::class;
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
-        $resolver->setDefaults([
-            'multi_upload_field' => null,
-        ]);
-
+        $resolver->setDefault('multi_upload_field', null);
         $resolver->setAllowedTypes('multi_upload_field', ['null', 'string']);
     }
 
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    /**
+     * @param FormBuilderInterface<FormBuilderInterface> $builder
+     * @param array<string, mixed> $options
+     * @return void
+     */
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        if (!empty($options['multi_upload_field'])) {
+        if (null !== $options['multi_upload_field'] && '' !== $options['multi_upload_field']) {
             $builder->addEventSubscriber(new MultiUploadCollectionListener($options['multi_upload_field']));
         }
     }

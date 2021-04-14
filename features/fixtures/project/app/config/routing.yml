@@ -1,15 +1,11 @@
-fixtures_multiple_ckeditor:
-    path:   /multiple_ckeditor
-    defaults:  { _controller: FSiFixturesBundle:CKEditor:multipleCKEditor }
-
 fixtures_one_map:
     path:   /one_map
-    defaults:  { _controller: FSiFixturesBundle:Map:oneMap }
+    controller: FSi\FixturesBundle\Controller\MapController:oneMapAction
 
 fixtures_multiple_map:
     path:   /multiple_map
-    defaults:  { _controller: FSiFixturesBundle:Map:multipleMap }
+    controller: FSi\FixturesBundle\Controller\MapController:multipleMapAction
 
 sortable_collection:
     path:   /sortable_collection
-    defaults:  { _controller: FSiFixturesBundle:SortableCollection:collection }
+    controller: FSi\FixturesBundle\Controller\SortableCollectionController:collectionAction

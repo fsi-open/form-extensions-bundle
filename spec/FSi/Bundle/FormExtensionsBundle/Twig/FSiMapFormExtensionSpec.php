@@ -26,11 +26,6 @@ class FSiMapFormExtensionSpec extends ObjectBehavior
         $this->shouldHaveType(Twig_Extension::class);
     }
 
-    function it_has_name()
-    {
-        return $this->getName()->shouldReturn('fsi_map_form');
-    }
-
     function it_has_globals()
     {
         $this->getGLobals()->shouldReturn(['fsi_map_api_key' => 'abc123']);

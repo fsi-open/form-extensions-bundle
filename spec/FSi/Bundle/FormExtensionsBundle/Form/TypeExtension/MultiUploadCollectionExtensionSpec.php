@@ -27,7 +27,7 @@ class MultiUploadCollectionExtensionSpec extends ObjectBehavior
 
     public function it_sets_options(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(['multi_upload_field' => null])->shouldBeCalled();
+        $resolver->setDefault('multi_upload_field', null)->shouldBeCalled();
         $resolver->setAllowedTypes('multi_upload_field', ['null', 'string'])->shouldBeCalled();
 
         $this->configureOptions($resolver);
@@ -48,6 +48,6 @@ class MultiUploadCollectionExtensionSpec extends ObjectBehavior
             Argument::type(MultiUploadCollectionListener::class)
         )->shouldNotBeCalled();
 
-        $this->buildForm($builder, []);
+        $this->buildForm($builder, ['multi_upload_field' => null]);
     }
 }
