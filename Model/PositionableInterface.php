@@ -13,13 +13,6 @@ namespace FSi\Bundle\FormExtensionsBundle\Model;
 
 interface PositionableInterface
 {
-    /**
-     * @param int $position
-     */
     public function setPosition(int $position): void;
-
-    /**
-     * @return int
-     */
     public function getPosition(): ?int;
 }

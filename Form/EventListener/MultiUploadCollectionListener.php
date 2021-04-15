@@ -27,6 +27,9 @@ class MultiUploadCollectionListener implements EventSubscriberInterface
         $this->fileField = $fileField;
     }
 
+    /**
+     * @return array<string, array<mixed>>
+     */
     public static function getSubscribedEvents(): array
     {
         return [
@@ -37,19 +40,19 @@ class MultiUploadCollectionListener implements EventSubscriberInterface
     public function preSubmit(FormEvent $formEvent): void
     {
         $data = $formEvent->getData();
-        if (!is_array($data)) {
+        if (false === is_array($data)) {
             return;
         }
 
         $newData = $data;
         foreach ($data as $key => $element) {
             $files = $element[$this->fileField];
-            if (!is_array($files)) {
+            if (false === is_array($files)) {
                 $files = [$files];
             }
 
             $filesCount = count($files);
-            if ($filesCount === 0) {
+            if (0 === $filesCount) {
                 continue;
             }
 

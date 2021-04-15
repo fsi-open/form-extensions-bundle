@@ -32,12 +32,18 @@ JS;
         $this->getDriver()->executeScript($script);
     }
 
+    /**
+     * @return mixed
+     */
     public function getLatitude()
     {
         $script = "return $('.map-location').data('google-map').map.getCenter().lat();";
         return $this->getDriver()->evaluateScript($script);
     }
 
+    /**
+     * @return mixed
+     */
     public function getLongitude()
     {
         $script = "return $('.map-location').data('google-map').map.getCenter().lng();";

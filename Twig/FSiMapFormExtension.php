@@ -26,11 +26,6 @@ class FSiMapFormExtension extends AbstractExtension implements GlobalsInterface
         $this->apiKey = $apiKey;
     }
 
-    public function getName()
-    {
-        return 'fsi_map_form';
-    }
-
     public function getGlobals()
     {
         return ['fsi_map_api_key' => $this->apiKey];

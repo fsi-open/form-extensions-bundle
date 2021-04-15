@@ -19,12 +19,12 @@ use Symfony\Component\Form\FormEvents;
 class SortableCollectionListener implements EventSubscriberInterface
 {
     /**
-     * @var array
+     * @var array<string, array<string>>
      */
     private $itemOrder = [];
 
     /**
-     * @inheritdoc
+     * @return array<string, array<mixed>>
      */
     public static function getSubscribedEvents(): array
     {
@@ -37,14 +37,13 @@ class SortableCollectionListener implements EventSubscriberInterface
     public function rememberItemPosition(FormEvent $event): void
     {
         $formId = $this->getEventFormId($event);
-
         $this->itemOrder[$formId] = $this->getEventDataKeys($event);
     }
 
     public function persistItemPosition(FormEvent $event): void
     {
         $itemOrder = $this->getRememberedItemOrder($event);
-        if (!$itemOrder) {
+        if (null === $itemOrder || 0 === count($itemOrder)) {
             return;
         }
 
@@ -62,15 +61,23 @@ class SortableCollectionListener implements EventSubscriberInterface
         }
     }
 
+    /**
+     * @param FormEvent $event
+     * @return array<string>|null
+     */
     private function getEventDataKeys(FormEvent $event): ?array
     {
-        if (!$event->getData() || !is_array($event->getData())) {
+        if (false === is_array($event->getData())) {
             return null;
         }
 
         return array_keys($event->getData());
     }
 
+    /**
+     * @param FormEvent $event
+     * @return array<string>|null
+     */
     private function getRememberedItemOrder(FormEvent $event): ?array
     {
         return $this->itemOrder[$this->getEventFormId($event)] ?? null;

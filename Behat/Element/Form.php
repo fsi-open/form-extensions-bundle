@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace FSi\Bundle\FormExtensionsBundle\Behat\Element;
 
+use Assert\Assertion;
 use Behat\Mink\Driver\Selenium2Driver;
 use Behat\Mink\Element\NodeElement;
 use SensioLabs\Behat\PageObjectExtension\PageObject\Element;
@@ -44,12 +45,12 @@ parent.insertBefore(photo, insertBefore)",
 
     public function isGoogleMap(string $fieldSelector): bool
     {
-        if (!$this->getDriver() instanceof Selenium2Driver) {
+        if (false === $this->getDriver() instanceof Selenium2Driver) {
             throw new UnexpectedPageException("isGoogleMap method requires Selenium2 Driver");
         }
 
         $wrapper = $this->getGoogleMapWrapper($fieldSelector);
-        expect($wrapper)->notToBe(null);
+        Assertion::notNull($wrapper);
 
         return $wrapper->has('css', '.gm-style');
     }

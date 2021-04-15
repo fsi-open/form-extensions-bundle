@@ -11,24 +11,25 @@ declare(strict_types=1);
 
 namespace FSi\Bundle\FormExtensionsBundle\Behat\Context;
 
-use SensioLabs\Behat\PageObjectExtension\Context\PageObjectContext;
+use Assert\Assertion;
 use Behat\Gherkin\Node\TableNode;
 
-class MapContext extends PageObjectContext
+final class MapContext extends AbstractContext
 {
     /**
      * @Then /^I should see form field with label "([^"]*)" that has Google map$/
      */
-    public function iShouldSeeFormFieldWithLabelThatHasGoogleMap(string $label)
+    public function iShouldSeeFormFieldWithLabelThatHasGoogleMap(string $label): void
     {
         sleep(3);
-        expect($this->getElement('Form')->isGoogleMap($label))->toBe(true);
+        $this->startIfSessionNotStarted();
+        Assertion::true($this->getElement('Form')->isGoogleMap($label));
     }
 
     /**
      * @Given /^Click on map at position: (.+)\/(.+)$/
      */
-    public function clickOnMapAtPosition($latitude, $longitude)
+    public function clickOnMapAtPosition($latitude, $longitude): void
     {
         sleep(3);
         $this->getElement('Map')->clickLocation($latitude, $longitude);
@@ -37,17 +38,20 @@ class MapContext extends PageObjectContext
     /**
      * @Then /^position fields shoud have values:$/
      */
-    public function positionFieldOfShoudHaveValues(TableNode $table)
+    public function positionFieldOfShoudHaveValues(TableNode $table): void
     {
         foreach ($table->getHash() as $row) {
-            expect(substr($this->getElement('Form')->findField($row['Field'])->getValue(), 0, 6))->toBe($row['Value']);
+            Assertion::same(
+               substr($this->getElement('Form')->findField($row['Field'])->getValue(), 0, 6),
+                $row['Value']
+            );
         }
     }
 
     /**
      * @Given /^fill position fields:$/
      */
-    public function fillPositionFields(TableNode $table)
+    public function fillPositionFields(TableNode $table): void
     {
         sleep(3);
         foreach ($table->getHash() as $row) {
@@ -58,9 +62,9 @@ class MapContext extends PageObjectContext
     /**
      * @Then /^map position should be (.+)\/(.+)$/
      */
-    public function mapPositionShouldBe($latitude, $longitude)
+    public function mapPositionShouldBe($latitude, $longitude): void
     {
-        expect((string) $this->getElement('Map')->getLatitude())->toBe($latitude);
-        expect((string) $this->getElement('Map')->getLongitude())->toBe($longitude);
+        Assertion::same((string) $this->getElement('Map')->getLatitude(), $latitude);
+        Assertion::same((string) $this->getElement('Map')->getLongitude(), $longitude);
     }
 }

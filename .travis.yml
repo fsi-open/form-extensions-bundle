@@ -7,7 +7,8 @@ matrix:
       - php: 7.1
         env:
           - COMPOSER_FLAGS="--prefer-lowest"
-      - php: 7.3
+      - php: 7.4
+      - php: 8.0
 
 env:
   global:
@@ -31,7 +32,7 @@ before_script:
     - features/fixtures/project/app/console assets:install features/fixtures/project/web --relative --symlink
 
 script:
-    - vendor/bin/phpspec run -v -f dot
+    - vendor/bin/phpspec run -v -f dot -n
     - vendor/bin/behat --no-snippets --verbose --format=progress --profile=travis
 
 after_failure:

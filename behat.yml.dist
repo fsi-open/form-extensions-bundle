@@ -5,7 +5,15 @@ default: &default
                 - FSi\Bundle\FormExtensionsBundle\Behat\Context\MapContext
                 - FSi\Bundle\FormExtensionsBundle\Behat\Context\WebUserContext
     extensions:
+        Behat\Symfony2Extension:
+            kernel:
+                bootstrap: features/fixtures/project/app/bootstrap.php
+                path: features/fixtures/project/app/AppKernel.php
+                env: test
+                debug: true
         Behat\MinkExtension:
+            base_url: 'http://127.0.0.1/app_test.php/'
+            javascript_session: javascript
             sessions:
                 default:
                     symfony2: ~
@@ -13,14 +21,6 @@ default: &default
                     selenium2:
                         browser: firefox
                         wd_host: http://form-extensions-selenium:4444/wd/hub
-            base_url: 'http://127.0.0.1/app_test.php/'
-            javascript_session: javascript
-        Behat\Symfony2Extension:
-            kernel:
-                env: test
-                debug: true
-                path: features/fixtures/project/app/AppKernel.php
-                bootstrap: features/fixtures/project/app/bootstrap.php
         SensioLabs\Behat\PageObjectExtension:
             namespaces:
                 page: FSi\Bundle\FormExtensionsBundle\Behat\Page
@@ -35,3 +35,6 @@ travis:
                     selenium2:
                         browser: firefox
                         wd_host: http://127.0.0.1:4444/wd/hub
+    calls:
+        # E_ALL&~E_USER_DEPRECATED
+        error_reporting: 16383
