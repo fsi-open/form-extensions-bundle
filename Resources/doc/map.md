@@ -3,26 +3,22 @@
 ## Usage
 
 ```php
-$formBuilder->add('position', 'fsi_map', array());
-```
-
-Above code is enough to use fsi_map in symfony2 form.
-
-## Options
-
-Following options are available in fsi_map form type:
-
-```php
 $formBuilder->add('content', \FSi\Bundle\FormExtensionsBundle\Form\Type\FSiMapType::class, array(
         'latitude_name' => 'latitude',
-        'latitude_type' => 'number',
-        'latitude_options' => array(),
+        'latitude_type' => Symfony\Component\Form\Extension\Core\Type\NumberType::class,
+        'latitude_options' => [
+            // options passed to the latitude form field
+        ],
         'longitude_name' => 'longitude',
-        'longitude_type' => 'number',
-        'longitude_options' => array(),
+        'longitude_type' => Symfony\Component\Form\Extension\Core\Type\NumberType::class,
+        'longitude_options' => [
+            // options passed to the longitude form field
+        ],
         'zoom_name' => 'zoom',
-        'zoom_type' => 'number',
-        'zoom_options' => array(),
+        'zoom_type' => Symfony\Component\Form\Extension\Core\Type\NumberType::class,
+        'zoom_options' => [
+            // options passed to the zoom form field
+        ],
     )
 );
 ```
@@ -32,7 +28,7 @@ $formBuilder->add('content', \FSi\Bundle\FormExtensionsBundle\Form\Type\FSiMapTy
 By default google map script is loaded without api-key. You can set it via app config like this:
 
 ```yaml
-# app/config/config.yml
+# app/config/config.yml or config/packages/fsi_form_extensions.yaml
 
 fsi_form_extensions:
     fsi_map:
