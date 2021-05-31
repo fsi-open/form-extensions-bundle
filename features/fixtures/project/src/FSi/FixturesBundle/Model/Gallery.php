@@ -11,6 +11,8 @@ declare(strict_types=1);
 
 namespace FSi\FixturesBundle\Model;
 
+use function in_array;
+
 class Gallery
 {
     /**
@@ -18,29 +20,30 @@ class Gallery
      */
     private $photos = [];
 
-    /**
-     * @param GalleryPhoto $photo
-     */
-    public function addPhoto(GalleryPhoto $photo)
+    public function addPhoto(GalleryPhoto $photo): void
     {
-        if (!in_array($photo, $this->photos, true)) {
-            $photo->setGallery($this);
-            $this->photos[] = $photo;
+        if (true === in_array($photo, $this->photos, true)) {
+            return;
         }
+
+        $photo->setGallery($this);
+        $this->photos[] = $photo;
     }
 
-    /**
-     * @param GalleryPhoto $photo
-     */
-    public function removePhoto(GalleryPhoto $photo)
+    public function removePhoto(GalleryPhoto $photo): void
     {
-        $this->photos = array_filter($this->photos, function ($item) use ($photo) {return $item !== $photo;});
+        $this->photos = array_filter(
+            $this->photos,
+            function (GalleryPhoto $item) use ($photo): bool {
+                return $item !== $photo;
+            }
+        );
     }
 
     /**
-     * @return GalleryPhoto[]
+     * @return array<GalleryPhoto>
      */
-    public function getPhotos()
+    public function getPhotos(): array
     {
         return $this->photos;
     }

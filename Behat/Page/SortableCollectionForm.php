@@ -11,14 +11,18 @@ declare(strict_types=1);
 
 namespace FSi\Bundle\FormExtensionsBundle\Behat\Page;
 
+use Assert\Assertion;
+use Behat\Mink\Element\NodeElement;
 use SensioLabs\Behat\PageObjectExtension\PageObject\Page;
 
 class SortableCollectionForm extends Page
 {
     protected $path = '/sortable_collection';
 
-    public function getPhotoAtPosition(int $position)
+    public function getPhotoAtPosition(int $position): NodeElement
     {
-        return $this->find('css', sprintf('ul li[data-position="%d"]', $position));
+        $photo = $this->find('css', "ul li[data-position=\"{$position}\"]");
+        Assertion::notNull($photo, "No photo at position \"{$position}\"");
+        return $photo;
     }
 }

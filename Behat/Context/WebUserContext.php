@@ -15,6 +15,8 @@ use Assert\Assertion;
 use Behat\Behat\Definition\Call\Given;
 use Behat\Behat\Definition\Call\Then;
 use Behat\Behat\Definition\Call\When;
+use FSi\Bundle\FormExtensionsBundle\Behat\Element\Form;
+use FSi\Bundle\FormExtensionsBundle\Behat\Page\SortableCollectionForm;
 
 final class WebUserContext extends AbstractContext
 {
@@ -31,7 +33,7 @@ final class WebUserContext extends AbstractContext
      */
     public function iMovePhotoNumberToPosition(int $photoNumber, int $newPosition): void
     {
-        $this->getElement('Form')->movePhoto($photoNumber, $newPosition);
+        $this->getFormElement()->movePhoto($photoNumber, $newPosition);
     }
 
     /**
@@ -39,7 +41,7 @@ final class WebUserContext extends AbstractContext
      */
     public function submitTheForm(): void
     {
-        $this->getElement('Form')->submit();
+        $this->getFormElement()->submit();
     }
 
     /**
@@ -47,9 +49,15 @@ final class WebUserContext extends AbstractContext
      */
     public function iShouldSeePhotoNumberAtPosition(string $photo, int $position): void
     {
-        Assertion::same(
-            $this->getPage('Sortable Collection Form')->getPhotoAtPosition($position)->getText(),
-            $photo
-        );
+        /** @var SortableCollectionForm $page */
+        $page = $this->getPage('Sortable Collection Form');
+        Assertion::same($page->getPhotoAtPosition($position)->getText(), $photo);
+    }
+
+    private function getFormElement(): Form
+    {
+        /** @var Form $formElement */
+        $formElement = $this->getElement('Form');
+        return $formElement;
     }
 }

@@ -46,7 +46,7 @@ class SortableCollectionExtension extends AbstractTypeExtension
      * @param array<string, mixed> $options
      * @return void
      */
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder->addEventSubscriber($this->sortableListener);
     }

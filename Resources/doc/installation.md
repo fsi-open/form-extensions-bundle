@@ -1,15 +1,10 @@
-# Installation in 2 simple steps
-
-**IMPORTANT!!** This bundle is deprecated. In order to integrate CKEditor with FSi Admin Bundle use [this solution](https://github.com/fsi-open/resource-repository-bundle/blob/master/Resources/docs/ckeditor.md).
-
-
 ## 1. Download FSi Form Extensions Bundle
 
 Add to composer.json
 
 ```
 "require": {
-    "fsi/form-extensions-bundle": "^2.0"
+    "fsi/form-extensions-bundle": "^2.1"
 }
 ```
 
@@ -19,10 +14,15 @@ Add to composer.json
 <?php
 // app/AppKernel.php
 
-public function registerBundles()
+public function registerBundles(): array
 {
-    $bundles = array(
+    $bundles = [
         new FSi\Bundle\FormExtensionsBundle\FSiFormExtensionsBundle()
-    );
+    ];
 }
+
+// config/bundles.php
+return [
+    FSi\Bundle\FormExtensionsBundle\FSiFormExtensionsBundle::class => ['all' => true]
+];
 ```

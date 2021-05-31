@@ -14,6 +14,8 @@ use Behat\Mink\Mink;
 use Behat\MinkExtension\Context\MinkAwareContext;
 use RuntimeException;
 use SensioLabs\Behat\PageObjectExtension\Context\PageObjectContext;
+use SensioLabs\Behat\PageObjectExtension\PageObject\Element;
+use SensioLabs\Behat\PageObjectExtension\PageObject\Page;
 
 abstract class AbstractContext extends PageObjectContext implements MinkAwareContext
 {
@@ -27,13 +29,13 @@ abstract class AbstractContext extends PageObjectContext implements MinkAwareCon
      */
     private $minkParameters;
 
-    public function getPage($name)
+    public function getPage($name): Page
     {
         $this->startIfSessionNotStarted();
         return parent::getPage($name);
     }
 
-    public function getElement($name)
+    public function getElement($name): Element
     {
         $this->startIfSessionNotStarted();
         return parent::getElement($name);
@@ -44,7 +46,7 @@ abstract class AbstractContext extends PageObjectContext implements MinkAwareCon
         $this->mink = $mink;
     }
 
-    public function getMink()
+    public function getMink(): Mink
     {
         if (null === $this->mink) {
             throw new RuntimeException(
@@ -56,7 +58,11 @@ abstract class AbstractContext extends PageObjectContext implements MinkAwareCon
         return $this->mink;
     }
 
-    public function setMinkParameters(array $parameters)
+    /**
+     * @param array<string, mixed> $parameters
+     * @return void
+     */
+    public function setMinkParameters(array $parameters): void
     {
         $this->minkParameters = $parameters;
     }

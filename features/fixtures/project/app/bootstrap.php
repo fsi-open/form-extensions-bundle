@@ -3,9 +3,11 @@
 use Doctrine\Common\Annotations\AnnotationRegistry;
 
 $file = __DIR__.'/../../../../vendor/autoload.php';
-if (!file_exists($file)) {
+if (false === file_exists($file)) {
     throw new \RuntimeException('Install the dependencies to run the test suite.');
 }
 
 $loader = require $file;
-AnnotationRegistry::registerLoader([$loader, 'loadClass']);
+/** @var callable(): mixed $callable */
+$callable = [$loader, 'loadClass'];
+AnnotationRegistry::registerLoader($callable);

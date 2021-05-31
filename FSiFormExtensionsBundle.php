@@ -14,16 +14,17 @@ namespace FSi\Bundle\FormExtensionsBundle;
 use FSi\Bundle\FormExtensionsBundle\DependencyInjection\Compiler\TwigMapFormPass;
 use FSi\Bundle\FormExtensionsBundle\DependencyInjection\FSIFormExtensionsExtension;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 class FSiFormExtensionsBundle extends Bundle
 {
-    public function build(ContainerBuilder $container)
+    public function build(ContainerBuilder $container): void
     {
         $container->addCompilerPass(new TwigMapFormPass());
     }
 
-    public function getContainerExtension()
+    public function getContainerExtension(): ExtensionInterface
     {
         if (null === $this->extension) {
             $this->extension = new FSIFormExtensionsExtension();

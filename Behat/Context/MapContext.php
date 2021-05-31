@@ -12,7 +12,13 @@ declare(strict_types=1);
 namespace FSi\Bundle\FormExtensionsBundle\Behat\Context;
 
 use Assert\Assertion;
+use Behat\Behat\Definition\Call\Given;
+use Behat\Behat\Definition\Call\Then;
 use Behat\Gherkin\Node\TableNode;
+use FSi\Bundle\FormExtensionsBundle\Behat\Element\Form;
+use FSi\Bundle\FormExtensionsBundle\Behat\Element\Map;
+use function sleep;
+use function substr;
 
 final class MapContext extends AbstractContext
 {
@@ -23,48 +29,86 @@ final class MapContext extends AbstractContext
     {
         sleep(3);
         $this->startIfSessionNotStarted();
-        Assertion::true($this->getElement('Form')->isGoogleMap($label));
+        Assertion::true($this->getFormElement()->isGoogleMap($label));
     }
 
     /**
      * @Given /^Click on map at position: (.+)\/(.+)$/
+     *
+     * @param int|float|string $latitude
+     * @param int|float|string $longitude
+     * @return void
      */
     public function clickOnMapAtPosition($latitude, $longitude): void
     {
         sleep(3);
-        $this->getElement('Map')->clickLocation($latitude, $longitude);
+        $this->getMapElement()->clickLocation($latitude, $longitude);
     }
 
     /**
      * @Then /^position fields shoud have values:$/
+     *
+     * @param TableNode<array<string, mixed>> $table
+     * @return void
      */
     public function positionFieldOfShoudHaveValues(TableNode $table): void
     {
+        $formElement = $this->getFormElement();
         foreach ($table->getHash() as $row) {
-            Assertion::same(
-               substr($this->getElement('Form')->findField($row['Field'])->getValue(), 0, 6),
-                $row['Value']
-            );
+            $label = $row['Field'];
+            $field = $formElement->findField($label);
+            Assertion::notNull($field, "No field \"{$label}\"");
+
+            /** @var string $value */
+            $value = $field->getValue();
+            Assertion::same(substr($value, 0, 6), $row['Value']);
         }
     }
 
     /**
      * @Given /^fill position fields:$/
+     *
+     * @param TableNode<array<string, mixed>> $table
+     * @return void
      */
     public function fillPositionFields(TableNode $table): void
     {
         sleep(3);
+
+        $formElement = $this->getFormElement();
         foreach ($table->getHash() as $row) {
-            $this->getElement('Form')->findField($row['Field'])->setValue($row['Value']);
+            $label = $row['Field'];
+            $field = $formElement->findField($label);
+            Assertion::notNull($field, "No field \"{$label}\"");
+            $field->setValue($row['Value']);
         }
     }
 
     /**
      * @Then /^map position should be (.+)\/(.+)$/
+     *
+     * @param string|int|float $latitude
+     * @param string|int|float $longitude
+     * @return void
      */
     public function mapPositionShouldBe($latitude, $longitude): void
     {
-        Assertion::same((string) $this->getElement('Map')->getLatitude(), $latitude);
-        Assertion::same((string) $this->getElement('Map')->getLongitude(), $longitude);
+        $mapElement = $this->getMapElement();
+        Assertion::same((string) $mapElement->getLatitude(), $latitude);
+        Assertion::same((string) $mapElement->getLongitude(), $longitude);
+    }
+
+    private function getFormElement(): Form
+    {
+        /** @var Form $formElement */
+        $formElement = $this->getElement('Form');
+        return $formElement;
+    }
+
+    private function getMapElement(): Map
+    {
+        /** @var Map $mapElement */
+        $mapElement = $this->getElement('Map');
+        return $mapElement;
     }
 }

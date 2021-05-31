@@ -19,6 +19,9 @@ use SensioLabs\Behat\PageObjectExtension\PageObject\Exception\UnexpectedPageExce
 
 class Form extends Element
 {
+    /**
+     * @var array<string, string>
+     */
     protected $selector = ['css' => 'form'];
 
     public function movePhoto(int $photoNumber, int $newPosition): void
