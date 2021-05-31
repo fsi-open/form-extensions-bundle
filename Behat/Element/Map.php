@@ -15,8 +15,16 @@ use SensioLabs\Behat\PageObjectExtension\PageObject\Element;
 
 class Map extends Element
 {
+    /**
+     * @var array<string, string>
+     */
     protected $selector = ['css' => '.map-location'];
 
+    /**
+     * @param string|int|float $latitude
+     * @param string|int|float $longitude
+     * @return void
+     */
     public function clickLocation($latitude, $longitude): void
     {
         $xpath = $this->getXpath();

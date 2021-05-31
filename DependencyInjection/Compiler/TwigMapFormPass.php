@@ -16,15 +16,20 @@ use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 
 class TwigMapFormPass implements CompilerPassInterface
 {
-    public function process(ContainerBuilder $container)
+    public function process(ContainerBuilder $container): void
     {
-        if (!$container->hasParameter('twig.form.resources')) {
+        if (false === $container->hasParameter('twig.form.resources')) {
             return;
         }
 
-        $container->setParameter('twig.form.resources', array_merge(
-            $container->getParameter('twig.form.resources'),
-            ['@FSiFormExtensions/Form/form_map_layout.html.twig']
-        ));
+        /** @var array<string, string> $twigFormResources */
+        $twigFormResources = $container->getParameter('twig.form.resources');
+        $container->setParameter(
+            'twig.form.resources',
+            array_merge(
+                $twigFormResources,
+                ['@FSiFormExtensions/Form/form_map_layout.html.twig']
+            )
+        );
     }
 }

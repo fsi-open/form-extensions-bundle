@@ -18,7 +18,12 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
 class FSIFormExtensionsExtension extends Extension
 {
-    public function load(array $configs, ContainerBuilder $container)
+    /**
+     * @param array<string, mixed> $configs
+     * @param ContainerBuilder $container
+     * @return void
+     */
+    public function load(array $configs, ContainerBuilder $container): void
     {
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);

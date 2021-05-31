@@ -19,12 +19,12 @@ use Symfony\Component\Form\FormEvents;
 class SortableCollectionListener implements EventSubscriberInterface
 {
     /**
-     * @var array<string, array<string>>
+     * @var array<string, array<string>>|null
      */
     private $itemOrder = [];
 
     /**
-     * @return array<string, array<mixed>>
+     * @return array<string, string>
      */
     public static function getSubscribedEvents(): array
     {
