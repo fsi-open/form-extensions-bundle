@@ -4,6 +4,7 @@ Assume you have some entity with one-to-many association **ordered by position f
 
 ```php
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -14,7 +15,8 @@ class Gallery
     /**
      * @ORM\OneToMany(targetEntity="GalleryPhoto", mappedBy="gallery")
      * @ORM\OrderBy({"position" = "ASC"})
-     * @var GalleryPhoto[]|ArrayCollection
+     *
+     * @var Collection<GalleryPhoto>
      */
     private $photos;
 
@@ -23,31 +25,28 @@ class Gallery
         $this->photos = new ArrayCollection();
     }
 
-    /**
-     * @param GalleryPhoto $photo
-     */
-    public function addPhoto(GalleryPhoto $photo)
+    public function addPhoto(GalleryPhoto $photo): void
     {
-        if (!$this->photos->contains($photo)) {
-            $photo->setGallery($this);
-            $this->photos->add($photo);
+        if (true === $this->photos->contains($photo)) {
+            return;
         }
+
+        $photo->setGallery($this);
+        $this->photos->add($photo);
     }
 
-    /**
-     * @param GalleryPhoto $photo
-     */
-    public function removePhoto(GalleryPhoto $photo)
+    public function removePhoto(GalleryPhoto $photo): void
     {
         $this->photos->removeElement($photo);
+        $photo->setGallery(null);
     }
 
     /**
-     * @return GalleryPhoto[]
+     * @return array<GalleryPhoto>
      */
-    public function getPhotos()
+    public function getPhotos(): array
     {
-        return $this->photos;
+        return $this->photos->toArray();
     }
 }
 ```
@@ -65,44 +64,34 @@ class GalleryPhoto implements PositionableInterface
 {
     /**
      * @ORM\ManyToOne(targetEntity="Gallery", inversedBy="photos")
-     * @var Gallery
+
+     * @var Gallery|null
      */
     private $gallery;
 
     /**
-     * @ORM\Column(name="position", type="integer", nullable=false)
-     * @var int
+     * @ORM\Column(name="position", type="smallint")
+
+     * @var int|null
      */
     private $position;
 
-    /**
-     * @return Gallery
-     */
-    public function getGallery()
+    public function getGallery(): ?Gallery
     {
         return $this->gallery;
     }
 
-    /**
-     * @param Gallery $gallery
-     */
-    public function setGallery(Gallery $gallery)
+    public function setGallery(?Gallery $gallery)
     {
         $this->gallery = $gallery;
     }
 
-    /**
-     * @return int
-     */
-    public function getPosition()
+    public function getPosition(): ?int
     {
         return $this->position;
     }
 
-    /**
-     * @param int $position
-     */
-    public function setPosition($position)
+    public function setPosition(int $position): void
     {
         $this->position = $position;
     }

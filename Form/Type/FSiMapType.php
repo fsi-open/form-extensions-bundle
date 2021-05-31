@@ -18,21 +18,26 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class FSiMapType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    /**
+     * @param FormBuilderInterface<FormBuilderInterface> $builder
+     * @param array<string, mixed> $options
+     * @return void
+     */
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $fieldOptions = array_merge($this->getDefaultLatitudeOptions(), $options['latitude_options']);
-        $builder->add($options['latitude_name'], $options['latitude_type'], $fieldOptions);
+        $latitudeFieldOptions = array_merge($this->getDefaultLatitudeOptions(), $options['latitude_options']);
+        $builder->add($options['latitude_name'], $options['latitude_type'], $latitudeFieldOptions);
 
-        $fieldOptions = array_merge($this->getDefaultLongitudeOptions(), $options['longitude_options']);
-        $builder->add($options['longitude_name'], $options['longitude_type'], $fieldOptions);
+        $longitudeFieldOptions = array_merge($this->getDefaultLongitudeOptions(), $options['longitude_options']);
+        $builder->add($options['longitude_name'], $options['longitude_type'], $longitudeFieldOptions);
 
-        if (!empty($options['zoom_name'])) {
-            $fieldOptions = array_merge($this->getDefaultZoomOptions(), $options['zoom_options']);
-            $builder->add($options['zoom_name'], $options['zoom_type'], $fieldOptions);
+        if (null !== $options['zoom_name']) {
+            $zoomFieldOptions = array_merge($this->getDefaultZoomOptions(), $options['zoom_options']);
+            $builder->add($options['zoom_name'], $options['zoom_type'], $zoomFieldOptions);
         }
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'inherit_data' => true,
@@ -59,11 +64,14 @@ class FSiMapType extends AbstractType
         $resolver->setAllowedTypes('zoom_options', 'array');
     }
 
-    public function getBlockPrefix()
+    public function getBlockPrefix(): string
     {
         return 'fsi_map';
     }
 
+    /**
+     * @return array<string, string|array<string, string>>
+     */
     private function getDefaultLatitudeOptions(): array
     {
         return [
@@ -72,6 +80,9 @@ class FSiMapType extends AbstractType
         ];
     }
 
+    /**
+     * @return array<string, string|array<string, string>>
+     */
     private function getDefaultLongitudeOptions(): array
     {
         return [
@@ -80,6 +91,9 @@ class FSiMapType extends AbstractType
         ];
     }
 
+    /**
+     * @return array<string, string|array<string, string>>
+     */
     private function getDefaultZoomOptions(): array
     {
         return [

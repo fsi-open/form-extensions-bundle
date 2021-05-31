@@ -1,5 +1,7 @@
 # Multiple file upload
 
+## Does not work currently due to changes in how Symfony handles file upload now
+
 In order to use multiple file upload feature you must set `multi_upload_field` collection field option to file field name in collection form type.
 
 ```php

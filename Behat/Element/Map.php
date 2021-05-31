@@ -15,8 +15,16 @@ use SensioLabs\Behat\PageObjectExtension\PageObject\Element;
 
 class Map extends Element
 {
+    /**
+     * @var array<string, string>
+     */
     protected $selector = ['css' => '.map-location'];
 
+    /**
+     * @param string|int|float $latitude
+     * @param string|int|float $longitude
+     * @return void
+     */
     public function clickLocation($latitude, $longitude): void
     {
         $xpath = $this->getXpath();
@@ -32,12 +40,18 @@ JS;
         $this->getDriver()->executeScript($script);
     }
 
+    /**
+     * @return mixed
+     */
     public function getLatitude()
     {
         $script = "return $('.map-location').data('google-map').map.getCenter().lat();";
         return $this->getDriver()->evaluateScript($script);
     }
 
+    /**
+     * @return mixed
+     */
     public function getLongitude()
     {
         $script = "return $('.map-location').data('google-map').map.getCenter().lng();";

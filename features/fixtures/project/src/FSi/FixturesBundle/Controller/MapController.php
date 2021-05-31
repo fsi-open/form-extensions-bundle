@@ -12,38 +12,51 @@ declare(strict_types=1);
 namespace FSi\FixturesBundle\Controller;
 
 use FSi\Bundle\FormExtensionsBundle\Form\Type\FSiMapType;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
+use Symfony\Component\Form\FormFactoryInterface;
+use Symfony\Component\HttpFoundation\Response;
+use Twig\Environment;
 
-class MapController extends Controller
+final class MapController
 {
-    public function oneMapAction()
+    /**
+     * @var FormFactoryInterface
+     */
+    private $formFactory;
+
+    /**
+     * @var Environment
+     */
+    private $twig;
+
+    public function __construct(FormFactoryInterface $formFactory, Environment $twig)
     {
-        $formBuilder = $this->createFormBuilder();
-        $formBuilder->add('map', FSiMapType::class, [
-            'label' => 'Map field'
-        ]);
-
-        $form = $formBuilder->getForm();
-
-        return $this->render('@FSiFixtures/Map/map.html.twig', [
-            'form' => $form->createView()
-        ]);
+        $this->formFactory = $formFactory;
+        $this->twig = $twig;
     }
 
-    public function multipleMapAction()
+    public function oneMapAction(): Response
     {
-        $formBuilder = $this->createFormBuilder();
-        $formBuilder->add('map_one', FSiMapType::class, [
+        $form = $this->formFactory->create(FormType::class);
+        $form->add('map', FSiMapType::class, ['label' => 'Map field']);
+
+        return new Response(
+            $this->twig->render('@FSiFixtures/Map/map.html.twig', ['form' => $form->createView()])
+        );
+    }
+
+    public function multipleMapAction(): Response
+    {
+        $form = $this->formFactory->create(FormType::class);
+        $form->add('map_one', FSiMapType::class, [
             'label' => 'Map field one'
         ]);
-        $formBuilder->add('map_two', FSiMapType::class, [
+        $form->add('map_two', FSiMapType::class, [
             'label' => 'Map field two'
         ]);
 
-        $form = $formBuilder->getForm();
-
-        return $this->render('@FSiFixtures/Map/map.html.twig', [
-            'form' => $form->createView()
-        ]);
+        return new Response(
+            $this->twig->render('@FSiFixtures/Map/map.html.twig', ['form' => $form->createView()])
+        );
     }
 }

@@ -14,23 +14,43 @@ namespace FSi\FixturesBundle\Controller;
 use FSi\FixturesBundle\Form\Type\GalleryType;
 use FSi\FixturesBundle\Model\Gallery;
 use FSi\FixturesBundle\Model\GalleryPhoto;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Twig\Environment;
 
-class SortableCollectionController extends Controller
+final class SortableCollectionController
 {
-    public function collectionAction(Request $request)
+    /**
+     * @var FormFactoryInterface
+     */
+    private $formFactory;
+
+    /**
+     * @var Environment
+     */
+    private $twig;
+
+    public function __construct(FormFactoryInterface $formFactory, Environment $twig)
+    {
+        $this->formFactory = $formFactory;
+        $this->twig = $twig;
+    }
+
+    public function collectionAction(Request $request): Response
     {
         $gallery = $this->getModelGallery();
-
-        $form = $this->createForm(GalleryType::class, $gallery);
-        if ($form->handleRequest($request)->isSubmitted() && $form->isValid()) {
+        $form = $this->formFactory->create(GalleryType::class, $gallery);
+        $form->handleRequest($request);
+        if (true === $form->isSubmitted() && true === $form->isValid()) {
         }
 
-        return $this->render('@FSiFixtures/SortableCollection/collection.html.twig', [
-            'form' => $form->createView(),
-            'gallery' => $gallery
-        ]);
+        return new Response(
+            $this->twig->render('@FSiFixtures/SortableCollection/collection.html.twig', [
+                'form' => $form->createView(),
+                'gallery' => $gallery
+            ])
+        );
     }
 
     private function getModelGallery(): Gallery

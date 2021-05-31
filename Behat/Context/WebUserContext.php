@@ -7,16 +7,23 @@
  * file that was distributed with this source code.
  */
 
+declare(strict_types=1);
+
 namespace FSi\Bundle\FormExtensionsBundle\Behat\Context;
 
-use SensioLabs\Behat\PageObjectExtension\Context\PageObjectContext;
+use Assert\Assertion;
+use Behat\Behat\Definition\Call\Given;
+use Behat\Behat\Definition\Call\Then;
+use Behat\Behat\Definition\Call\When;
+use FSi\Bundle\FormExtensionsBundle\Behat\Element\Form;
+use FSi\Bundle\FormExtensionsBundle\Behat\Page\SortableCollectionForm;
 
-class WebUserContext extends PageObjectContext
+final class WebUserContext extends AbstractContext
 {
     /**
      * @When /^I open "([^"]*)" page$/
      */
-    public function iOpenPage(string $pageName)
+    public function iOpenPage(string $pageName): void
     {
         $this->getPage($pageName)->open();
     }
@@ -24,24 +31,33 @@ class WebUserContext extends PageObjectContext
     /**
      * @Given /^I move photo from position "([^"]*)" to position "([^"]*)"$/
      */
-    public function iMovePhotoNumberToPosition(int $photoNumber, int $newPosition)
+    public function iMovePhotoNumberToPosition(int $photoNumber, int $newPosition): void
     {
-        $this->getElement('Form')->movePhoto($photoNumber, $newPosition);
+        $this->getFormElement()->movePhoto($photoNumber, $newPosition);
     }
 
     /**
      * @Given /^submit the form$/
      */
-    public function submitTheForm()
+    public function submitTheForm(): void
     {
-        $this->getElement('Form')->submit();
+        $this->getFormElement()->submit();
     }
 
     /**
      * @Then /^I should see photo "([^"]*)" at position "([^"]*)"$/
      */
-    public function iShouldSeePhotoNumberAtPosition($photo, $position)
+    public function iShouldSeePhotoNumberAtPosition(string $photo, int $position): void
     {
-        expect($this->getPage('Sortable Collection Form')->getPhotoAtPosition($position)->getText())->toBe($photo);
+        /** @var SortableCollectionForm $page */
+        $page = $this->getPage('Sortable Collection Form');
+        Assertion::same($page->getPhotoAtPosition($position)->getText(), $photo);
+    }
+
+    private function getFormElement(): Form
+    {
+        /** @var Form $formElement */
+        $formElement = $this->getElement('Form');
+        return $formElement;
     }
 }
