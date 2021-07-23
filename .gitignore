@@ -1,6 +1,7 @@
 /vendor
 composer.lock
 composer.phar
-autoload.php
-bin
-/features/fixtures/project/web/bundles
+/features/fixtures/project/public/bundles
+/features/fixtures/project/var/cache/*
+/features/fixtures/project/var/logs/*
+!/features/fixtures/project/var/logs/.gitkeep

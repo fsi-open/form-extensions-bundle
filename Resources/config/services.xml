@@ -28,12 +28,6 @@
         <service id="fsi_form_extensions.form.type_extension.multi_upload_collection" class="%fsi_form_extensions.form.type_extension.multi_upload_collection.class%">
             <tag name="form.type_extension" extended-type="Symfony\Component\Form\Extension\Core\Type\CollectionType" />
         </service>
-
-        <!-- Twig Extensions -->
-        <service id="fsi_form_extensions.twig.form_extension.map" class="%fsi_form_extensions.twig.form_extension.map.class%">
-            <argument>%fsi_form_extensions.map_api_key%</argument>
-            <tag name="twig.extension"/>
-        </service>
     </services>
 
 </container>
