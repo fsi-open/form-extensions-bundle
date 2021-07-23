@@ -18,10 +18,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 
 class SortableCollectionExtension extends AbstractTypeExtension
 {
-    /**
-     * @var SortableCollectionListener
-     */
-    private $sortableListener;
+    private SortableCollectionListener $sortableListener;
 
     public function __construct(SortableCollectionListener $sortableListener)
     {

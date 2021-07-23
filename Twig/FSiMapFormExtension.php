@@ -16,10 +16,7 @@ use Twig\Extension\GlobalsInterface;
 
 class FSiMapFormExtension extends AbstractExtension implements GlobalsInterface
 {
-    /**
-     * @var string|null
-     */
-    private $apiKey;
+    private ?string $apiKey;
 
     public function __construct(?string $apiKey)
     {
@@ -27,7 +24,7 @@ class FSiMapFormExtension extends AbstractExtension implements GlobalsInterface
     }
 
     /**
-     * @return array<string, mixed>
+     * @return array<string, string|null>
      */
     public function getGlobals(): array
     {

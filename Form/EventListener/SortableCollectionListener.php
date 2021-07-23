@@ -21,7 +21,7 @@ class SortableCollectionListener implements EventSubscriberInterface
     /**
      * @var array<string, array<string>>|null
      */
-    private $itemOrder = [];
+    private ?array $itemOrder = [];
 
     /**
      * @return array<string, string>

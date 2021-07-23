@@ -19,15 +19,12 @@ use SensioLabs\Behat\PageObjectExtension\PageObject\Page;
 
 abstract class AbstractContext extends PageObjectContext implements MinkAwareContext
 {
-    /**
-     * @var Mink|null
-     */
-    private $mink;
+    private ?Mink $mink;
 
     /**
      * @var array<mixed>|null
      */
-    private $minkParameters;
+    private ?array $minkParameters;
 
     public function getPage($name): Page
     {
