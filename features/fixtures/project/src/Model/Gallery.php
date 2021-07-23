@@ -34,9 +34,7 @@ class Gallery
     {
         $this->photos = array_filter(
             $this->photos,
-            function (GalleryPhoto $item) use ($photo): bool {
-                return $item !== $photo;
-            }
+            fn(GalleryPhoto $item): bool => $item !== $photo
         );
     }
 

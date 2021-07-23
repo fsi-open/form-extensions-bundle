@@ -15,20 +15,9 @@ use FSi\Bundle\FormExtensionsBundle\Model\PositionableInterface;
 
 class GalleryPhoto implements PositionableInterface
 {
-    /**
-     * @var Gallery
-     */
-    private $gallery;
-
-    /**
-     * @var string
-     */
-    private $file;
-
-    /**
-     * @var int
-     */
-    private $position;
+    private ?Gallery $gallery;
+    private ?string $file;
+    private ?int $position;
 
     public function getGallery(): ?Gallery
     {
@@ -40,18 +29,12 @@ class GalleryPhoto implements PositionableInterface
         $this->gallery = $gallery;
     }
 
-    /**
-     * @return string
-     */
-    public function getFile()
+    public function getFile(): ?string
     {
         return $this->file;
     }
 
-    /**
-     * @param string $file
-     */
-    public function setFile($file): void
+    public function setFile(?string $file): void
     {
         $this->file = $file;
     }
@@ -65,5 +48,4 @@ class GalleryPhoto implements PositionableInterface
     {
         $this->position = $position;
     }
-
 }

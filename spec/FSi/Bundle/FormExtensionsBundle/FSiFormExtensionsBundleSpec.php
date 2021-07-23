@@ -11,12 +11,13 @@ declare(strict_types=1);
 
 namespace spec\FSi\Bundle\FormExtensionsBundle;
 
+use FSi\Bundle\FormExtensionsBundle\DependencyInjection\Compiler\TwigApiKeyPass;
 use FSi\Bundle\FormExtensionsBundle\DependencyInjection\Compiler\TwigMapFormPass;
 use FSi\Bundle\FormExtensionsBundle\DependencyInjection\FSIFormExtensionsExtension;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
-use Symfony\Component\HttpKernel\Bundle\Bundle;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 class FSiFormExtensionsBundleSpec extends ObjectBehavior
 {
@@ -36,6 +37,10 @@ class FSiFormExtensionsBundleSpec extends ObjectBehavior
     {
         $container->addCompilerPass(
             Argument::type(TwigMapFormPass::class)
+        )->shouldBeCalled();
+
+        $container->addCompilerPass(
+            Argument::type(TwigApiKeyPass::class)
         )->shouldBeCalled();
 
         $this->build($container);

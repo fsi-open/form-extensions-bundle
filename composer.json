@@ -49,6 +49,7 @@
         "psr-4": { "FSi\\FixturesBundle\\": "features/fixtures/project/src/" }
     },
     "scripts": {
+        "console": "features/fixtures/project/bin/console",
         "cache-clear": "features/fixtures/project/bin/console cache:clear",
         "assets": "features/fixtures/project/bin/console assets:install features/fixtures/project/public --relative --symlink"
     },
