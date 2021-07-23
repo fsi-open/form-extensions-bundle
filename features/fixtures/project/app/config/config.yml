@@ -5,8 +5,7 @@ framework:
     form:            true
     csrf_protection:
         enabled:     false
-    validation:      { enable_annotations: true }
-    templating:      { engines: ['twig'] }
+    validation:      { enable_annotations: false }
     profiler:        { only_exceptions: false }
     test:            ~
     session:
@@ -22,7 +21,8 @@ services:
     _defaults:
         autowire: true
         autoconfigure: true
-        public: true
+        public: false
 
-    FSi\FixturesBundle\Controller\MapController: ~
-    FSi\FixturesBundle\Controller\SortableCollectionController: ~
+    FSi\FixturesBundle\Controller\:
+        resource: "../../src/FSi/FixturesBundle/Controller/*"
+        public: true

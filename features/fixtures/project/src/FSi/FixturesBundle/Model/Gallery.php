@@ -18,7 +18,7 @@ class Gallery
     /**
      * @var GalleryPhoto[]
      */
-    private $photos = [];
+    private array $photos = [];
 
     public function addPhoto(GalleryPhoto $photo): void
     {

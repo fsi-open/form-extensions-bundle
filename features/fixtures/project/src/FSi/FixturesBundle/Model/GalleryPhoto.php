@@ -30,17 +30,11 @@ class GalleryPhoto implements PositionableInterface
      */
     private $position;
 
-    /**
-     * @return Gallery
-     */
     public function getGallery(): ?Gallery
     {
         return $this->gallery;
     }
 
-    /**
-     * @param Gallery $gallery
-     */
     public function setGallery(Gallery $gallery): void
     {
         $this->gallery = $gallery;
@@ -62,17 +56,11 @@ class GalleryPhoto implements PositionableInterface
         $this->file = $file;
     }
 
-    /**
-     * @return int
-     */
     public function getPosition(): ?int
     {
         return $this->position;
     }
 
-    /**
-     * @param int $position
-     */
     public function setPosition(int $position): void
     {
         $this->position = $position;

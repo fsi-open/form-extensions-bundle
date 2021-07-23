@@ -22,7 +22,7 @@ class MultiUploadCollectionExtension extends AbstractTypeExtension
     /**
      * @return iterable<string>
      */
-    public static function getExtendedTypes()
+    public static function getExtendedTypes(): iterable
     {
         return [CollectionType::class];
     }
