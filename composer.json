@@ -13,6 +13,7 @@
     "require": {
         "php": "^7.4|^8.0",
         "twig/twig": "^2.14|^3.3",
+        "symfony/asset": "^4.4|^5.0",
         "symfony/options-resolver": "^4.4|^5.0",
         "symfony/framework-bundle" : "^4.4|^5.0",
         "symfony/twig-bundle": "^4.4|^5.0",
@@ -31,11 +32,10 @@
         "phpstan/phpstan-beberlei-assert": "^0.12.3",
         "phpstan/phpstan-doctrine": "^0.12.20",
         "sensiolabs/behat-page-object-extension": "^2.3",
-        "symfony/asset": "^4.4|^5.0",
         "symfony/console": "^4.4|^5.0",
         "symfony/css-selector": "^4.4|^5.0",
+        "symfony/debug-bundle": "^4.4|^5.0",
         "symfony/http-foundation": "^4.4|^5.0",
-        "symfony/templating": "^4.4|^5.0",
         "symfony/var-dumper": "^4.4|^5.0",
         "symfony/phpunit-bridge": "^5.0"
     },
@@ -46,11 +46,11 @@
         "psr-4": { "FSi\\Bundle\\FormExtensionsBundle\\": "" }
     },
     "autoload-dev": {
-        "psr-4": { "FSi\\FixturesBundle\\": "features/fixtures/project/src/FSi/FixturesBundle" },
-        "classmap": ["features/fixtures/project/app/AppKernel.php"]
+        "psr-4": { "FSi\\FixturesBundle\\": "features/fixtures/project/src/" }
     },
     "scripts": {
-        "console": "features/fixtures/project/app/console"
+        "cache-clear": "features/fixtures/project/bin/console cache:clear",
+        "assets": "features/fixtures/project/bin/console assets:install features/fixtures/project/public --relative --symlink"
     },
     "extra": {
         "branch-alias": {

@@ -21,13 +21,14 @@ services:
 install:
     - phpenv config-rm xdebug.ini
     - composer update $COMPOSER_FLAGS
+    - composer cache-clear
     - wget --no-clobber -O vendor/bin/selenium.jar http://selenium-release.storage.googleapis.com/2.53/selenium-server-standalone-2.53.1.jar || true
 
 before_script:
-    - nohup php -S localhost:8080 -t features/fixtures/project/web > server.log 2>&1 &
+    - nohup php -S localhost:8080 -t features/fixtures/project/public > server.log 2>&1 &
     - java -jar vendor/bin/selenium.jar > /dev/null 2>&1 &
     - sleep 5
-    - features/fixtures/project/app/console assets:install features/fixtures/project/web --relative --symlink
+    - composer assets
 
 script:
     - vendor/bin/phpstan analyze -c phpstan.neon
@@ -35,5 +36,5 @@ script:
     - vendor/bin/behat --no-snippets --verbose --format=progress --profile=travis
 
 after_failure:
-    - cat /tmp/FSiFormExtensionsBundle/logs/test.log
+    - cat features/fixtures/project/var/logs/test.log
     - cat server.log

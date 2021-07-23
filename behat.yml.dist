@@ -5,18 +5,18 @@ default: &default
                 - FSi\Bundle\FormExtensionsBundle\Behat\Context\MapContext
                 - FSi\Bundle\FormExtensionsBundle\Behat\Context\WebUserContext
     extensions:
-        Behat\Symfony2Extension:
+        FriendsOfBehat\SymfonyExtension:
+            bootstrap: vendor/autoload.php
             kernel:
-                bootstrap: features/fixtures/project/app/bootstrap.php
-                path: features/fixtures/project/app/AppKernel.php
-                env: test
+                class: FSi\FixturesBundle\Kernel
+                environment: test
                 debug: true
         Behat\MinkExtension:
-            base_url: 'http://127.0.0.1/app_test.php/'
+            base_url: 'http://127.0.0.1/'
             javascript_session: javascript
             sessions:
                 default:
-                    symfony2: ~
+                    symfony: ~
                 javascript:
                     selenium2:
                         browser: firefox
@@ -29,7 +29,7 @@ travis:
     <<: *default
     extensions:
         Behat\MinkExtension:
-            base_url: http://localhost:8080/app_test.php/
+            base_url: http://localhost:8080/
             sessions:
                 javascript:
                     selenium2:

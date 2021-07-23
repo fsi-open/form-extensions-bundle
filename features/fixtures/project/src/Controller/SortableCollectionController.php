@@ -21,15 +21,8 @@ use Twig\Environment;
 
 final class SortableCollectionController
 {
-    /**
-     * @var FormFactoryInterface
-     */
-    private $formFactory;
-
-    /**
-     * @var Environment
-     */
-    private $twig;
+    private FormFactoryInterface $formFactory;
+    private Environment $twig;
 
     public function __construct(FormFactoryInterface $formFactory, Environment $twig)
     {
@@ -46,7 +39,7 @@ final class SortableCollectionController
         }
 
         return new Response(
-            $this->twig->render('@FSiFixtures/SortableCollection/collection.html.twig', [
+            $this->twig->render('collection.html.twig', [
                 'form' => $form->createView(),
                 'gallery' => $gallery
             ])

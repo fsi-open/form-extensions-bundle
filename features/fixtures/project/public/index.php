@@ -1,12 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
+use FSi\FixturesBundle\Kernel;
 use Symfony\Component\ErrorHandler\Debug;
 use Symfony\Component\HttpFoundation\Request;
 
 require_once __DIR__.'/../../../../vendor/autoload.php';
 Debug::enable();
 
-$kernel = new AppKernel('test', true);
+$kernel = new Kernel('test', true);
 Request::enableHttpMethodParameterOverride();
 $request = Request::createFromGlobals();
 $response = $kernel->handle($request);

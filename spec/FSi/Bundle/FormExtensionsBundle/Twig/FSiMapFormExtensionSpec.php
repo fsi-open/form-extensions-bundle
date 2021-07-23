@@ -12,7 +12,7 @@ declare(strict_types=1);
 namespace spec\FSi\Bundle\FormExtensionsBundle\Twig;
 
 use PhpSpec\ObjectBehavior;
-use Twig_Extension;
+use Twig\Extension\AbstractExtension;
 
 class FSiMapFormExtensionSpec extends ObjectBehavior
 {
@@ -23,7 +23,7 @@ class FSiMapFormExtensionSpec extends ObjectBehavior
 
     function it_is_twig_extension()
     {
-        $this->shouldHaveType(Twig_Extension::class);
+        $this->shouldHaveType(AbstractExtension::class);
     }
 
     function it_has_globals()
