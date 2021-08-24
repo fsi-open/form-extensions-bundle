@@ -1,0 +1,12 @@
+---
+fixtures_one_map:
+    path: /one_map
+    controller: FSi\FixturesBundle\Controller\MapController:oneMapAction
+
+fixtures_multiple_map:
+    path: /multiple_map
+    controller: FSi\FixturesBundle\Controller\MapController:multipleMapAction
+
+sortable_collection:
+    path: /sortable_collection
+    controller: FSi\FixturesBundle\Controller\SortableCollectionController:collectionAction

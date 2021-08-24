@@ -17,10 +17,7 @@ use Symfony\Component\Form\FormEvents;
 
 class MultiUploadCollectionListener implements EventSubscriberInterface
 {
-    /**
-     * @var string
-     */
-    private $fileField;
+    private string $fileField;
 
     public function __construct(string $fileField)
     {

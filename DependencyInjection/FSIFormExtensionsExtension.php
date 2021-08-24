@@ -28,10 +28,8 @@ class FSIFormExtensionsExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
-        $container->setParameter(
-            'fsi_form_extensions.map_api_key',
-            empty($config['fsi_map']['api_key']) ? null : $config['fsi_map']['api_key']
-        );
+        $apiKey = $config['fsi_map']['api_key'] ?? null;
+        $container->setParameter('fsi_form_extensions.map_api_key', $apiKey);
 
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');

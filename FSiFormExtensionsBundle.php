@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace FSi\Bundle\FormExtensionsBundle;
 
+use FSi\Bundle\FormExtensionsBundle\DependencyInjection\Compiler\TwigApiKeyPass;
 use FSi\Bundle\FormExtensionsBundle\DependencyInjection\Compiler\TwigMapFormPass;
 use FSi\Bundle\FormExtensionsBundle\DependencyInjection\FSIFormExtensionsExtension;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -22,6 +23,7 @@ class FSiFormExtensionsBundle extends Bundle
     public function build(ContainerBuilder $container): void
     {
         $container->addCompilerPass(new TwigMapFormPass());
+        $container->addCompilerPass(new TwigApiKeyPass());
     }
 
     public function getContainerExtension(): ExtensionInterface
