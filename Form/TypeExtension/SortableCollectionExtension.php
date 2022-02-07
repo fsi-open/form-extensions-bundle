@@ -15,6 +15,7 @@ use FSi\Bundle\FormExtensionsBundle\Form\EventListener\SortableCollectionListene
 use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class SortableCollectionExtension extends AbstractTypeExtension
 {
@@ -36,6 +37,12 @@ class SortableCollectionExtension extends AbstractTypeExtension
     public function getExtendedType(): string
     {
         return CollectionType::class;
+    }
+
+    public function configureOptions(OptionsResolver $resolver): void
+    {
+        $resolver->setDefault('initial_position', 1);
+        $resolver->setAllowedTypes('initial_position', 'int');
     }
 
     /**

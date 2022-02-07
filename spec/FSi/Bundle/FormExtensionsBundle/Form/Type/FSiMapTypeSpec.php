@@ -19,12 +19,12 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class FSiMapTypeSpec extends ObjectBehavior
 {
-    public function it_is_form_type()
+    public function it_is_form_type(): void
     {
         $this->shouldHaveType(AbstractType::class);
     }
 
-    public function it_sets_options(OptionsResolver $resolver)
+    public function it_sets_options(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'inherit_data' => true,
@@ -53,7 +53,7 @@ class FSiMapTypeSpec extends ObjectBehavior
         $this->configureOptions($resolver);
     }
 
-    public function it_build_form_with_default_options(FormBuilderInterface $builder)
+    public function it_build_form_with_default_options(FormBuilderInterface $builder): void
     {
         $builder->add('latitude', 'integer', [
             'label' => 'map.latitude',
@@ -81,7 +81,7 @@ class FSiMapTypeSpec extends ObjectBehavior
         ]);
     }
 
-    public function it_build_form_with_merged_options(FormBuilderInterface $builder)
+    public function it_build_form_with_merged_options(FormBuilderInterface $builder): void
     {
         $builder->add('lat', 'integer', [
             'label' => 'xyz.lat',

@@ -18,19 +18,19 @@ use Symfony\Component\Form\FormEvents;
 
 class MultiUploadCollectionListenerSpec extends ObjectBehavior
 {
-    function let()
+    function let(): void
     {
         $this->beConstructedWith('file');
     }
 
-    function it_handles_pre_submit_with_priority_higher_than_default()
+    function it_handles_pre_submit_with_priority_higher_than_default(): void
     {
         $this->getSubscribedEvents()->shouldReturn([
             FormEvents::PRE_SUBMIT => ['preSubmit', 1]
         ]);
     }
 
-    function it_does_nothing_if_data_is_not_an_array(FormEvent $formEvent)
+    function it_does_nothing_if_data_is_not_an_array(FormEvent $formEvent): void
     {
         $formEvent->getData()->willReturn('string');
 
@@ -39,7 +39,7 @@ class MultiUploadCollectionListenerSpec extends ObjectBehavior
         $this->preSubmit($formEvent);
     }
 
-    function it_unwraps_multiple_files_into_new_collection_items(FormEvent $formEvent)
+    function it_unwraps_multiple_files_into_new_collection_items(FormEvent $formEvent): void
     {
         $formEvent->getData()->willReturn([
             0 => [

@@ -47,7 +47,8 @@ class SortableCollectionListener implements EventSubscriberInterface
             return;
         }
 
-        $position = 1;
+        $formConfig = $event->getForm()->getConfig();
+        $position = $formConfig->hasOption('initial_position') ? $formConfig->getOption('initial_position') : 1;
         $data = $event->getData();
         foreach ($itemOrder as $index) {
             if (!isset($data[$index])) {
