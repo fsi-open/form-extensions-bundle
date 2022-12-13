@@ -5,3 +5,4 @@ composer.phar
 /features/fixtures/project/var/cache/*
 /features/fixtures/project/var/logs/*
 !/features/fixtures/project/var/logs/.gitkeep
+.phpcs-cache

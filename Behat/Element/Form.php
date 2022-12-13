@@ -26,13 +26,19 @@ class Form extends Element
 
     public function movePhoto(int $photoNumber, int $newPosition): void
     {
-        $this->getDriver()->executeScript(sprintf("
+        $this->getDriver()->executeScript(
+            sprintf(
+                <<<JS
 var photo = document.getElementById('gallery_photos_%s');
 var parent = photo.parentNode;
 photo.remove();
 var insertBefore = document.getElementById('gallery_photos_%s');
-parent.insertBefore(photo, insertBefore)",
-            $photoNumber - 1, $newPosition - 1));
+parent.insertBefore(photo, insertBefore)
+JS,
+                $photoNumber - 1,
+                $newPosition - 1
+            )
+        );
     }
 
     public function getGoogleMapWrapper(string $label): ?NodeElement
@@ -40,7 +46,8 @@ parent.insertBefore(photo, insertBefore)",
         return $this->find(
             'xpath',
             sprintf(
-                '//label[text()="%s"]/parent::*/descendant::*[contains(concat(" ", normalize-space(@class), " "), " map-location ")]',
+                '//label[text()="%s"]/parent::*/descendant::*'
+                    . '[contains(concat(" ", normalize-space(@class), " "), " map-location ")]',
                 $label
             )
         );
