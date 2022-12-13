@@ -17,6 +17,7 @@ use Behat\Behat\Definition\Call\Then;
 use Behat\Gherkin\Node\TableNode;
 use FSi\Bundle\FormExtensionsBundle\Behat\Element\Form;
 use FSi\Bundle\FormExtensionsBundle\Behat\Element\Map;
+
 use function sleep;
 use function substr;
 

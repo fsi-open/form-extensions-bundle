@@ -5,7 +5,7 @@ parameters:
     level: 8
     paths:
         - '%currentWorkingDirectory%'
-    excludes_analyse:
+    excludePaths:
         - '%currentWorkingDirectory%/DependencyInjection/Configuration.php'
         - '%currentWorkingDirectory%/Resources'
         - '%currentWorkingDirectory%/spec'
