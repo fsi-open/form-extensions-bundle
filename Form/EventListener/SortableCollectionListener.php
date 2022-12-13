@@ -19,9 +19,9 @@ use Symfony\Component\Form\FormEvents;
 class SortableCollectionListener implements EventSubscriberInterface
 {
     /**
-     * @var array<string, array<string>>|null
+     * @var array<string, array<string>|null>
      */
-    private ?array $itemOrder = [];
+    private array $itemOrder = [];
 
     /**
      * @return array<string, string>
