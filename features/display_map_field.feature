@@ -1,33 +1,33 @@
 Feature: Display Google map when fsi_map field is used in form
   As a user
-  I should see Google map to easier select location.
-  After I open page with form that have fsi_map field
+  When I open page with a form that has the fsi_map field
+  Then I should be able to use Google maps for easier location selection
 
-  @javascript
-  Scenario: Open page with form that have one map field
+  @javascript @google-maps
+  Scenario: Opening a page with form that has a single map field
     When I open "One Map Form" page
     Then I should see form field with label "Map field" that has Google map
 
-  @javascript
-  Scenario: Open page with form that have many fsi_ckeditor fields
+  @javascript @google-maps
+  Scenario: Opening a page with a form that has multiple map fields
     When I open "Multiple Map Form" page
     Then I should see form field with label "Map field one" that has Google map
     And I should see form field with label "Map field two" that has Google map
 
-  @javascript
-  Scenario: Set fields value when point selected on map
+  @javascript @google-maps
+  Scenario: Setting fields' value when a point is selected on the map
     When I open "One Map Form" page
-    And Click on map at position: 50.062/19.937
+    And click on map at position: 50.062/19.937
     Then position fields shoud have values:
       | Field     | Value  |
       | Latitude  | 50.062 |
       | Longitude | 19.937 |
 
-  @javascript
-  Scenario: Set map location when field values are changed
+  @javascript @google-maps
+  Scenario: Setting map location when fields' values are changed
     When I open "One Map Form" page
     And fill position fields:
       | Field     | Value  |
       | Latitude  | 50.062 |
       | Longitude | 19.937 |
-    Then map position should be 50.062/19.937
+    Then map position should be set to "50.062" latitude and "19.937" longitude

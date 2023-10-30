@@ -15,13 +15,12 @@ use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\Config\Resource\FileResource;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\HttpFoundation\Session\SessionFactoryInterface;
 use Symfony\Component\HttpKernel\Bundle\BundleInterface;
 use Symfony\Component\HttpKernel\Kernel as BaseKernel;
 use Symfony\Component\Routing\RouteCollectionBuilder;
 
 use function dirname;
-
-use const PHP_VERSION_ID;
 
 final class Kernel extends BaseKernel
 {
@@ -54,13 +53,19 @@ final class Kernel extends BaseKernel
     {
         $configDirectory = $this->getProjectDir() . '/config';
         $container->addResource(new FileResource($configDirectory . '/bundles.php'));
-        $container->setParameter('container.dumper.inline_class_loader', PHP_VERSION_ID < 70400 || $this->debug);
+        $container->setParameter('container.dumper.inline_class_loader', $this->debug);
         $container->setParameter('container.dumper.inline_factories', true);
 
         $loader->load($configDirectory . '/{packages}/*' . self::CONFIG_EXTS, 'glob');
         $loader->load($configDirectory . '/{packages}/' . $this->environment . '/*' . self::CONFIG_EXTS, 'glob');
         $loader->load($configDirectory . '/{services}' . self::CONFIG_EXTS, 'glob');
         $loader->load($configDirectory . '/{services}_' . $this->environment . self::CONFIG_EXTS, 'glob');
+
+        if (true === interface_exists(SessionFactoryInterface::class)) {
+            $loader->load($configDirectory . '/{conditional}/framework_5' . self::CONFIG_EXTS, 'glob');
+        } else {
+            $loader->load($configDirectory . '/{conditional}/framework_4' . self::CONFIG_EXTS, 'glob');
+        }
     }
 
     protected function configureRoutes(RouteCollectionBuilder $routes): void

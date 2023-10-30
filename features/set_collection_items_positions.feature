@@ -3,7 +3,7 @@ Feature: Update collection items' positions while submitting collection form
   I should be able to change collection items' order
 
   @javascript
-  Scenario: Open page with form that have sortable collection
+  Scenario: Opening a page with a form that has a sortable collection
     When I open "Sortable Collection Form" page
     Then I should see photo "photo1" at position "1"
     And I should see photo "photo2" at position "2"

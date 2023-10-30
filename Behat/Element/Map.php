@@ -23,7 +23,6 @@ class Map extends Element
     /**
      * @param string|int|float $latitude
      * @param string|int|float $longitude
-     * @return void
      */
     public function clickLocation($latitude, $longitude): void
     {
