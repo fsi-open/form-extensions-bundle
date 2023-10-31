@@ -5,14 +5,15 @@ default: &default
                 - FSi\Bundle\FormExtensionsBundle\Behat\Context\MapContext
                 - FSi\Bundle\FormExtensionsBundle\Behat\Context\WebUserContext
     extensions:
+        FriendsOfBehat\MinkDebugExtension:
+            directory: features/fixtures/project/var/debug
+            clean_start: true
         FriendsOfBehat\SymfonyExtension:
-            bootstrap: vendor/autoload.php
             kernel:
+                path: features/fixtures/project/src/Kernel.php
                 class: FSi\FixturesBundle\Kernel
-                environment: test
-                debug: true
         Behat\MinkExtension:
-            base_url: 'http://127.0.0.1/'
+            base_url: 'http://form-extensions-web'
             javascript_session: javascript
             sessions:
                 default:

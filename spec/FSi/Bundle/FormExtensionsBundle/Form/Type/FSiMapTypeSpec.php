@@ -38,7 +38,7 @@ class FSiMapTypeSpec extends ObjectBehavior
             'zoom_name' => null,
             'zoom_type' => NumberType::class,
             'zoom_options' => [],
-        ])->shouldBeCalled();
+        ])->shouldBeCalled()->willReturn($resolver);
 
         $resolver->setAllowedTypes('latitude_name', 'string')->shouldBeCalled();
         $resolver->setAllowedTypes('latitude_type', 'string')->shouldBeCalled();
@@ -58,15 +58,15 @@ class FSiMapTypeSpec extends ObjectBehavior
         $builder->add('latitude', 'integer', [
             'label' => 'map.latitude',
             'attr' => ['class' => 'latitude-field'],
-        ])->shouldBeCalled();
+        ])->shouldBeCalled()->willReturn($builder);
         $builder->add('longitude', 'text', [
             'label' => 'map.longitude',
             'attr' => ['class' => 'longitude-field'],
-        ])->shouldBeCalled();
+        ])->shouldBeCalled()->willReturn($builder);
         $builder->add('zoom', 'textarea', [
             'label' => 'map.zoom',
             'attr' => ['class' => 'zoom-field'],
-        ])->shouldBeCalled();
+        ])->shouldBeCalled()->willReturn($builder);
 
         $this->buildForm($builder, [
             'latitude_name' => 'latitude',
@@ -87,17 +87,17 @@ class FSiMapTypeSpec extends ObjectBehavior
             'label' => 'xyz.lat',
             'label_attr' => ['class' => 'lorem'],
             'attr' => ['class' => 'latitude-field'],
-        ])->shouldBeCalled();
+        ])->shouldBeCalled()->willReturn($builder);
         $builder->add('lng', 'text', [
             'label' => 'xyz.lng',
             'label_attr' => ['class' => 'ipsum'],
             'attr' => ['class' => 'longitude-field'],
-        ])->shouldBeCalled();
+        ])->shouldBeCalled()->willReturn($builder);
         $builder->add('z', 'textarea', [
             'label' => 'xyz.z',
             'label_attr' => ['class' => 'dolor'],
             'attr' => ['class' => 'zoom-field'],
-        ])->shouldBeCalled();
+        ])->shouldBeCalled()->willReturn($builder);
 
         $this->buildForm($builder, [
             'latitude_name' => 'lat',

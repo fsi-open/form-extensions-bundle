@@ -3,7 +3,7 @@ version: '3'
 
 services:
     web:
-        image: fsiopen/docker-php-apache:alpine-8.0
+        image: fsiopenpl/docker-php-apache:alpine-8.1
         container_name: form-extensions-web
         ports:
             - 80:80

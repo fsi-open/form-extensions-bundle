@@ -27,7 +27,7 @@ class MultiUploadCollectionExtensionSpec extends ObjectBehavior
 
     public function it_sets_options(OptionsResolver $resolver): void
     {
-        $resolver->setDefault('multi_upload_field', null)->shouldBeCalled();
+        $resolver->setDefault('multi_upload_field', null)->shouldBeCalled()->willReturn($resolver);
         $resolver->setAllowedTypes('multi_upload_field', ['null', 'string'])->shouldBeCalled();
 
         $this->configureOptions($resolver);
@@ -35,7 +35,11 @@ class MultiUploadCollectionExtensionSpec extends ObjectBehavior
 
     public function it_adds_listener_if_options_set(FormBuilderInterface $builder): void
     {
-        $builder->addEventSubscriber(Argument::type(MultiUploadCollectionListener::class))->shouldBeCalled();
+        $builder
+            ->addEventSubscriber(Argument::type(MultiUploadCollectionListener::class))
+            ->shouldBeCalled()
+            ->willReturn($builder)
+        ;
 
         $this->buildForm($builder, ['multi_upload_field' => 'file']);
     }

@@ -1,5 +1,7 @@
 language: php
 
+dist: focal
+
 matrix:
     include:
       - php: 7.4
@@ -7,6 +9,7 @@ matrix:
           - COMPOSER_FLAGS="--prefer-lowest"
       - php: 8.0
       - php: 8.1
+      - php: 8.2
 
 env:
   global:
@@ -15,6 +18,9 @@ env:
 
 addons:
     firefox: "47.0.1"
+    apt:
+        packages:
+            - "libonig5"
 
 services:
     - xvfb
@@ -35,7 +41,8 @@ script:
     - vendor/bin/phpcs
     - vendor/bin/phpstan analyze -c phpstan.neon
     - vendor/bin/phpspec run -v -f dot -n
-    - vendor/bin/behat --no-snippets --verbose --format=progress --profile=travis
+    # Testing Google Maps through Behat has become unfeasible and was turned off until a better method is implemented
+    - vendor/bin/behat --no-snippets --verbose --format=progress --profile=travis --tags ~@google-maps
 
 after_failure:
     - cat features/fixtures/project/var/logs/test.log

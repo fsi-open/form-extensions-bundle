@@ -20,12 +20,12 @@ use SensioLabs\Behat\PageObjectExtension\PageObject\Page;
 
 abstract class AbstractContext extends PageObjectContext implements MinkAwareContext
 {
-    private ?Mink $mink;
-
     /**
      * @var array<mixed>|null
      */
     protected ?array $minkParameters;
+
+    private ?Mink $mink;
 
     public function getPage($name): Page
     {
@@ -58,7 +58,6 @@ abstract class AbstractContext extends PageObjectContext implements MinkAwareCon
 
     /**
      * @param array<string, mixed> $parameters
-     * @return void
      */
     public function setMinkParameters(array $parameters): void
     {
