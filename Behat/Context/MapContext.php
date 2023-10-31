@@ -12,8 +12,6 @@ declare(strict_types=1);
 namespace FSi\Bundle\FormExtensionsBundle\Behat\Context;
 
 use Assert\Assertion;
-use Behat\Behat\Definition\Call\Given;
-use Behat\Behat\Definition\Call\Then;
 use Behat\Gherkin\Node\TableNode;
 use FSi\Bundle\FormExtensionsBundle\Behat\Element\Form;
 use FSi\Bundle\FormExtensionsBundle\Behat\Element\Map;
@@ -34,11 +32,10 @@ final class MapContext extends AbstractContext
     }
 
     /**
-     * @Given /^Click on map at position: (.+)\/(.+)$/
+     * @Given /^click on map at position: (.+)\/(.+)$/
      *
      * @param int|float|string $latitude
      * @param int|float|string $longitude
-     * @return void
      */
     public function clickOnMapAtPosition($latitude, $longitude): void
     {
@@ -50,7 +47,6 @@ final class MapContext extends AbstractContext
      * @Then /^position fields shoud have values:$/
      *
      * @param TableNode<array<string, mixed>> $table
-     * @return void
      */
     public function positionFieldOfShoudHaveValues(TableNode $table): void
     {
@@ -70,7 +66,6 @@ final class MapContext extends AbstractContext
      * @Given /^fill position fields:$/
      *
      * @param TableNode<array<string, mixed>> $table
-     * @return void
      */
     public function fillPositionFields(TableNode $table): void
     {
@@ -86,11 +81,10 @@ final class MapContext extends AbstractContext
     }
 
     /**
-     * @Then /^map position should be (.+)\/(.+)$/
+     * @Then /^map position should be set to :latitude latitude and :longitude longitude$/
      *
      * @param string|int|float $latitude
      * @param string|int|float $longitude
-     * @return void
      */
     public function mapPositionShouldBe($latitude, $longitude): void
     {
@@ -102,14 +96,14 @@ final class MapContext extends AbstractContext
     private function getFormElement(): Form
     {
         /** @var Form $formElement */
-        $formElement = $this->getElement('Form');
+        $formElement = $this->getElement(Form::class);
         return $formElement;
     }
 
     private function getMapElement(): Map
     {
         /** @var Map $mapElement */
-        $mapElement = $this->getElement('Map');
+        $mapElement = $this->getElement(Map::class);
         return $mapElement;
     }
 }

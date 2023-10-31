@@ -12,11 +12,11 @@ declare(strict_types=1);
 namespace FSi\Bundle\FormExtensionsBundle\Behat\Context;
 
 use Assert\Assertion;
-use Behat\Behat\Definition\Call\Given;
-use Behat\Behat\Definition\Call\Then;
-use Behat\Behat\Definition\Call\When;
 use FSi\Bundle\FormExtensionsBundle\Behat\Element\Form;
+use FSi\Bundle\FormExtensionsBundle\Behat\Page\MultipleMapForm;
+use FSi\Bundle\FormExtensionsBundle\Behat\Page\OneMapForm;
 use FSi\Bundle\FormExtensionsBundle\Behat\Page\SortableCollectionForm;
+use RuntimeException;
 
 final class WebUserContext extends AbstractContext
 {
@@ -25,7 +25,21 @@ final class WebUserContext extends AbstractContext
      */
     public function iOpenPage(string $pageName): void
     {
-        $this->getPage($pageName)->open();
+        switch ($pageName) {
+            case 'One Map Form':
+                $className = OneMapForm::class;
+                break;
+            case 'Multiple Map Form':
+                $className = MultipleMapForm::class;
+                break;
+            case 'Sortable Collection Form':
+                $className = SortableCollectionForm::class;
+                break;
+            default:
+                throw new RuntimeException("Unknown page \"{$pageName}\".");
+        }
+
+        $this->getPage($className)->open();
     }
 
     /**
@@ -50,14 +64,14 @@ final class WebUserContext extends AbstractContext
     public function iShouldSeePhotoNumberAtPosition(string $photo, int $position): void
     {
         /** @var SortableCollectionForm $page */
-        $page = $this->getPage('Sortable Collection Form');
+        $page = $this->getPage(SortableCollectionForm::class);
         Assertion::same($page->getPhotoAtPosition($position)->getText(), $photo);
     }
 
     private function getFormElement(): Form
     {
         /** @var Form $formElement */
-        $formElement = $this->getElement('Form');
+        $formElement = $this->getElement(Form::class);
         return $formElement;
     }
 }
