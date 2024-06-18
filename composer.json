@@ -15,7 +15,7 @@
         "twig/twig": "^3.3",
         "symfony/asset": "^4.4|^5.4|^6.0",
         "symfony/options-resolver": "^4.4|^5.4|^6.0",
-        "symfony/framework-bundle" : "^4.4|^5.4",
+        "symfony/framework-bundle" : "^4.4|^5.4|^6.0",
         "symfony/twig-bundle": "^4.4|^5.4|^6.0",
         "symfony/form" : "^4.4|^5.4|^6.0",
         "symfony/validator": "^4.4|^5.4|^6.0"
@@ -26,7 +26,6 @@
         "behat/mink-selenium2-driver": "^1.4",
         "friends-of-behat/mink-browserkit-driver": "^1.6.1",
         "friends-of-behat/mink-debug-extension": "^2.1",
-        "friends-of-behat/mink-browserkit-driver": "^1.5",
         "friends-of-behat/mink-extension": "^2.6",
         "friends-of-behat/symfony-extension": "^2.2",
         "phpspec/phpspec": "^7.1",
@@ -39,7 +38,7 @@
         "symfony/css-selector": "^4.4|^5.4|^6.0",
         "symfony/debug-bundle": "^4.4|^5.4|^6.0",
         "symfony/http-foundation": "^4.4|^5.4|^6.0",
-        "symfony/routing": "^4.4|^5.4",
+        "symfony/routing": "^4.4|^5.4|^6.0",
         "symfony/var-dumper": "^4.4|^5.4|^6.0",
         "symfony/phpunit-bridge": "^6.3"
     },

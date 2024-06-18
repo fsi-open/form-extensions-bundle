@@ -11,3 +11,8 @@ parameters:
         - '%currentWorkingDirectory%/spec'
         - '%currentWorkingDirectory%/vendor'
         - '%currentWorkingDirectory%/features/fixtures/project/var/cache'
+    reportUnmatchedIgnoredErrors: false
+    ignoreErrors:
+        -
+            message: '#.*Symfony\\Component\\Routing\\RouteCollectionBuilder.*#'
+            path: '%currentWorkingDirectory%/features/fixtures/project/src/Kernel.php'
