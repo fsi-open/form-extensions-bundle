@@ -18,6 +18,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpFoundation\Session\SessionFactoryInterface;
 use Symfony\Component\HttpKernel\Bundle\BundleInterface;
 use Symfony\Component\HttpKernel\Kernel as BaseKernel;
+use Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator;
 use Symfony\Component\Routing\RouteCollectionBuilder;
 
 use function dirname;
@@ -68,12 +69,21 @@ final class Kernel extends BaseKernel
         }
     }
 
-    protected function configureRoutes(RouteCollectionBuilder $routes): void
+    /**
+     * @param RoutingConfigurator|RouteCollectionBuilder $routes
+     */
+    protected function configureRoutes($routes): void
     {
         $confDir = $this->getProjectDir() . '/config';
 
-        $routes->import($confDir . '/{routes}/' . $this->environment . '/*' . self::CONFIG_EXTS, '/', 'glob');
-        $routes->import($confDir . '/{routes}/*' . self::CONFIG_EXTS, '/', 'glob');
-        $routes->import($confDir . '/{routes}' . self::CONFIG_EXTS, '/', 'glob');
+        if (true === $routes instanceof RoutingConfigurator) {
+            $routes->import($confDir . '/{routes}/' . $this->environment . '/*' . self::CONFIG_EXTS, 'glob');
+            $routes->import($confDir . '/{routes}/*' . self::CONFIG_EXTS, 'glob');
+            $routes->import($confDir . '/{routes}' . self::CONFIG_EXTS, 'glob');
+        } elseif (true === $routes instanceof RouteCollectionBuilder) {
+            $routes->import($confDir . '/{routes}/' . $this->environment . '/*' . self::CONFIG_EXTS, '/', 'glob');
+            $routes->import($confDir . '/{routes}/*' . self::CONFIG_EXTS, '/', 'glob');
+            $routes->import($confDir . '/{routes}' . self::CONFIG_EXTS, '/', 'glob');
+        }
     }
 }
