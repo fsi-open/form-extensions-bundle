@@ -28,7 +28,7 @@
         "friends-of-behat/mink-debug-extension": "^2.1",
         "friends-of-behat/mink-extension": "^2.6",
         "friends-of-behat/symfony-extension": "^2.2",
-        "phpspec/phpspec": "^7.1",
+        "phpspec/phpspec": "^7.1|^8.0@dev",
         "phpstan/phpstan": "^1.10",
         "phpstan/phpstan-beberlei-assert": "^1.0",
         "phpstan/phpstan-doctrine": "^1.0",

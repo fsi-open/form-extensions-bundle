@@ -26,16 +26,16 @@ default: &default
             namespaces:
                 page: FSi\Bundle\FormExtensionsBundle\Behat\Page
                 element: FSi\Bundle\FormExtensionsBundle\Behat\Element
-travis:
+actions:
     <<: *default
     extensions:
         Behat\MinkExtension:
-            base_url: http://localhost:8080/
+            base_url: http://test-container:8080/
             sessions:
                 javascript:
                     selenium2:
                         browser: firefox
-                        wd_host: http://127.0.0.1:4444/wd/hub
+                        wd_host: http://firefox:4444/wd/hub
     calls:
         # E_ALL&~E_USER_DEPRECATED
         error_reporting: 16383
