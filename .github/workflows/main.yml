@@ -38,8 +38,6 @@ jobs:
               run: composer update ${COMPOSER_FLAGS}
             - name: Install assets
               run: composer assets
-            - name: Install selenium
-              run: wget --no-clobber -O vendor/bin/selenium.jar http://selenium-release.storage.googleapis.com/2.53/selenium-server-standalone-2.53.1.jar || true
             - name: Code quality
               run: vendor/bin/phpcs
             - name: Code static analysis
