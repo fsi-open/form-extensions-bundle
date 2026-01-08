@@ -42,6 +42,9 @@
         "symfony/var-dumper": "^4.4|^5.4|^6.0",
         "symfony/phpunit-bridge": "^6.3"
     },
+    "conflict": {
+        "symfony/property-info": ">=8.0"
+    },
     "config": {
         "bin-dir": "vendor/bin",
         "allow-plugins": {
