@@ -28,7 +28,7 @@ class FSiFormExtensionsBundle extends Bundle
 
     public function getContainerExtension(): ExtensionInterface
     {
-        if (null === $this->extension) {
+        if (false === $this->extension instanceof FSIFormExtensionsExtension) {
             $this->extension = new FSIFormExtensionsExtension();
         }
 
