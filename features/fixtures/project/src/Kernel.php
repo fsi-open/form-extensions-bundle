@@ -15,7 +15,6 @@ use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\Config\Resource\FileResource;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\HttpFoundation\Session\SessionFactoryInterface;
 use Symfony\Component\HttpKernel\Bundle\BundleInterface;
 use Symfony\Component\HttpKernel\Kernel as BaseKernel;
 use Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator;
@@ -61,12 +60,6 @@ final class Kernel extends BaseKernel
         $loader->load($configDirectory . '/{packages}/' . $this->environment . '/*' . self::CONFIG_EXTS, 'glob');
         $loader->load($configDirectory . '/{services}' . self::CONFIG_EXTS, 'glob');
         $loader->load($configDirectory . '/{services}_' . $this->environment . self::CONFIG_EXTS, 'glob');
-
-        if (true === interface_exists(SessionFactoryInterface::class)) {
-            $loader->load($configDirectory . '/{conditional}/framework_5' . self::CONFIG_EXTS, 'glob');
-        } else {
-            $loader->load($configDirectory . '/{conditional}/framework_4' . self::CONFIG_EXTS, 'glob');
-        }
     }
 
     /**

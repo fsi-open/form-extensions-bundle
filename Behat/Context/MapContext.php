@@ -81,7 +81,7 @@ final class MapContext extends AbstractContext
     }
 
     /**
-     * @Then /^map position should be set to :latitude latitude and :longitude longitude$/
+     * @Then map position should be set to :latitude latitude and :longitude longitude
      *
      * @param string|int|float $latitude
      * @param string|int|float $longitude
