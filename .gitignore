@@ -2,6 +2,7 @@
 composer.lock
 composer.phar
 /features/fixtures/project/public/bundles
+/features/fixtures/project/config/reference.php
 /features/fixtures/project/var/cache/*
 /features/fixtures/project/var/logs/*
 !/features/fixtures/project/var/logs/.gitkeep

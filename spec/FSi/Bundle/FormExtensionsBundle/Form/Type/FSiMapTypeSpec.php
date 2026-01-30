@@ -40,15 +40,15 @@ class FSiMapTypeSpec extends ObjectBehavior
             'zoom_options' => [],
         ])->shouldBeCalled()->willReturn($resolver);
 
-        $resolver->setAllowedTypes('latitude_name', 'string')->shouldBeCalled();
-        $resolver->setAllowedTypes('latitude_type', 'string')->shouldBeCalled();
-        $resolver->setAllowedTypes('latitude_options', 'array')->shouldBeCalled();
-        $resolver->setAllowedTypes('longitude_name', 'string')->shouldBeCalled();
-        $resolver->setAllowedTypes('longitude_type', 'string')->shouldBeCalled();
-        $resolver->setAllowedTypes('longitude_options', 'array')->shouldBeCalled();
-        $resolver->setAllowedTypes('zoom_name', ['string', 'null'])->shouldBeCalled();
-        $resolver->setAllowedTypes('zoom_type', 'string')->shouldBeCalled();
-        $resolver->setAllowedTypes('zoom_options', 'array')->shouldBeCalled();
+        $resolver->setAllowedTypes('latitude_name', 'string')->shouldBeCalled()->willReturn($resolver);
+        $resolver->setAllowedTypes('latitude_type', 'string')->shouldBeCalled()->willReturn($resolver);
+        $resolver->setAllowedTypes('latitude_options', 'array')->shouldBeCalled()->willReturn($resolver);
+        $resolver->setAllowedTypes('longitude_name', 'string')->shouldBeCalled()->willReturn($resolver);
+        $resolver->setAllowedTypes('longitude_type', 'string')->shouldBeCalled()->willReturn($resolver);
+        $resolver->setAllowedTypes('longitude_options', 'array')->shouldBeCalled()->willReturn($resolver);
+        $resolver->setAllowedTypes('zoom_name', ['string', 'null'])->shouldBeCalled()->willReturn($resolver);
+        $resolver->setAllowedTypes('zoom_type', 'string')->shouldBeCalled()->willReturn($resolver);
+        $resolver->setAllowedTypes('zoom_options', 'array')->shouldBeCalled()->willReturn($resolver);
 
         $this->configureOptions($resolver);
     }

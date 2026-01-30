@@ -8,6 +8,7 @@
     <exclude-pattern>*.js</exclude-pattern>
     <exclude-pattern>*.css</exclude-pattern>
     <exclude-pattern>spec/*</exclude-pattern>
+    <exclude-pattern>features/fixtures/project/config/reference.php</exclude-pattern>
     <exclude-pattern>features/fixtures/project/var/*</exclude-pattern>
     <exclude-pattern>vendor/*</exclude-pattern>
 

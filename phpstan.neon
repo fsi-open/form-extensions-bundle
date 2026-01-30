@@ -10,6 +10,7 @@ parameters:
         - '%currentWorkingDirectory%/Resources'
         - '%currentWorkingDirectory%/spec'
         - '%currentWorkingDirectory%/vendor'
+        - '%currentWorkingDirectory%/features/fixtures/project/config/reference.php'
         - '%currentWorkingDirectory%/features/fixtures/project/var/cache'
     reportUnmatchedIgnoredErrors: false
     ignoreErrors:
