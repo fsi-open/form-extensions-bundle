@@ -1,5 +1,4 @@
 {% block fsi_map_widget %}
-{% apply spaceless %}
     {% set attr = attr|merge({'class': (label_attr.class|default('') ~ ' map-location')|trim}) %}
     <div {{ block('widget_container_attributes') }}>
         <div class="map-location__map" style="height: 300px; margin-bottom: 15px;"></div>
@@ -20,5 +19,4 @@
             });
         </script>
     </div>
-{% endapply %}
 {% endblock %}
