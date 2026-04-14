@@ -25,7 +25,7 @@ abstract class AbstractContext extends PageObjectContext implements MinkAwareCon
      */
     protected ?array $minkParameters;
 
-    private ?Mink $mink;
+    private ?Mink $mink = null;
 
     public function getPage($name): Page
     {

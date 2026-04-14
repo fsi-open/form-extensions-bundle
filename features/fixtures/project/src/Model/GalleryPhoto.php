@@ -15,9 +15,9 @@ use FSi\Bundle\FormExtensionsBundle\Model\PositionableInterface;
 
 class GalleryPhoto implements PositionableInterface
 {
-    private ?Gallery $gallery;
-    private ?string $file;
-    private ?int $position;
+    private ?Gallery $gallery = null;
+    private ?string $file = null;
+    private ?int $position = null;
 
     public function getGallery(): ?Gallery
     {
